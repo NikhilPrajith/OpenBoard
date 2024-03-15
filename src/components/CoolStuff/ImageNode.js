@@ -3,7 +3,7 @@ import { Handle, Position, NodeResizer } from 'reactflow';
 
 export default function ImageNode({ data, isConnectable, selected }) {
   // State to store the width and height
-  const [size, setSize] = useState({ width: '100px', height: '100%' });
+  const [size, setSize] = useState({ width: '130px', height: '100%' });
 
   // Function to handle resizing
   const handleResize = (newSize) => {

@@ -10,6 +10,7 @@ import DraggableTimer from './Timer/DraggableTimer';
 import ParticleEffect from './ParticleJs/ParticleEffect';
 import SideBar from './SideBar/SideBar';
 import ImageNode from './CoolStuff/ImageNode';
+import Stickers from './CoolStuff/Stickers';
 
 
   const snapGrid = [10, 10];
@@ -34,6 +35,8 @@ export default function InfiniteCanvas({}){
   const [bgColor, setBgColor] = useState(initBgColor);
   const [selectedEffect, setSelectedEffect] = useState('stary')
   const [showEffect, setShowEffect] = useState(true);
+
+  const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
 
   const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;
 
@@ -104,6 +107,7 @@ export default function InfiniteCanvas({}){
   }, []);
 
   const onDrop = useCallback(
+
     (event) => {
       event.preventDefault();
 
@@ -165,18 +169,43 @@ export default function InfiniteCanvas({}){
     };
     setNodes((nds) => nds.concat(newNode));
   };
-  const changeTheme = (theme) =>{
+  const changeTheme = (theme) => {
     console.log("theme info", theme);
     setBgColor(theme.backgroundColor);
-
     setSelectedEffect(theme.effect);
-    if(theme.effect == ''){
-      setShowEffect(false);
-    }else{
-      setShowEffect(true);
+    setShowEffect(theme.effect !== '');
+  
+    let themeStickerTemp = [];
+    if (theme.images && theme.images.length > 1) {
+      console.log("add image");
+      theme.images.forEach((url,index) => {
+        if (index ==0){
+          return
+        }
+        console.log("add image url", url);
+  
+        const newNode = {
+          id: `themeStickers_${getNodeId(theme.name)}`, // Modify this to include theme identifier
+          type: 'stickers',
+          data: { url: url },
+          style: { padding: 4 },
+          position: {
+            x: Math.random() * window.innerWidth - 100,
+            y: Math.random() * window.innerHeight,
+          },
+        };
+        themeStickerTemp.push(newNode);
+      });
     }
+  
+    // Filter out old theme stickers before adding new ones
+    setNodes((currentNodes) => {
+      const filteredNodes = currentNodes.filter((node) => !node.id.startsWith('themeStickers'));
+      return [...filteredNodes, ...themeStickerTemp];
+    });
+  };
+  
 
-  }
 
 
   return (

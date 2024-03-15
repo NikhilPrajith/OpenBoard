@@ -1,3 +1,7 @@
 Main Page:
     // Dynamically import InfiniteCanvas with SSR disabled
     //This is because we use window in ParticleEffect and InfiniteCanvas - Edit later!
+
+ToDoTask:
+    // Reordering shows a floating title
+    // When you reorder one with title it adds an extra task for some reason.

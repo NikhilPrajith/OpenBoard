@@ -17,7 +17,7 @@ const taskCategories = {
 };
 const ToDoTask = () => {
   const [tasks, setTasks] = useState([
-    { id: 1, title: 'Margherita Pizza', category: '🥸', bgColor: taskCategories['🥸'] , completed: false },
+    { id: 1, title: 'Have Fun', category: '😍', bgColor: taskCategories['😍'] , completed: false },
   ]);
 
   const [deadline, setDeadline] = useState('');
@@ -35,7 +35,6 @@ const ToDoTask = () => {
         const reorderedTasks = Array.from(tasks);
         const [removed] = reorderedTasks.splice(oldIndex, 1);
         reorderedTasks.splice(newIndex, 0, removed);
-
         setTasks(reorderedTasks);
       },
     });
@@ -95,7 +94,7 @@ const ToDoTask = () => {
               checked={task.completed}
               onChange={() => toggleCompletion(task.id)}
             />
-              <input htmlFor={`checkbox-${task.id}`} className={styles.taskLabel} placeholder='Task Title...'>
+              <input value={task.title} htmlFor={`checkbox-${task.id}`} className={styles.taskLabel} placeholder='Task Title...'>
               
               </input>
             </div>
