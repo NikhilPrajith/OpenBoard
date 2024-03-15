@@ -85,6 +85,7 @@ export default function InfiniteCanvas({}){
 
             id: getNodeId(),
             type: 'taskListNode',
+            dragHandle: '.dragHandle',
             style: {padding: 4 },
             position: {
               x:window.innerWidth /5,
