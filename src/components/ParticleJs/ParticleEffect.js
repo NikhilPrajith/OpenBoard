@@ -356,69 +356,66 @@ const ParticleEffect = ({ selectedEffect }) => {
         break;
       case 'newJeans':
         return {
-  "particles": {
-    "number": {
-      "value": 5, // 5 'cats' or images floating
-      "density": {
-        "enable": false
-      }
-    },
-    "color": {
-      "value": "#ffffff" // Dots color, white for simplicity
-    },
-    "shape": {
-      "type": "image", // Using images for the shape of particles
-      "stroke": {
-        "width": 0
-      },
-      "image": {
-        "src": "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnBqNThoamR6cXltdjJwb2RkbzdpYnMxY2x6ZngxZmJ5dTBybHljZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/sYpDQe6I2gm8Y1hv37/giphy.gif", // URL or relative path to the image
-        "width": 100,
-        "height": 100
-      }
-    },
-    "opacity": {
-      "value": 1, // Full opacity for the images
-      "random": false
-    },
-    "size": {
-      "value": 20, // Adjust based on your image size for a smaller representation
-      "random": false
-    },
-    "line_linked": {
-      "enable": true, // Enable linking to simulate a streak of color
-      "distance": 150, // Distance of linking
-      "color": "#ff0000", // Color of the streak line, red for example
-      "opacity": 0.6, // Slightly transparent streak line
-      "width": 2 // Thickness of the streak line
-    },
-    "move": {
-      "enable": true,
-      "speed": 2, // Slow floating movement
-      "direction": "right", // They float to the right
-      "random": false,
-      "straight": true, // Straight movement
-      "out_mode": "out", // Allow them to exit the canvas and re-enter
-      "bounce": false,
-      "attract": {
-        "enable": false
-      }
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": {
-        "enable": false // Disabling hover effects
-      },
-      "onclick": {
-        "enable": false // Disabling click effects
-      },
-      "resize": true
-    }
-  },
-  "retina_detect": true
-}
+          "particles": {
+            "number": {
+              "value": 100,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#ffffff" // Star color
+            },
+            "shape": {
+              "type": "star",
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              },
+              "polygon": {
+                "nb_sides": 5
+              }
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": true, // Random opacity for twinkling effect
+              "anim": {
+                "enable": true,
+                "speed": 1, // Adjust for faster/slower twinkling
+                "opacity_min": 0.1, // Minimum opacity to simulate twinkling
+                "sync": false
+              }
+            },
+            "size": {
+              "value": 3, // Adjust size for larger/smaller stars
+              "random": true, // Varying sizes for a more natural look
+              "anim": {
+                "enable": false
+              }
+            },
+            "line_linked": {
+              "enable": false // No linking lines between stars
+            },
+            "move": {
+              "enable": false // Static stars, no movement
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": false
+              },
+              "onclick": {
+                "enable": false
+              }
+            }
+          },
+          "retina_detect": true
+        }
+        
+        
 ;
       default:
         return {};

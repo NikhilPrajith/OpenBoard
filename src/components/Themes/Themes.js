@@ -83,7 +83,7 @@ export default function Themes({changeTheme}) {
       'NewJeans': {
         images: ['https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdreWl0NWl0aHg2MXhwbnZqZmVxc3R3c3drdnRkanNtNzd1b2hqaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b6NgTiPadHTVmDOWnk/giphy.gif',
           'https://media0.giphy.com/media/12uxuixeCP6JBUOP17/giphy.webp?cid=790b7611dc9u1dklcosz4nkhwk8qy4unz0kazqtgbfzpxrs0&ep=v1_gifs_search&rid=giphy.webp&ct=g',
-          'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXRiNDN0aThsY3BhbnlnN3l3bDJ0djAxMGVxNTI1cm1lbHdpeWdoZyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/BuNGhfgf3MdmsybmJt/200.webp',
+          'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjY0ZG5yeDNvOWlpdWhxb3dvM3lkMzNjcm04cTZkaHR0bWdqaHo3ZSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/BuNGhfgf3MdmsybmJt/200.webp',
           'https://media0.giphy.com/media/sYpDQe6I2gm8Y1hv37/giphy.webp?cid=790b7611etb43ti8lcpanyg7ywl2tv010eq525rmelwiyghg&ep=v1_stickers_search&rid=giphy.webp&ct=s',
           'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXRiNDN0aThsY3BhbnlnN3l3bDJ0djAxMGVxNTI1cm1lbHdpeWdoZyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/iUWxTgKI5TUKAiMNuJ/giphy.webp',
           'https://media4.giphy.com/media/5v70SvArRC2cvT31Fe/giphy.webp?cid=790b7611etb43ti8lcpanyg7ywl2tv010eq525rmelwiyghg&ep=v1_stickers_search&rid=giphy.webp&ct=s',
@@ -99,12 +99,12 @@ export default function Themes({changeTheme}) {
       },
       'Spiderman': {
         images: ['https://media4.giphy.com/media/fbHqxBmYngB1U9GTt9/200.webp?cid=790b761182ch4o74rx9v53gazx3hriihp3mfsfqxb8tyus5j&ep=v1_gifs_search&rid=200.webp&ct=g',
-            'https://media2.giphy.com/media/8zYunr3Hg8XPq/100.webp?cid=790b761100u00mf80j9g7sm2fphmfwz2jhehlc8cn7j0qp7r&ep=v1_gifs_search&rid=100.webp&ct=g',
             'https://media3.giphy.com/media/4cyhX2dXNJaCubFydv/giphy.webp?cid=ecf05e476uo3uwfzesy38r06hfrmq3j5dlyg9m8kac29oeyg&ep=v1_stickers_search&rid=giphy.webp&ct=s',
             'https://media1.giphy.com/media/x7WXCEYwnbvDe3GM3e/giphy.webp?cid=ecf05e47rjev2g69o0quu9be1u40otu12ghq5tnlqtdlij6f&ep=v1_stickers_search&rid=giphy.webp&ct=s',
             'https://media0.giphy.com/media/sTmajIUJxdMvsm7vxZ/giphy.webp?cid=ecf05e47g03m4n0bs2k6nzf630fmc401jwlsbfzxzqq3csxx&ep=v1_stickers_search&rid=giphy.webp&ct=s',
-
-      ],
+            'https://media0.giphy.com/media/zotX5LOMgQfQ1dGtTw/giphy.webp?cid=ecf05e47o257igtd4x2901masu3m7f352rqw2vhvm789hb3n&ep=v1_stickers_search&rid=giphy.webp&ct=s',
+            'https://media0.giphy.com/media/TKLdhXUt2S36V1KnA6/giphy.webp?cid=ecf05e477a3o4ka26ts2dd7nuoyoenhlswihv0qy4d0ifcxe&ep=v1_stickers_search&rid=giphy.webp&ct=s'
+      ],  
         textColor:'white',
         backgroundColor: 'rgb(251, 170, 173)',
         effect: 'web'
