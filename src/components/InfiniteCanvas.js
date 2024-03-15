@@ -8,7 +8,6 @@ import BasicTools from './BasicTools/BasicTools';
 import StickyNote from './StickyNote/StickyNote';
 import DraggableTimer from './Timer/DraggableTimer';
 import ParticleEffect from './ParticleJs/ParticleEffect';
-import SnowEffect from './ParticleJs/Snow';
 import SideBar from './SideBar/SideBar';
 import ImageNode from './CoolStuff/ImageNode';
 

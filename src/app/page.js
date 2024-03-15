@@ -1,5 +1,4 @@
 import Heading from "@/components/Information/Heading";
-import SnowEffect from "@/components/ParticleJs/Snow";
 
 import dynamic from 'next/dynamic';
 
