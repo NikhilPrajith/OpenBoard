@@ -66,7 +66,7 @@ export default function Themes({changeTheme}) {
       'https://media4.giphy.com/media/StX0uJHmCoViq6iEHq/giphy.webp?cid=790b7611emn1nmrow2rsrqkni6la1tbfy8csww59upa8q6xh&ep=v1_stickers_search&rid=giphy.webp&ct=s'
     ],
         textColor:'white',
-        backgroundColor: 'e6e6fa',
+        backgroundColor: '#e6e6fa',
         effect: 'confetti'
       },
     'Rainy': {
