@@ -1,1 +1,3 @@
-https://github.com/markus-wa/stickerify?tab=readme-ov-file
+Main Page:
+    // Dynamically import InfiniteCanvas with SSR disabled
+    //This is because we use window in ParticleEffect and InfiniteCanvas - Edit later!

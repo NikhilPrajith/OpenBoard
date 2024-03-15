@@ -1,3 +1,4 @@
+'use client'
 import React, {useState,useEffect,useCallback} from 'react';
 import ReactFlow, { MiniMap, Controls,Background, useNodesState, useEdgesState, addEdge,ReactFlowProvider } from 'reactflow';
 import styles from "./InfinitaCanvas.module.css"

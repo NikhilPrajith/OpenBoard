@@ -1,19 +1,21 @@
-'use client'
-import BasicTools from "@/components/BasicTools/BasicTools";
-import InfiniteCanvas from "@/components/InfiniteCanvas";
 import Heading from "@/components/Information/Heading";
-import SideBar from "@/components/SideBar/SideBar";
-import Image from "next/image";
-import ParticleEffect from "@/components/ParticleJs/ParticleEffect";
-import { useState } from "react";
 import SnowEffect from "@/components/ParticleJs/Snow";
+
+import dynamic from 'next/dynamic';
+
+// Dynamically import InfiniteCanvas with SSR disabled
+//This is because we use window in ParticleEffect and InfiniteCanvas - Edit later!
+const InfiniteCanvasNoSSR = dynamic(() => import('@/components/InfiniteCanvas'), {
+  ssr: false,
+});
 
 export default function Home() {
 
   return (
     <div>
       <Heading></Heading>
-      <InfiniteCanvas></InfiniteCanvas>
+
+      <InfiniteCanvasNoSSR />
 
     </div>
   );
