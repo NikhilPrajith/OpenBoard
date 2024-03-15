@@ -1,0 +1,62 @@
+.parent{
+    right: 0;
+    top: 0;
+    width: auto;
+    background-color: white;
+    display: flex;
+    padding: 0px;
+    border-left:0.1px rgb(199, 197, 197) solid;
+    font-size: 9px;
+    width:280px;
+
+}
+.tabs{
+    padding: 13px;
+}
+.shapes{
+    width: auto;
+}
+.tabCont{
+    display: flex;
+    justify-content: left;
+    border-bottom: 0.03px grey solid;
+    cursor: pointer;
+}
+.tabCont>div{
+    margin: 6px;
+    margin-right: 12px;
+
+    font-weight: 500;
+    font-size: 13px;
+
+}
+.active{
+    color: black;
+}
+.inactive{
+    color: rgb(144, 139, 139);
+}
+.content{
+    height: 100%;
+    overflow: scroll;
+}
+.content {
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.accordionTitle{
+    font-size: 12px;
+    font-weight: 600;
+}
+.accordionSummary>div{
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+.controlSection{
+    width:100%;
+}

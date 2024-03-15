@@ -1,0 +1,60 @@
+.container{
+    padding: 16px;
+    padding-top: 8px;
+}
+.searchContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius:6px;
+    border:1px solid #eee;
+    overflow: hidden;
+
+
+}
+.searchBar{
+    border: none;
+
+    padding: 5px;
+    font-size: 12px;
+
+
+}
+.searchBar:focus{
+    outline: none;
+    border: none;
+    
+}
+.searchBarButton{
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    height: 100%;
+    padding: 7px;
+    font-size: 12px;
+
+
+}
+.lookingFor{
+    font-size: 11px;
+    color: grey;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.searchSomething{
+    color: grey;
+    font-size: 11px;
+    text-align: center;
+    margin:15px;
+}
+.resultCont{
+    margin-top: 15px;
+    height:350px;
+    overflow-y: scroll;
+
+}
+.imageParent{
+    height: 120px;
+}

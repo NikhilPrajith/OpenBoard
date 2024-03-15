@@ -1,0 +1,31 @@
+.headingContainer {
+    text-align: center;
+    margin: 10px;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+    align-items: center;
+    border:0.1px black solid;
+    border-radius:6px;
+  }
+  
+  .title {
+    font-size: 22px; /* Large font size for the title */
+    color: #333; /* Dark color for better readability */
+    font-weight: bold; /* Make the title bold */
+  }
+  
+  .subtitle {
+    font-size: 11px; 
+    color: grey; 
+    font-weight: 100;
+    margin-left: 10px;
+
+  }
+  

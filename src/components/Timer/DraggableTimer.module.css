@@ -1,0 +1,129 @@
+.container{
+    background-color: white;
+    color: white;
+    padding: 20px;
+    width: -webkit-fit-content;
+    color: black;
+    height: -webkit-fit-content;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    cursor: pointer;
+
+    width: 250px;
+
+    user-select: none; 
+}
+.containerParent{
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+
+    border:1px solid #eee;
+    font-family: 'Arial', sans-serif;
+
+}
+
+.add{
+    padding: 8px;
+    user-select: none; 
+    font-size: 12px;
+}
+.subtract{
+    padding: 8px;
+    user-select: none; 
+    font-size: 12px;
+}
+.time{
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 10px;
+    margin-left: 9px;
+    margin-right: 9px;
+    width: 220px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+.controlParent{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 15px;
+    margin-top: 10px;
+
+}
+.controlParent>div{
+    margin: 10px;
+    padding: 10px;
+}
+.control{
+
+    background-color: rgb(120, 151, 213);
+    border-radius: 50%;
+    color: black;
+    font-weight: 900;
+}
+.reset{
+    
+    background-color: rgb(242, 138, 138);
+    border-radius: 50%;
+    color: black;
+    font-weight: 900;
+}
+
+.parent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.evi{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 15px;
+    margin-right: 5px;
+    color: grey;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+  }
+  .taskHeader{
+    font-size: 13px;
+  }
+  
+
+.taskHeader{
+
+    -webkit-appearance: none; /* for Chrome, Safari, and Opera */
+    -moz-appearance: none; /* for Firefox */
+    appearance: none;
+  
+  }
+  .taskHeader:focus {
+    outline: none; /* Remove the focus outline */
+    border-color: #666; /* Custom focus border color */
+  }
+
+.nodeDrag{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.89);
+    padding: 2px;
+    color: white;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  .taskHeader{
+    width: 100%;
+  }

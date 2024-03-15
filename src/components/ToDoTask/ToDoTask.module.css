@@ -1,0 +1,136 @@
+.container {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 6px;
+  font-size: 12px;
+  margin: auto;
+  font-family: 'Arial', sans-serif;
+  border:1px solid #eee;
+  cursor: default;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+.taskHeader{
+  font-size: 13px;
+}
+.taskHeader{
+  width: 100%;
+}
+
+.timerInput {
+  border: none;
+  background-color: transparent;
+  color: #333;
+}
+
+.taskContainer {
+  padding: 20px;
+}
+
+.taskItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background: #F8F9FA;
+  border-radius: 6px;
+  padding: 8px 8px;
+  cursor: default;
+}
+.taskItemDiv1{
+  display: flex;
+  margin-right: 25px;
+  align-items: center;
+}
+
+.taskItemDiv2{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+.taskLabel {
+  margin-left: 10px;
+  font-weight: 100;
+  background-color: transparent;
+}
+
+.category {
+  background-color: #E0E0E0;
+  border-radius: 6px;
+  font-size: 10px;
+  padding:5px;
+}
+
+.dragHandle{
+  cursor:grab;
+  margin-left: 10px;
+}
+.categorySelect{
+  -webkit-appearance: none; /* for Chrome, Safari, and Opera */
+  -moz-appearance: none; /* for Firefox */
+  appearance: none;
+  padding: 4px;
+  padding-left: 9px;
+  padding-right: 9px;
+  margin-right: 10px;
+}
+.categorySelect:focus {
+  outline: none; /* Remove the focus outline */
+  border-color: #666; /* Custom focus border color */
+}
+
+/* You might want to add styles for disabled state as well */
+.categorySelect:disabled {
+  cursor: not-allowed;
+}
+
+.categorySelect option {
+  color: #333; /* Text color for options */
+}
+.addButton{
+  display: flex;
+  font-size: 11px;
+  color: grey;
+  font-weight: 100;
+  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+}
+.addButton>span{
+  margin-left: 5px;
+}
+.taskHeader{
+
+  -webkit-appearance: none; /* for Chrome, Safari, and Opera */
+  -moz-appearance: none; /* for Firefox */
+  appearance: none;
+
+}
+.taskHeader:focus {
+  outline: none; /* Remove the focus outline */
+  border-color: #666; /* Custom focus border color */
+}
+.deleteIcon{
+  color:rgb(238, 83, 31);
+  cursor: pointer;
+}
+.deleteIcon:hover{
+  opacity: 0.8;
+}
+.nodeDrag{
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.89);
+  padding: 2px;
+  color: white;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}

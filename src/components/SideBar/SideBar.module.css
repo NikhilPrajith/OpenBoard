@@ -1,0 +1,13 @@
+.container{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 95vh;
+    background-color: white;
+    margin-top:10px;
+    margin-right: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    border:0.1px black solid;
+
+}
