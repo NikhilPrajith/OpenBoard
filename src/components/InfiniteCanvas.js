@@ -17,7 +17,7 @@ import Stickers from './CoolStuff/Stickers';
 
 
 const defaultViewport = { x: 0, y: 0, zoom: 0.75 };
-  const initBgColor = 'color(srgb 0.1349 0.1546 0.2544)';
+  const initBgColor = 'white';
   const snowColor= 'rgb(148, 213, 255)';
   const nodeTypes = {
     taskListNode: ToDoTaskNode,
@@ -33,8 +33,8 @@ export default function InfiniteCanvas({}){
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [bgColor, setBgColor] = useState(initBgColor);
-  const [selectedEffect, setSelectedEffect] = useState('stary')
-  const [showEffect, setShowEffect] = useState(true);
+  const [selectedEffect, setSelectedEffect] = useState('')
+  const [showEffect, setShowEffect] = useState(false);
 
   const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
 

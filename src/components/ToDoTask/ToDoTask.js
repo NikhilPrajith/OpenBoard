@@ -15,10 +15,11 @@ const taskCategories = {
   '😵‍💫': 'rgb(249, 199, 242)',
   '🤕': 'rgb(207, 249, 199)',
 };
-const ToDoTask = () => {
+const ToDoTask = ({blank}) => {
   const [tasks, setTasks] = useState([
-    { id: 1, title: 'Have Fun', category: '😍', bgColor: taskCategories['😍'] , completed: false },
+    { id: 1, title: '', category: '😍', bgColor: taskCategories['😍'] , completed: false },
   ]);
+  
 
   const [deadline, setDeadline] = useState('');
   const [startTime, setStartTime] = useState('');

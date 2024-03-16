@@ -1,21 +1,38 @@
-import Heading from "@/components/Information/Heading";
-
+'use client'
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
+import Features from '@/components/Features/Features';
+import Heading from '@/components/Information/Heading';
+import Tasker from '@/components/Tasker/Tasker';
 
 // Dynamically import InfiniteCanvas with SSR disabled
-//This is because we use window in ParticleEffect and InfiniteCanvas - Edit later!
 const InfiniteCanvasNoSSR = dynamic(() => import('@/components/InfiniteCanvas'), {
   ssr: false,
 });
 
 export default function Home() {
+  const [type, setType] = useState('Endless Board');
+  const [open, setOpen] = useState(false)
+
+  // Determine display styles based on the `type`
+  const displayStyleForType = (currentType) => {
+    return type === currentType ? { display: 'block' } : { display: 'none' };
+  };
 
   return (
     <div>
-      <Heading></Heading>
+      <div style={{ position: 'absolute', top: '0' }}>
+        <Features setOpenParent={setOpen} type={type} setType={setType}></Features>
+        <Heading></Heading>
+      </div>
 
-      <InfiniteCanvasNoSSR />
-
+      {/* Apply styles to toggle visibility instead of conditional rendering */}
+      <div style={displayStyleForType('Endless Board')}>
+        <InfiniteCanvasNoSSR />
+      </div>
+      <div style={displayStyleForType('Tasker')}>
+        <div><Tasker open={open}></Tasker></div>
+      </div>
     </div>
   );
 }

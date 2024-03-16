@@ -22,6 +22,7 @@ export default function ImageNode({ data, isConnectable, selected }) {
           width: `${size.width}`, 
           height: `${size.height}`,
           position: 'relative', 
+          opacity:'0.8'
         }}
       >
         <img 

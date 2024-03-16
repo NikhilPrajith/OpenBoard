@@ -5,3 +5,12 @@ Main Page:
 ToDoTask:
     // Reordering shows a floating title
     // When you reorder one with title it adds an extra task for some reason.
+
+
+Add text
+Hide sidebar
+Shape and edit,
+
+Different sized post its 
+Upload image
+Note box/document
