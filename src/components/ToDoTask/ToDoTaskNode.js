@@ -8,7 +8,7 @@ import styles from "./ToDoTask.module.css"
 export default function ToDoTaskNode ({ isConnectable,selected }){
   return (
     <>
-
+    
 {/*<NodeResizer color="#fff" isVisible={selected} minWidth={326} />*/}
       <Handle
         type="target"

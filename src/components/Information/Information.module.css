@@ -1,23 +1,25 @@
 .headingContainer {
-    text-align: center;
-    margin: 10px;
-    margin-left: 73px;
+    width: 100%;
+    /*margin: 10px;
+    margin-left: 73px;*/
     background-color: white;
     position: fixed;
     top: 0;
-    z-index: 100;
+    z-index: 130;
     display: flex;
     padding: 15px;
-    padding-left: 20px;
+    padding-left: 80px;
     padding-right: 20px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border:0.1px black solid;
-    border-radius:6px;
+
+    border-bottom: 0.1px rgb(212, 210, 210) solid;
+    /*box-shadow: 0 0 2px 0 rgb(212, 210, 210);*/
+
   }
   
   .title {
-    font-size: 22px; /* Large font size for the title */
+    font-size: 15px; /* Large font size for the title */
     color: #333; /* Dark color for better readability */
     font-weight: bold; /* Make the title bold */
   }
@@ -25,8 +27,16 @@
   .subtitle {
     font-size: 11px; 
     color: grey; 
-    font-weight: 100;
+    font-weight: 300;
     margin-left: 10px;
+    padding-left: 10px;
+    border-left: 0.1px grey solid;
 
   }
   
+  .titleCont{
+    display: flex;
+    align-items: center;
+
+
+  }

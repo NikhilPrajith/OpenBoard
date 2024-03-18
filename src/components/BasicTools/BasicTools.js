@@ -4,6 +4,7 @@ import { GoTasklist } from "react-icons/go";
 import { FaStickyNote } from "react-icons/fa";
 import { RiTimer2Fill } from "react-icons/ri";
 import { FaListAlt } from "react-icons/fa";
+import { MdVideoLibrary } from "react-icons/md";
 
 export default function BasicTools({addingNode}) {
   const [tasks, setTasks] = useState([]);
@@ -24,6 +25,8 @@ export default function BasicTools({addingNode}) {
 
 
               <button onClick={(event) => onClick(event, 'timer')} ><RiTimer2Fill></RiTimer2Fill></button>
+
+              <button onClick={(event) => onClick(event, 'video')} ><MdVideoLibrary></MdVideoLibrary></button>
             
         </div>
     </div>

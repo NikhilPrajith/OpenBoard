@@ -23,7 +23,7 @@ export default function Home() {
     <div>
       <div style={{ position: 'absolute', top: '0' }}>
         <Features setOpenParent={setOpen} type={type} setType={setType}></Features>
-        <Heading></Heading>
+        <Heading open={open} ></Heading>
       </div>
 
       {/* Apply styles to toggle visibility instead of conditional rendering */}

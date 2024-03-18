@@ -2,12 +2,10 @@
     position: fixed;
     right: 0;
     top: 0;
-    height: 95vh;
+    height: 100vh;
     background-color: white;
-    margin-top:10px;
-    margin-right: 10px;
-    border-radius: 6px;
     overflow: hidden;
-    border:0.1px black solid;
+    border-left:  0.1px rgb(212, 210, 210) solid;
+    padding-top: 53px;
 
 }

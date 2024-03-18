@@ -14,8 +14,11 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { MdOutlineDashboard } from "react-icons/md";
+import { MdPlaylistAddCircle } from "react-icons/md";
+import { RiDashboardFill } from "react-icons/ri";
 
-const drawerWidth = 210;
+const drawerWidth = 180;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -24,7 +27,7 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
-  border: '0.1px solid black', // Apply border style
+  borderRight: '0.1px rgb(212, 210, 210) solid', // Apply border style
 });
 
 const closedMixin = (theme) => ({
@@ -37,7 +40,7 @@ const closedMixin = (theme) => ({
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
-  borderRight: '0.1px solid black', // Apply border style
+  borderRight: '0.1px rgb(212, 210, 210) solid', // Apply border style
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -75,25 +78,24 @@ export default function Features({setType, setOpenParent}) {
   }
 
   return (
-    <Box sx={{ display: 'flex', borderRight: '1px solid black', fontFamily: 'Arial, sans-serif' }}> {/* Ensure the Box uses Arial */}
+    <Box sx={{ display: 'flex', borderRight: '0.1px rgb(212, 210, 210) solid', fontFamily: 'Arial, sans-serif' }}> {/* Ensure the Box uses Arial */}
     <CssBaseline />
     <Drawer variant="permanent" open={open}>
-      <DrawerHeader>
-        <IconButton sx={{color:'black'}} onClick={handleChange}>
+      <DrawerHeader sx={{minHeight:'52.5px !important', borderBottom:'0.1px rgb(212, 210, 210) solid'}}>
+        <IconButton sx={{color:'black', fontSize:'12px', margin:!open ? 'auto': 'initial'}} onClick={handleChange}>
           {!open ? <IoIosArrowForward /> : <IoIosArrowBack />}
         </IconButton>
       </DrawerHeader>
-      <Divider />
       <List sx={{ 
         '& .MuiListItemText-root span': { fontSize: '12px', color: 'black', fontFamily: 'inherit' }, // Use 'inherit' for the font
         '& .MuiListItemIcon-root': { color: 'black', fontSize: '12px' }, // Adjusted font size for text
         '& .MuiSvgIcon-root': { fontSize: '12px' }, // Adjusted font size for icons
       }}>
-        {['Tasker', 'Endless Board'].map((text, index) => (
+        {['Endless Board', 'Tasker'].map((text, index) => (
           <ListItem onClick={()=>{setType(text)}} key={text} disablePadding sx={{ display: 'block' }}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', '& .MuiSvgIcon-root': { fontSize: '15px' } }}> {/* Explicitly target icons within ListItemIcon */}
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? <RiDashboardFill /> : <MdPlaylistAddCircle />}
               </ListItemIcon>
               <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>

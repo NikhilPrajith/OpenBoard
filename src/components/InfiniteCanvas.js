@@ -11,6 +11,7 @@ import ParticleEffect from './ParticleJs/ParticleEffect';
 import SideBar from './SideBar/SideBar';
 import ImageNode from './CoolStuff/ImageNode';
 import Stickers from './CoolStuff/Stickers';
+import Video from './Video/Video';
 
 
   const snapGrid = [10, 10];
@@ -24,6 +25,7 @@ const defaultViewport = { x: 0, y: 0, zoom: 0.75 };
     stickyNote: StickyNote,
     timer: DraggableTimer,
     stickers: ImageNode,
+    video: Video
   };
 
 export default function InfiniteCanvas({}){
@@ -95,6 +97,16 @@ export default function InfiniteCanvas({}){
               y: 300,
               },
             },
+            {
+
+              id: getNodeId(),
+              type: 'video',
+              style: {padding: 10 },
+              position: {
+                x:window.innerWidth /2,
+                y: 300,
+                },
+              }
 
     ]);
 

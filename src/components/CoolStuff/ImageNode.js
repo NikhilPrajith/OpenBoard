@@ -13,7 +13,7 @@ export default function ImageNode({ data, isConnectable, selected }) {
   return (
     <>
       <NodeResizer 
-        color="#fff" 
+        color="#000" 
         isVisible={selected} 
         onResize={handleResize} 
       />

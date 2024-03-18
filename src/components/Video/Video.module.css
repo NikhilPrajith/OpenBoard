@@ -1,0 +1,41 @@
+.videoContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  width: 100%;
+  min-width: 370px;
+  height: 94%;
+  margin-bottom: 10px;
+  }
+  
+  .videoInput {
+    padding: 20px;
+    width: 100%;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    font-size: 12px;
+  }
+  .videoInput:focus{
+    outline: none;
+  }
+  
+  .videoFrame {
+    width: 100%; /* Adjust based on your layout */
+    height: 100%;
+    min-height: 218px;
+  }
+
+.nodeDrag{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.89);
+    padding: 2px;
+    color: white;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
