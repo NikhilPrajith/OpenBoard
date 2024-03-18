@@ -101,7 +101,6 @@ export default function Themes({changeTheme}) {
         images: ['https://media4.giphy.com/media/fbHqxBmYngB1U9GTt9/200.webp?cid=790b761182ch4o74rx9v53gazx3hriihp3mfsfqxb8tyus5j&ep=v1_gifs_search&rid=200.webp&ct=g',
             'https://media3.giphy.com/media/4cyhX2dXNJaCubFydv/giphy.webp?cid=ecf05e476uo3uwfzesy38r06hfrmq3j5dlyg9m8kac29oeyg&ep=v1_stickers_search&rid=giphy.webp&ct=s',
             'https://media1.giphy.com/media/x7WXCEYwnbvDe3GM3e/giphy.webp?cid=ecf05e47rjev2g69o0quu9be1u40otu12ghq5tnlqtdlij6f&ep=v1_stickers_search&rid=giphy.webp&ct=s',
-            'https://media0.giphy.com/media/sTmajIUJxdMvsm7vxZ/giphy.webp?cid=ecf05e47g03m4n0bs2k6nzf630fmc401jwlsbfzxzqq3csxx&ep=v1_stickers_search&rid=giphy.webp&ct=s',
             'https://media0.giphy.com/media/zotX5LOMgQfQ1dGtTw/giphy.webp?cid=ecf05e47o257igtd4x2901masu3m7f352rqw2vhvm789hb3n&ep=v1_stickers_search&rid=giphy.webp&ct=s',
             'https://media0.giphy.com/media/TKLdhXUt2S36V1KnA6/giphy.webp?cid=ecf05e477a3o4ka26ts2dd7nuoyoenhlswihv0qy4d0ifcxe&ep=v1_stickers_search&rid=giphy.webp&ct=s'
       ],  

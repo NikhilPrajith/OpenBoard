@@ -14,7 +14,7 @@
     align-items: center;
 
     border-bottom: 0.1px rgb(212, 210, 210) solid;
-    /*box-shadow: 0 0 2px 0 rgb(212, 210, 210);*/
+    box-shadow: 0 0 2px 0 rgb(212, 210, 210);
 
   }
   

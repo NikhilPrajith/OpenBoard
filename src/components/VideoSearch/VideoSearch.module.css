@@ -1,0 +1,161 @@
+.container{
+    padding: 16px;
+    padding-top: 8px;
+    position: fixed;
+    bottom: 0;
+    z-index: 130;
+    margin-left: 150px;
+
+    background-color: white;
+}
+.searchContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border:1px solid #eee;
+    overflow: hidden;
+    font-size: 12px;
+    background-color: white;
+
+
+}
+.searchBar{
+    border: none;
+
+    padding: 5px;
+    font-size: 12px;
+    width: 100%;
+
+
+}
+.searchBar:focus{
+    outline: none;
+    border: none;
+    
+}
+.searchBarButton{
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    height: 100%;
+    padding: 7px;
+    font-size: 12px;
+
+
+}
+.lookingFor{
+    font-size: 11px;
+    color: grey;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.searchSomething{
+    color: grey;
+    font-size: 11px;
+    text-align: center;
+    margin:15px;
+}
+.resultCont{
+    margin-top: 15px;
+    height:350px;
+    overflow-y: scroll;
+
+}
+.imageParent{
+    height: 120px;
+}
+.parentCont{
+    position: absolute;
+    z-index: 130;
+    background-color: black;
+}
+
+.videoSearchContainer {
+    position: fixed;
+    bottom: 0;
+    width: 250px;
+    z-index: 150;
+    margin-left: 80px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    overflow: hidden;
+    font-size: 12px;
+    border:  0.1px rgb(212, 210, 210) solid;
+    font-family: Arial, sans-serif;
+  }
+  
+  .toggleButton {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .searchPanel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  
+  .searchPanel.open {
+    max-height: 300px; /* Adjust based on your needs */
+  }
+  
+  .searchBarContainer {
+    display: flex;
+  }
+  
+  .searchInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .searchButton {
+    padding: 10px;
+    background:black;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .resultsContainer {
+    background-color: white;
+
+    overflow-y: scroll;
+    height: 300px;
+  }
+  
+  .resultItem {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .videoThumbnail {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .videoTitle {
+    font-size: 10px;
+
+  }
+  
+  .videoInfoCont{
+    display: flex;
+    flex-direction: column;
+  }
+  .channelTitle{
+    font-size: 9px;
+    color: grey;
+  }

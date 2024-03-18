@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./Video.module.css";
 
 import { Handle, Position, NodeResizer } from 'reactflow';
@@ -6,10 +6,19 @@ import { Handle, Position, NodeResizer } from 'reactflow';
 import { RiDragMoveLine } from "react-icons/ri";
 import { MdOutlineDragHandle } from "react-icons/md";
 
-export default function Video({isConnectable, selected }) {
+export default function Video({isConnectable, selected, data }) {
   const [inputUrl, setInputUrl] = useState('');
   const [embedUrl, setEmbedUrl] = useState('');
   const [isEditing, setIsEditing] = useState(true);
+  useEffect(() => {
+    // Check if data.url is provided and update states accordingly
+    if (data?.url) {
+      const url = detectVideoTypeAndSetEmbedUrl(data.url);
+      setInputUrl(data.url);
+      setEmbedUrl(url);
+      setIsEditing(false); // Disable editing mode if a URL is provided
+    }
+  }, [data?.url]); // This effect runs whenever data.url changes
 
   const detectVideoTypeAndSetEmbedUrl = (url) => {
     // YouTube URL patterns

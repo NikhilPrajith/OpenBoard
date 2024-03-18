@@ -12,6 +12,7 @@ import SideBar from './SideBar/SideBar';
 import ImageNode from './CoolStuff/ImageNode';
 import Stickers from './CoolStuff/Stickers';
 import Video from './Video/Video';
+import VideoSearch from './VideoSearch/VideoSearch';
 
 
   const snapGrid = [10, 10];
@@ -181,6 +182,21 @@ export default function InfiniteCanvas({}){
     };
     setNodes((nds) => nds.concat(newNode));
   };
+  const onAddVideoFunction = (url) => {
+    console.log("add image url", url)
+
+    const newNode = {
+      id: getNodeId(),
+      type: 'video',
+      data:{url:url},
+      style: {padding: 4 },
+      position: {
+        x: Math.random() * window.innerWidth +100,
+        y: Math.random() * window.innerHeight,
+      },
+    };
+    setNodes((nds) => nds.concat(newNode));
+  };
   const changeTheme = (theme) => {
     console.log("theme info", theme);
     setBgColor(theme.backgroundColor);
@@ -246,6 +262,7 @@ export default function InfiniteCanvas({}){
       <Background size={1.4} variant="dots"></Background>
       </ReactFlow>
         <BasicTools addingNode={onAdd}></BasicTools>
+        <VideoSearch onAddVideoFunction={onAddVideoFunction}></VideoSearch>
         <SideBar changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>
       </ReactFlowProvider>
     </div>
