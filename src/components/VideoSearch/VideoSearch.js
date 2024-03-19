@@ -54,7 +54,7 @@ const VideoSearch = ({ onAddVideoFunction }) => {
               <img src={video.snippet.thumbnails.default.url} alt={video.snippet.title} className={styles.videoThumbnail} />
               <div className={styles.videoInfoCont}>
                 <div className={styles.videoTitle}>{video.snippet.title}</div>
-                <div className={styles.channelTitle}>{video.snippet.channelTitle}</div>
+                <div className={styles.channelTitle}>{video.snippet.channelTitle}<span style={{color:'red'}}> {video.snippet.liveBroadcastContent == 'live' ? 'live': ''}</span></div> 
               </div>
             </div>
           ))}
