@@ -103,6 +103,17 @@ const themes = {
         backgroundColor: '#7f8c8d',
         effect: 'rain'
       },
+      'Attack On Titan': {
+        images: ['https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRod3ExNGpzM3ViZXZiaDJ2MmY4cjVoOGhkOWFtYTBxNGsxdGNxZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0Iy6cMi1aPIBzP32/200.webp',
+          'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDFrZWowZm90a3ZnNzJycTJjczBjY3ZsODkyYnZud3ppYXo3OHc1OCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/oHWnStBAnM1RHlF1CR/giphy.webp',
+          'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHE2ZnU3bzRoNDBhcm8yOXNvODhlN2Rkc3RxaGJlb2p6YThrbmNhciZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/Yc65Sk2Hwkzgk/giphy.webp',
+          'https://media4.giphy.com/media/XFuS7Rr9qiGGts74Yf/giphy.webp?cid=ecf05e474t86ecfufkvnc5p17cyyzrc7d4p3xwu73wjwamar&ep=v1_stickers_search&rid=giphy.webp&ct=s',
+
+      ],
+        textColor:'white',
+        backgroundColor: '#36454f',
+        effect: 'aot'
+      },
       'NewJeans': {
         images: ['https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdreWl0NWl0aHg2MXhwbnZqZmVxc3R3c3drdnRkanNtNzd1b2hqaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b6NgTiPadHTVmDOWnk/giphy.gif',
           'https://media0.giphy.com/media/12uxuixeCP6JBUOP17/giphy.webp?cid=790b7611dc9u1dklcosz4nkhwk8qy4unz0kazqtgbfzpxrs0&ep=v1_gifs_search&rid=giphy.webp&ct=g',
