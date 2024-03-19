@@ -138,6 +138,7 @@
 
     overflow-y: scroll;
     height: 300px;
+    padding-bottom: 45px;
   }
   
   .resultItem {

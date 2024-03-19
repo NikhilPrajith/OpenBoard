@@ -17,7 +17,7 @@ import Themes from '../Themes/Themes';
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-export default function CustomTab({showSideBar, setShowSidebar, changeTheme, addImageFunction}) {
+export default function CustomTab({alignment, setAlignment, themes, showSideBar, setShowSidebar, changeTheme, addImageFunction}) {
   const [value, setValue] = React.useState("1");
   const [showFreeDrawingCanvas, setShowFreeDrawingCanvas] = React.useState(false);
   
@@ -59,7 +59,7 @@ export default function CustomTab({showSideBar, setShowSidebar, changeTheme, add
         >
           <div className={styles.accordionTitle}>Wonderful Themes</div>
         </AccordionSummary>
-        <Themes changeTheme={changeTheme}></Themes>
+        <Themes alignment={alignment} setAlignment={setAlignment}  themes={themes} changeTheme={changeTheme}></Themes>
       </Accordion>
         <Accordion 
         

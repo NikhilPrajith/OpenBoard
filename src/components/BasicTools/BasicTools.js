@@ -29,7 +29,6 @@ export default function BasicTools({addingNode, setShowSidebar, showSideBar}) {
 
               <button onClick={(event) => onClick(event, 'video')} ><MdVideoLibrary></MdVideoLibrary></button>
 
-              <button onClick={()=>{setShowSidebar(!showSideBar)}} ><AiFillControl></AiFillControl></button>
             
         </div>
     </div>

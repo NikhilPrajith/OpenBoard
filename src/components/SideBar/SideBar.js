@@ -6,7 +6,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import IconButton from '@mui/material/IconButton';
 
 
-export default function SideBar({showSideBar, changeTheme,addImageFunction, setShowSidebar}) {
+export default function SideBar({alignment, setAlignment, themes, showSideBar, changeTheme,addImageFunction, setShowSidebar}) {
   const toggleSidebar = () => {
     setShowSidebar(!showSideBar);
   };
@@ -17,7 +17,7 @@ export default function SideBar({showSideBar, changeTheme,addImageFunction, setS
     {showSideBar &&
     
     <div className={styles.container}>
-      <CustomTab showSideBar={showSideBar} setShowSidebar={setShowSidebar} changeTheme={changeTheme} addImageFunction={addImageFunction}></CustomTab>
+      <CustomTab alignment={alignment} setAlignment={setAlignment} themes={themes} showSideBar={showSideBar} setShowSidebar={setShowSidebar} changeTheme={changeTheme} addImageFunction={addImageFunction}></CustomTab>
     </div>}
     <button onClick={toggleSidebar} className={styles.toggleButton} style={{border: '0.1px rgb(212, 210, 210) solid',borderBottomLeftRadius:'6px',borderTopLeftRadius:'6px',height:'80px', position: 'absolute', top: '50%', left: showSideBar ? '-28px' : 'unset', right: !showSideBar ? '0' : 'unset', transform: 'translateY(-50%)', zIndex: 1000}}>
     <IconButton sx={{color:'black', fontSize:'12px', margin:!open ? 'auto': 'initial'}} onClick={()=>{setShowSidebar(!showSideBar)}}>
