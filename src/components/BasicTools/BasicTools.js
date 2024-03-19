@@ -5,8 +5,9 @@ import { FaStickyNote } from "react-icons/fa";
 import { RiTimer2Fill } from "react-icons/ri";
 import { FaListAlt } from "react-icons/fa";
 import { MdVideoLibrary } from "react-icons/md";
+import { AiFillControl } from "react-icons/ai";
 
-export default function BasicTools({addingNode}) {
+export default function BasicTools({addingNode, setShowSidebar, showSideBar}) {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
@@ -27,6 +28,8 @@ export default function BasicTools({addingNode}) {
               <button onClick={(event) => onClick(event, 'timer')} ><RiTimer2Fill></RiTimer2Fill></button>
 
               <button onClick={(event) => onClick(event, 'video')} ><MdVideoLibrary></MdVideoLibrary></button>
+
+              <button onClick={()=>{setShowSidebar(!showSideBar)}} ><AiFillControl></AiFillControl></button>
             
         </div>
     </div>

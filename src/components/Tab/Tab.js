@@ -6,6 +6,8 @@ import styles from "./Tab.module.css";
 import Stickers from '../CoolStuff/Stickers';
 
 
+import IconButton from '@mui/material/IconButton';
+
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -13,7 +15,9 @@ import Button from '@mui/material/Button';
 import { MdExpandMore } from "react-icons/md";
 import Themes from '../Themes/Themes';
 
-export default function CustomTab({changeTheme, addImageFunction}) {
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
+export default function CustomTab({showSideBar, setShowSidebar, changeTheme, addImageFunction}) {
   const [value, setValue] = React.useState("1");
   const [showFreeDrawingCanvas, setShowFreeDrawingCanvas] = React.useState(false);
   

@@ -33,7 +33,7 @@ const VideoSearch = ({ onAddVideoFunction }) => {
   return (
     <div className={styles.videoSearchContainer}>
       <button onClick={toggleSearch} className={styles.toggleButton}>
-       Search videos {isOpen ? <IoIosArrowDown /> : <IoIosArrowUp />}
+       Search videos
       </button>
       <div className={`${styles.searchPanel} ${isOpen ? styles.open : ''}`}>
         <div className={styles.searchContainer}>

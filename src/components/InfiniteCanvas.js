@@ -38,6 +38,7 @@ export default function InfiniteCanvas({}){
   const [bgColor, setBgColor] = useState(initBgColor);
   const [selectedEffect, setSelectedEffect] = useState('')
   const [showEffect, setShowEffect] = useState(false);
+  const [showSideBar, setShowSidebar] = useState(false);
 
   const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
 
@@ -191,7 +192,7 @@ export default function InfiniteCanvas({}){
       data:{url:url},
       style: {padding: 4 },
       position: {
-        x: Math.random() * window.innerWidth +100,
+        x: (Math.random() * window.innerWidth /2) + window.innerWidth/4 ,
         y: Math.random() * window.innerHeight,
       },
     };
@@ -261,9 +262,9 @@ export default function InfiniteCanvas({}){
         {showEffect && <ParticleEffect selectedEffect={selectedEffect}></ParticleEffect> }
       <Background size={1.4} variant="dots"></Background>
       </ReactFlow>
-        <BasicTools addingNode={onAdd}></BasicTools>
-        <VideoSearch onAddVideoFunction={onAddVideoFunction}></VideoSearch>
-        <SideBar changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>
+        <BasicTools setShowSidebar={setShowSidebar} showSideBar={showSideBar} addingNode={onAdd}></BasicTools>
+        <VideoSearch setShowSidebar={setShowSidebar} onAddVideoFunction={onAddVideoFunction}></VideoSearch>
+        <SideBar setShowSidebar={setShowSidebar} showSideBar={showSideBar} changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>
       </ReactFlowProvider>
     </div>
   );

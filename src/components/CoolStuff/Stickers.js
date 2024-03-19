@@ -55,7 +55,7 @@ const Stickers = ({addImageFunction}) => {
           <IoSearch/>
         </button>
       </div>
-      <div className={styles.lookingFor}>Looking for</div>
+      <div className={styles.lookingFor}></div>
       <ToggleButtonGroup
         color="primary"
         value={alignment}
