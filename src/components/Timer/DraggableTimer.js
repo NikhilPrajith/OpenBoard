@@ -21,7 +21,7 @@ const darkTheme = createTheme({ palette: { mode: 'dark' } });
 const lightTheme = createTheme({ palette: { mode: 'light' } });
 
 const DraggableTimer = ({isConnectable}) => {
-    const defaultTime = 5*60; // Default time is 5 minutes (5 * 60 seconds)
+    const defaultTime = 5 *60; // Default time is 5 minutes (5 * 60 seconds)
     const [time, setTime] = useState(defaultTime);
     const [isRunning, setIsRunning] = useState(false);
 

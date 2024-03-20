@@ -52,7 +52,7 @@ export default function Video({isConnectable, selected, data }) {
   };
 
   return (
-    <>
+    <div>
     <NodeResizer 
         color="#000" 
         isVisible={selected} 
@@ -67,7 +67,7 @@ export default function Video({isConnectable, selected, data }) {
           value={inputUrl}
           onChange={handleInputChange}
           onKeyDown={handleInputConfirm}
-          placeholder="Paste the video URL here"
+          placeholder="Paste video URL..."
           className={styles.videoInput}
         />
       )}
@@ -82,6 +82,6 @@ export default function Video({isConnectable, selected, data }) {
         ></iframe>
       )}
     </div>
-    </>
+    </div>
   );
 }

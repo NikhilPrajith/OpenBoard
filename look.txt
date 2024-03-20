@@ -14,3 +14,8 @@ Shape and edit,
 Different sized post its 
 Upload image
 Note box/document
+
+
+Todo:
+fix node resizer xircle size
+When node is on the right side corder the parent of the sidebar is above it
