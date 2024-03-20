@@ -1,6 +1,7 @@
 .container{
     padding: 16px;
     padding-top: 8px;
+    font-family: Arial, sans-serif !important;
 }
 .searchContainer{
     width: 100%;

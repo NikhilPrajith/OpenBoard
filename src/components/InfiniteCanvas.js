@@ -103,6 +103,18 @@ const themes = {
         backgroundColor: '#7f8c8d',
         effect: 'rain'
       },
+      'Forest': {
+        "images": [
+          "https://media2.giphy.com/media/3o6Zt3PlZZhIZnueCQ/200.webp?cid=790b7611ve65ljt2fav5ss4uiahyvcb8v25nk583wfe9mnt4&ep=v1_gifs_search&rid=200.webp&ct=g",
+          "https://media3.giphy.com/media/iF1JVEDMrqxzno3fYt/giphy.webp?cid=790b7611dxt9tob04xq74w7udi4ig3unqmyqsskxoh97jvgq&ep=v1_stickers_search&rid=giphy.webp&ct=s",
+          "https://media3.giphy.com/media/KAHW5n33VoL8gLCh5Y/giphy.webp?cid=ecf05e47154wumwnf3drewfbnfqfa9kbzkstk3gdfus87g3b&ep=v1_stickers_search&rid=giphy.webp&ct=s",
+          "https://media4.giphy.com/media/4Kdmbmw1mAmqA19sYm/giphy.webp?cid=ecf05e47syezlb823k2jq4g5teywys2rth1yk25bevkklap0&ep=v1_stickers_search&rid=giphy.webp&ct=s",
+          "https://media1.giphy.com/media/LODja4X9Ld96zjFlxH/200.webp?cid=ecf05e47syezlb823k2jq4g5teywys2rth1yk25bevkklap0&ep=v1_stickers_search&rid=200.webp&ct=s"
+        ],
+        "textColor": "white",
+        "backgroundColor": "rgba(166, 172, 152, 0.62)",
+        "effect": ""
+      },
       'Attack On Titan': {
         images: ['https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRod3ExNGpzM3ViZXZiaDJ2MmY4cjVoOGhkOWFtYTBxNGsxdGNxZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0Iy6cMi1aPIBzP32/200.webp',
           'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDFrZWowZm90a3ZnNzJycTJjczBjY3ZsODkyYnZud3ppYXo3OHc1OCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/oHWnStBAnM1RHlF1CR/giphy.webp',
