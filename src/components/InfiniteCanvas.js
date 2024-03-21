@@ -13,6 +13,7 @@ import ImageNode from './CoolStuff/ImageNode';
 import Stickers from './CoolStuff/Stickers';
 import Video from './Video/Video';
 import VideoSearch from './VideoSearch/VideoSearch';
+import FlashCards from './FlashCards/FlashCards';
 
 
 const snapGrid = [10, 10];
@@ -28,7 +29,8 @@ const nodeTypes = {
     stickyNote: StickyNote,
     timer: DraggableTimer,
     stickers: ImageNode,
-    video: Video
+    video: Video,
+    flashCards: FlashCards
   };
 
 const themes = {
@@ -113,7 +115,18 @@ const themes = {
         ],
         "textColor": "white",
         "backgroundColor": "rgba(166, 172, 152, 0.62)",
-        "effect": ""
+        "effect": "leaves"
+      },
+      'Sunny Chill': {
+        images: ['https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjh1M3d1ZjF3bXM5eWZmMmhycm0zN2dkbW5ud25qNHRvcmk0djVzdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J6UJjUEg1ReqjMIAlQ/giphy.gif',
+          'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWJscm02bmwxcmV3Zm16aXFxMnU1Z3R0d3JwMHA4eWV6b3JmbGJwbyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/1G6sMOocL7eeOgb6MY/giphy.webp',
+          'https://media3.giphy.com/media/cekRR561cp6tpnG8ZC/giphy.webp?cid=790b7611iblrm6nl1rewfmziqq2u5gttwrp0p8yezorflbpo&ep=v1_stickers_search&rid=giphy.webp&ct=s',
+          'https://media3.giphy.com/media/ZXr7mOCKSkMrnuLNEu/giphy.webp?cid=ecf05e47ng5q7ptnikvwtkwbff3rhggd5mtsthsgf7v94yr3&ep=v1_stickers_search&rid=giphy.webp&ct=s',
+          'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnlpOTlzNGRpNmdidzNvcGE1cGloaHI4MDV4NG5mbHJwMWtjMTFneSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KkxXA0oHSqBxC0fIhu/giphy.gif',
+      ],
+        textColor:'white',
+        backgroundColor: 'url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjh1M3d1ZjF3bXM5eWZmMmhycm0zN2dkbW5ud25qNHRvcmk0djVzdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J6UJjUEg1ReqjMIAlQ/giphy.gif)  center / cover no-repeat',
+        effect: 'sunny'
       },
       'Attack On Titan': {
         images: ['https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRod3ExNGpzM3ViZXZiaDJ2MmY4cjVoOGhkOWFtYTBxNGsxdGNxZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0Iy6cMi1aPIBzP32/200.webp',
@@ -232,6 +245,17 @@ export default function InfiniteCanvas({}){
 
               id: getNodeId(),
               type: 'video',
+              style: {padding: 10 },
+              position: {
+                x:window.innerWidth /2,
+                y: 300,
+                },
+              },
+
+            {
+
+              id: getNodeId(),
+              type: 'flashCards',
               style: {padding: 10 },
               position: {
                 x:window.innerWidth /2,
@@ -387,7 +411,7 @@ export default function InfiniteCanvas({}){
         edges={edges}
         nodeTypes={nodeTypes}
 
-      style={{ background: bgColor }}
+      style={{ background: bgColor, 'imageRendering': '-webkit-optimize-contrast' }}
 
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}

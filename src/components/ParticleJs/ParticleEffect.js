@@ -508,7 +508,214 @@ const ParticleEffect = ({ selectedEffect }) => {
           },
           "retina_detect": true
         }
+        case 'leaves':
+  return {
+    particles: {
+      number: {
+        value: 10,
+        density: {
+          enable: true,
+          value_area: 800
+        }
+      },
+      shape: {
+        type: 'image',
+        image: {
+          src: 'https://media2.giphy.com/media/FhCW9YYWfI94flEmbw/giphy.webp?cid=ecf05e47rszry4kd23me8v4wp9xwazpcgga3xwckatovnzid&ep=v1_stickers_search&rid=giphy.webp&ct=s', // Replace with the path to your leaf image
+          width: 100,
+          height: 100
+        }
+      },
+      opacity: {
+        value: 0.7,
+        random: false,
+        anim: {
+          enable: false
+        }
+      },
+      size: {
+        value: 20,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 2,
+          size_min: 10,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: false
+      },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "bottom",
+        random: true,
+        straight: false,
+        out_mode: "out",
+        bounce: false,
+        attract: {
+          enable: false
+        }
+      },
+      rotate: {
+        value: 0,
+        random: true,
+        direction: "clockwise",
+        animation: {
+          enable: true,
+          speed: 5,
+          sync: false
+        }
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: {
+          enable: false
+        },
+        onclick: {
+          enable: false
+        },
+        resize: true
+      }
+    },
+    retina_detect: true
+  };
+
+          return {
+            particles: {
+              number: {
+                value: 10,
+                density: {
+                  enable: true,
+                  value_area: 800
+                }
+              },
+              shape: {
+                type: 'image',
+                image: {
+                  src: 'https://media2.giphy.com/media/FhCW9YYWfI94flEmbw/giphy.webp?cid=ecf05e47rszry4kd23me8v4wp9xwazpcgga3xwckatovnzid&ep=v1_stickers_search&rid=giphy.webp&ct=s', // Replace with the path to your leaf image
+                  width: 200,
+                  height: 200
+                }
+              },
+              opacity: {
+                value: 0.7,
+                random: false,
+                anim: {
+                  enable: false
+                }
+              },
+              size: {
+                value: 20,
+                random: true,
+                anim: {
+                  enable: true,
+                  speed: 2,
+                  size_min: 10,
+                  sync: false
+                }
+              },
+              line_linked: {
+                enable: false
+              },
+              move: {
+                enable: true,
+                speed: 2,
+                direction: "bottom",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false,
+                attract: {
+                  enable: false
+                }
+              }
+            },
+            interactivity: {
+              detect_on: "canvas",
+              events: {
+                onhover: {
+                  enable: false
+                },
+                onclick: {
+                  enable: false
+                },
+                resize: true
+              }
+            },
+            retina_detect: true
+          };
         
+          case 'sunny':
+            return {
+              particles: {
+                number: {
+                  value: 5,
+                  density: {
+                    enable: true,
+                    value_area: 800
+                  }
+                },
+                color: {
+                  value: "#ADD8E6" // Sun color
+                },
+                shape: {
+                  type: 'circle', // Simple circles to represent the sun; consider 'image' for more detailed particles
+                },
+                opacity: {
+                  value: 0.5,
+                  random: true,
+                  anim: {
+                    enable: true,
+                    speed: 1,
+                    opacity_min: 0.1,
+                    sync: false
+                  }
+                },
+                size: {
+                  value: 10,
+                  random: true,
+                  anim: {
+                    enable: true,
+                    speed: 10,
+                    size_min: 0.1,
+                    sync: false
+                  }
+                },
+                line_linked: {
+                  enable: false
+                },
+                move: {
+                  enable: true,
+                  speed: 1,
+                  direction: "none",
+                  random: true,
+                  straight: false,
+                  out_mode: "out",
+                  bounce: false,
+                  attract: {
+                    enable: false
+                  }
+                }
+              },
+              interactivity: {
+                detect_on: "canvas",
+                events: {
+                  onhover: {
+                    enable: false
+                  },
+                  onclick: {
+                    enable: false
+                  },
+                  resize: true
+                }
+              },
+              retina_detect: true
+            };
+          
       default:
         return {};
     }

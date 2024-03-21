@@ -1,0 +1,202 @@
+
+
+.nodeDrag{
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.89);
+  padding: 2px;
+  color: white;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cardStack {
+  perspective: 1000px;
+}
+
+.card {
+}
+
+.card {
+
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  padding-top: 30px;
+  font-size: 13px;
+
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.saveButton {
+  padding: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 30px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  width: -webkit-fit-content;
+margin-left: auto;
+}
+
+.editInput {
+  display: block;
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.cardNumber {
+position: absolute;
+top: 10px;
+right: 10px;
+background-color: lightgray;
+color: #fff;
+padding: 5px 10px;
+border-radius: 10px;
+font-size: 11px;
+}
+
+.flipped .front {
+visibility: hidden;
+}
+
+.flipped .back {
+visibility: visible;
+}
+
+
+.prevButton{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background-color: rgb(120, 151, 213);
+  border-radius: 6px;
+  z-index: 150;
+
+}
+.nextButton{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background-color: rgb(120, 151, 213);
+  border-radius: 6px;
+  z-index: 150;
+
+}
+.prevButton:hover{
+  opacity: 0.8;
+}
+
+.editButton{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: rgb(120, 151, 213);
+
+  font-size: 15px;
+}
+.answer{
+  color: grey;
+}
+.revealButton{
+  background-color: lightgray;
+  color: black;
+  border-radius: 6px;
+  padding: 8px;
+  margin-top: 20px;
+  width: fit-content;
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+.edit{
+  color: grey;
+}
+.delete{
+  color: rgb(238, 83, 31);
+
+}
+.editButton>button{
+  margin: 5px;
+}
+
+.cardStack {
+  perspective: 1000px;
+  position: relative;
+  height: 200px; /* Adjust based on card size and desired stack effect */
+  width:300px;
+  background-color: white;
+}
+
+.card {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  font-size: 13px;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Animation for card leaving the stack */
+.card-leaving {
+  animation: fallOff 0.5s forwards;
+}
+
+@keyframes fallOff {
+  to {
+    transform: translateX(-50%) translateY(100px) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+/* Ensuring the top card is always interactable */
+.card:not(:first-child) {
+  pointer-events: none;
+}
+
+.card:first-child {
+  pointer-events: all;
+  z-index: 2; /* Ensure the top card is above others */
+}
+
+/* Slight adjustments for each card in the stack to create a stacked effect */
+.card:not(:first-child) {
+  transform: translateX(-50%) translateY(-20px) scale(0.95);
+  z-index: 1;
+  opacity: 0.8;
+}
