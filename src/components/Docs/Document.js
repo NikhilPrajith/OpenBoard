@@ -36,7 +36,7 @@ export default function DocumentComp() {
       },
       {
         type: "paragraph",
-        content: "Select different blocks to see the JSON change below",
+        content:"",
       },
     ],
   });
