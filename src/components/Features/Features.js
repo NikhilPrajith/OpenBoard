@@ -17,6 +17,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdPlaylistAddCircle } from "react-icons/md";
 import { RiDashboardFill } from "react-icons/ri";
+import { IoDocumentText } from "react-icons/io5";
 
 const drawerWidth = 180;
 
@@ -76,6 +77,12 @@ export default function Features({setType, setOpenParent}) {
     setOpen(!open);
     setOpenParent(!open);
   }
+  const iconSize = 17;
+  const pageIcons = {
+    0:<RiDashboardFill size={iconSize} />,
+    1:<MdPlaylistAddCircle size={iconSize}/>,
+    2:<IoDocumentText size={iconSize}/>
+  }
 
   return (
     <Box sx={{ display: 'flex', borderRight: '0.1px rgb(212, 210, 210) solid', fontFamily: 'Arial, sans-serif' }}> {/* Ensure the Box uses Arial */}
@@ -94,8 +101,8 @@ export default function Features({setType, setOpenParent}) {
         {['Endless Board', 'Tasker', 'Docs'].map((text, index) => (
           <ListItem onClick={()=>{setType(text)}} key={text} disablePadding sx={{ display: 'block' }}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
-              <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', '& .MuiSvgIcon-root': { fontSize: '15px' } }}> {/* Explicitly target icons within ListItemIcon */}
-                {index % 2 === 0 ? <RiDashboardFill /> : <MdPlaylistAddCircle />}
+              <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center'}}> {/* Explicitly target icons within ListItemIcon */}
+                {pageIcons[index]}
               </ListItemIcon>
               <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>

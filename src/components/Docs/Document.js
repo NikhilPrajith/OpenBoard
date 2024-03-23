@@ -23,18 +23,8 @@ export default function DocumentComp() {
     setShowColorPicker(false); // Close color picker after selection
   }
 
-  const handleOutsideClick = (event) => {
-    if (pickerRef.current && !pickerRef.current.contains(event.target)) {
-      setShowColorPicker(false);
-    }
-  }
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
+  
 
   const editor = useCreateBlockNote({
     domAttributes: {
@@ -58,7 +48,7 @@ export default function DocumentComp() {
 
 
   return (
-    <div style={{ backgroundColor: `${color}` }} className='documentContainer'>
+    <div style={{ backgroundColor: `${color}` }} className='documentContainer' >
       {/* Color Picker */}
       {showColorPicker && (
         <div className="color-picker" ref={pickerRef}>
