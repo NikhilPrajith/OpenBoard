@@ -91,7 +91,7 @@ export default function Features({setType, setOpenParent}) {
         '& .MuiListItemIcon-root': { color: 'black', fontSize: '12px' }, // Adjusted font size for text
         '& .MuiSvgIcon-root': { fontSize: '12px' }, // Adjusted font size for icons
       }}>
-        {['Endless Board', 'Tasker'].map((text, index) => (
+        {['Endless Board', 'Tasker', 'Docs'].map((text, index) => (
           <ListItem onClick={()=>{setType(text)}} key={text} disablePadding sx={{ display: 'block' }}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', '& .MuiSvgIcon-root': { fontSize: '15px' } }}> {/* Explicitly target icons within ListItemIcon */}

@@ -14,6 +14,7 @@ import Stickers from './CoolStuff/Stickers';
 import Video from './Video/Video';
 import VideoSearch from './VideoSearch/VideoSearch';
 import FlashCards from './FlashCards/FlashCards';
+import TextNode from './Text/Text';
 
 
 const snapGrid = [10, 10];
@@ -30,7 +31,9 @@ const nodeTypes = {
     timer: DraggableTimer,
     stickers: ImageNode,
     video: Video,
-    flashCards: FlashCards
+    flashCards: FlashCards,
+    textElement: TextNode
+
   };
 
 const themes = {
@@ -255,7 +258,7 @@ export default function InfiniteCanvas({}){
             {
 
               id: getNodeId(),
-              type: 'flashCards',
+              type: 'textElement',
               style: {padding: 10 },
               position: {
                 x:window.innerWidth /2,

@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Features from '@/components/Features/Features';
 import Heading from '@/components/Information/Heading';
 import Tasker from '@/components/Tasker/Tasker';
+import DocumentComp from '@/components/Docs/Document';
 
 // Dynamically import InfiniteCanvas with SSR disabled
 const InfiniteCanvasNoSSR = dynamic(() => import('@/components/InfiniteCanvas'), {
@@ -32,6 +33,9 @@ export default function Home() {
       </div>
       <div style={displayStyleForType('Tasker')}>
         <div><Tasker open={open}></Tasker></div>
+      </div>
+      <div style={displayStyleForType('Docs')}>
+        <div><DocumentComp></DocumentComp></div>
       </div>
     </div>
   );

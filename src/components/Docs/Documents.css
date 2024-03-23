@@ -1,0 +1,89 @@
+.documentContainer{
+  margin-left: 65px;
+  padding-left: 107px;
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+  height: 100vh;
+  position: relative;
+  padding-bottom: 25px;
+}
+
+.heading1{
+  margin-top: 130px;
+  margin-left: 56px;
+  margin-bottom: 28;
+  margin-left: 55px;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgb(63, 63, 63);
+  background-color: transparent;
+  /*font-family: Inter, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;*/
+}
+.heading1:focus{
+  outline: none;
+}
+
+/* Base theme */
+.data-theming-css-variables-demo {
+  --bn-colors-editor-text: #222222;
+  --bn-colors-editor-background: #ffeeee;
+  --bn-colors-menu-text: #ffffff;
+  --bn-colors-menu-background: #9b0000;
+  --bn-colors-tooltip-text: #ffffff;
+  --bn-colors-tooltip-background: #b00000;
+  --bn-colors-hovered-text: #ffffff;
+  --bn-colors-hovered-background: #b00000;
+  --bn-colors-selected-text: #ffffff;
+  --bn-colors-selected-background: #c50000;
+  --bn-colors-disabled-text: #9b0000;
+  --bn-colors-disabled-background: #7d0000;
+  --bn-colors-shadow: #640000;
+  --bn-colors-border: #870000;
+  --bn-colors-side-menu: #bababa;
+  --bn-color-highlight-colors: #ffffff;
+  --bn-border-radius: 4px;
+  --bn-font-family: Helvetica Neue, sans-serif;
+}
+ 
+/* Changes for dark mode */
+.bn-container[data-theming-css-variables-demo][data-color-scheme="dark"] {
+  --bn-colors-editor-text: #ffffff;
+  --bn-colors-editor-background: #9b0000;
+  --bn-colors-side-menu: #ffffff;
+}
+.bn-editor{
+  background-color: transparent;
+}
+ 
+.bn-block-content{
+  transition: none;
+}
+.bn-block-content:before{
+  transition: none;
+}
+.bn-inline-content:has(>.ProseMirror-trailingBreak):before{
+  font-style: normal;
+}
+
+.bn-container[data-theming-css-demo] .bn-slash-menu[itemSection] {
+  background-color: red;
+  border:2px red solid;
+
+
+}
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  cursor: pointer;
+  border:0.1px black solid
+}
+
+.color-picker {
+  position: absolute;
+  top: 100px;
+  left: 5px;
+  z-index: 300;
+}
