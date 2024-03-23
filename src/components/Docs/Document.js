@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+'use client'
+import React, { useState } from 'react';
 import { BlockNoteView, useCreateBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
 import "./Documents.css";
@@ -8,7 +9,6 @@ export default function DocumentComp() {
   const [title, setTitle] = useState('Untitled');
   const [color, setColor] = useState('#F9F9F9');
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const pickerRef = useRef(null);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -22,9 +22,6 @@ export default function DocumentComp() {
     setColor(newColor.hex);
     setShowColorPicker(false); // Close color picker after selection
   }
-
-
-  
 
   const editor = useCreateBlockNote({
     domAttributes: {
@@ -43,20 +40,20 @@ export default function DocumentComp() {
       },
     ],
   });
-  const customColors = ['#fff','#F9F9F9','#F9EAEA','#EAF3F9','#F7FFF4','#FFF9F4',
-                      '#FFF4FE','#F7CDF4','#ECECEC'];
 
+  const customColors = ['#fff', '#F9F9F9', '#F9EAEA', '#EAF3F9', '#F7FFF4', '#FFF9F4',
+    '#FFF4FE', '#F7CDF4', '#ECECEC'];
 
   return (
-    <div style={{ backgroundColor: `${color}` }} className='documentContainer' >
+    <div style={{ backgroundColor: `${color}` }} className='documentContainer'>
       {/* Color Picker */}
       {showColorPicker && (
-        <div className="color-picker" ref={pickerRef}>
+        <div className="color-picker">
           <TwitterPicker triangle="top-left"
-            color={color} onChange={handleColorChange} colors={customColors} 
-            
-            styles={{ default: { input: { display: 'none' },hash: { display: 'none' } } }}
-            />
+            color={color} onChange={handleColorChange} colors={customColors}
+
+            styles={{ default: { input: { display: 'none' }, hash: { display: 'none' } } }}
+          />
         </div>
       )}
 
