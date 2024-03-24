@@ -264,18 +264,6 @@ export default function InfiniteCanvas({}){
                 y: 250,
                 },
               },
-
-            {
-
-              id: getNodeId(),
-              type: 'textElement',
-              style: {padding: 10 },
-              position: {
-                x:window.innerWidth /2,
-                y: 800,
-                },
-              },
-
               {
 
                 id: getNodeId(),

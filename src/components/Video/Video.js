@@ -52,7 +52,7 @@ export default function Video({isConnectable, selected, data }) {
   };
 
   return (
-    <div>
+    < >
     <NodeResizer 
         color="#000" 
         isVisible={selected} 
@@ -82,6 +82,6 @@ export default function Video({isConnectable, selected, data }) {
         ></iframe>
       )}
     </div>
-    </div>
+    </>
   );
 }

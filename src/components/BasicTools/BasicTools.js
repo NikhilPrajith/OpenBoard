@@ -8,6 +8,7 @@ import { MdVideoLibrary } from "react-icons/md";
 import { AiFillControl } from "react-icons/ai";
 import { RxCardStack } from "react-icons/rx";
 import { PiCardsFill } from "react-icons/pi";
+import { PiTextTBold } from "react-icons/pi";
 
 export default function BasicTools({addingNode, setShowSidebar, showSideBar}) {
   const [tasks, setTasks] = useState([]);
@@ -32,6 +33,7 @@ export default function BasicTools({addingNode, setShowSidebar, showSideBar}) {
               <button onClick={(event) => onClick(event, 'video')} ><MdVideoLibrary></MdVideoLibrary></button>
 
               <button onClick={(event) => onClick(event, 'flashCards')} ><PiCardsFill></PiCardsFill></button>
+
 
             
         </div>

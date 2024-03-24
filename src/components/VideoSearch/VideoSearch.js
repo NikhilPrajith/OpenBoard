@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './VideoSearch.module.css'; // Make sure to define your CSS styles
 import { IoSearch } from "react-icons/io5";
@@ -9,7 +9,37 @@ const VideoSearch = ({ onAddVideoFunction }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
+  const fetchTrendingVideos = async () => {
+    console.log("search trending")
+    const key = process.env.NEXT_PUBLIC_YOUTUBE_API; // Replace with your actual YouTube Data API key
+    try {
+      const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=US&key=${key}&maxResults=8`;
+      const response = await axios.get(url);
+      setSearchResults(response.data.items);
+    } catch (error) {
+      console.error('Error fetching trending YouTube videos:', error);
+      setSearchResults([]);
+    }
+
+  };
+  const fetchLofiVideos = async () => {
+    console.log("search trending")
+    const key = process.env.NEXT_PUBLIC_YOUTUBE_API; // Replace with your actual YouTube Data API key
+    try {
+      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=lofi&type=video&regionCode=US&key=${key}&maxResults=8`;
+      const response = await axios.get(url);
+      setSearchResults(response.data.items);
+    } catch (error) {
+      console.error('Error fetching trending YouTube videos:', error);
+      setSearchResults([]);
+    }
+
+  };
+  useEffect(() => {
+  }, []);
+
   const handleSearch = async () => {
+    console.log("hadnle search")
     const key =  process.env.NEXT_PUBLIC_YOUTUBE_API; // Replace with your actual YouTube Data API key
     try {
       const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&key=${key}&maxResults=8`;

@@ -88,7 +88,7 @@ export default function Features({setType, setOpenParent}) {
     <Box sx={{ display: 'flex', borderRight: '0.1px rgb(212, 210, 210) solid', fontFamily: 'Arial, sans-serif' }}> {/* Ensure the Box uses Arial */}
     <CssBaseline />
     <Drawer variant="permanent" open={open}>
-      <DrawerHeader sx={{minHeight:'52.5px !important', borderBottom:'0.1px rgb(212, 210, 210) solid'}}>
+      <DrawerHeader sx={{minHeight:'54.5px !important', borderBottom:'0.1px rgb(212, 210, 210) solid'}}>
         <IconButton sx={{color:'black', fontSize:'12px', margin:!open ? 'auto': 'initial'}} onClick={handleChange}>
           {!open ? <IoIosArrowForward /> : <IoIosArrowBack />}
         </IconButton>

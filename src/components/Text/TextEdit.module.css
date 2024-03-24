@@ -1,0 +1,72 @@
+.parent{
+    padding: 15px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+    font-size: 12px;
+}
+.lineA,.lineB{
+    /*border-bottom: 0.03px rgb(199, 197, 197) solid;*/
+    margin-bottom: 15px;
+    display: flex;
+}
+.lineA>label,.lineB>label{
+    margin-right: 9px;
+    margin-bottom: 4px;
+    width: 100%;
+    display: flex;
+    align-items: end;
+}
+.lineA>label>input,.lineB>label>input{
+    width:100%;
+    margin-top: 3px;
+}
+.lineA>label>select,.lineB>label>select{
+    margin-top: 3px;
+    -webkit-appearance: none; /* Safari and older Chrome, Opera */
+     -moz-appearance: none; /* Firefox */
+          appearance: none; /* Modern browsers */
+  background-color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 0px;
+  border-bottom: 0.2px black solid;
+}
+.alignActive{
+    background-color: color(srgb 0.9568 0.9569 0.957);
+}
+.alignLine{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
+    font-size: 12px;
+
+}
+.alignLine>button{
+    margin-right: 3px;
+    margin-left: 3px;
+    padding: 7px;
+    border-radius: 6px;
+    color: rgb(81, 79, 79);
+}
+.alignLine>button:first-child{
+    margin-left: 0px;
+}
+.alignLine>button:last-child{
+    margin-right: 0px;
+}
+
+.alignTitle{
+    margin-bottom: 4px;
+}
+.rightBreak{
+    border-right:0.8px rgb(199, 197, 197) solid;
+    width:1px;
+    height: 20px;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.icon{
+    font-size: 20px;
+    margin-right: 6px;
+}

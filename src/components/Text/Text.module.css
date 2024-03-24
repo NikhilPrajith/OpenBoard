@@ -1,0 +1,12 @@
+/* Text.module.css */
+.textNode {
+    position: relative;
+  }
+  
+  .textNode input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
