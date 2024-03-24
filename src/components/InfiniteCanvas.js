@@ -37,6 +37,14 @@ const nodeTypes = {
   };
 
 const themes = {
+  'Paper': {
+    images: ['https://media2.giphy.com/media/UGsxPNSbdY8dmvK3sv/giphy.webp?cid=790b7611d58zfm3p7yllqe6afpjqbsj3i1fycf55k2gr7wem&ep=v1_stickers_search&rid=giphy.webp&ct=s',
+    "https://media1.giphy.com/media/V4EJ4p9HtRpqnTwumB/giphy.webp?cid=790b7611g5ve87m0xbtlp8h67vd7zsdwytoxzd1dntv1m3aw&ep=v1_stickers_search&rid=giphy.webp&ct=s",
+      ],
+    textColor:'black',
+    backgroundColor: 'rgb(249, 249, 249)',
+    effect: 'stary'
+  },
     'Plain': {
         images: ['https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXV2YTVjYmo2bDl6YnF2ejVzcG54aWx2bHdmb3oxMDBkemtqZmQxeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l8vIGjX9hGEKeuciyY/giphy.gif',
           ],
@@ -269,12 +277,12 @@ export default function InfiniteCanvas({}){
     ]);
 
     
-    const themeKeys = Object.keys(themes);
+    /*const themeKeys = Object.keys(themes);
     const randomIndex = Math.floor(Math.random() * themeKeys.length);
-    const randomTheme = themeKeys[randomIndex];
-    setAlignment(randomTheme)
+    const randomTheme = themeKeys[randomIndex];*/
+    setAlignment('Paper')
     if(changeTheme){
-      changeTheme(randomTheme) 
+      changeTheme('Paper') 
     }
   }, []);
 
