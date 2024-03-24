@@ -5,8 +5,9 @@
     height: 100vh;
     background-color: white;
     overflow: hidden;
+    overflow-y: scroll;
     border-left:  0.1px rgb(212, 210, 210) solid;
-    padding-top: 53px;
+    padding-top: 62px;
     transition: transform 0.3s ease-in-out;
   /*will-change: transform;*/
   border-top-left-radius: 6px;

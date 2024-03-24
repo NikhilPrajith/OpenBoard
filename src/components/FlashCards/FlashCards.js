@@ -26,8 +26,8 @@ export default function FlashCards() {
   const [isHovering, setIsHovering] = useState(false);
   const [showAnswer, revealAnswer] = useState(false);
 
-  const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 205, 205)', 'rgb(229, 187, 247)', 'rgb(163, 211, 249)', 'rgb(247, 163, 231)',
-                            'rgba(199, 140, 249, 0.79)',];
+  const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 205, 205)', 'rgb(229, 187, 247)', 'rgb(163, 211, 249)'
+                           ];
   const randomColor = () =>{
     return selectableColors[Math.floor(Math.random() * Object.keys(selectableColors).length)]
   }
@@ -64,6 +64,8 @@ export default function FlashCards() {
       setCards([{ question: "Study Card", answer: "Your answer", color: randomColor() }]);
       setCurrentCardIndex(0);
     }
+
+    revealAnswer(false);
     setIsEditing(false); // Exit editing mode
   };
 
@@ -72,6 +74,8 @@ export default function FlashCards() {
       index === currentCardIndex ? { ...card, question: editedQuestion, answer: editedAnswer, color: card.color } : card);
     setCards(updatedCards);
     setIsEditing(false);
+
+    revealAnswer(false);
     setIsFlipped(false);
   };
 
@@ -121,6 +125,8 @@ export default function FlashCards() {
       const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
       [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]]; // swap elements
     }
+
+    revealAnswer(false);
     setCards(shuffledCards);
     setCurrentCardIndex(Math.floor(Math.random() * shuffledCards.length)); // Show a random card location
     setIsFlipped(false); // Reset any flipped card to show the question side

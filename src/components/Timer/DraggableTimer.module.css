@@ -62,14 +62,16 @@
 }
 .control{
 
-    background-color: rgb(120, 151, 213);
+    /*background-color: rgb(120, 151, 213);*/
+    background-color: rgb(163, 211, 249);
     border-radius: 50%;
     color: black;
     font-weight: 900;
 }
 .reset{
     
-    background-color: rgb(242, 138, 138);
+    /*background-color: rgb(242, 138, 138);*/
+    background-color: rgb(255, 205, 205);
     border-radius: 50%;
     color: black;
     font-weight: 900;
