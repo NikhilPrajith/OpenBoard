@@ -21,3 +21,10 @@ https://github.com/ueberdosis/tiptap
 Todo:
 fix node resizer xircle size
 When node is on the right side corder the parent of the sidebar is above it
+
+
+toDo:
+fix the flash cards to make it colorful and neat
+add text placement node
+add a drawign icon to draw freely on the canvas
+add lofi music and sounds

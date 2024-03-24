@@ -252,14 +252,16 @@ export default function InfiniteCanvas({}){
               y: 300,
               },
             },
+            
             {
 
               id: getNodeId(),
               type: 'video',
               style: {padding: 10 },
+              data:{url:'https://www.youtube.com/watch?v=jfKfPfyJRdk'},
               position: {
                 x:window.innerWidth /2,
-                y: 300,
+                y: 250,
                 },
               },
 
@@ -270,9 +272,20 @@ export default function InfiniteCanvas({}){
               style: {padding: 10 },
               position: {
                 x:window.innerWidth /2,
-                y: 300,
+                y: 800,
                 },
-              }
+              },
+
+              {
+
+                id: getNodeId(),
+                type: 'flashCards',
+                style: {padding: 4 },
+                position: {
+                  x:window.innerWidth /4,
+                  y: 500,
+                  },
+                },
 
     ]);
 

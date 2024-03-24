@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BlockNoteView, useCreateBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
 import "./Documents.css";
@@ -29,16 +29,6 @@ export default function DocumentComp() {
         class: 'cursor'
       }
     },
-    initialContent: [
-      {
-        type: "paragraph",
-        content: "Welcome, write what you wish",
-      },
-      {
-        type: "paragraph",
-        content:"",
-      },
-    ],
   });
 
   const customColors = ['#fff', '#F9F9F9', '#F9EAEA', '#EAF3F9', '#F7FFF4', '#FFF9F4',
@@ -58,7 +48,7 @@ export default function DocumentComp() {
       )}
 
       {/* BlockNoteView */}
-      <BlockNoteView data-theming-css-demo editor={editor}>
+      <BlockNoteView data-theming-css-demo editor={editor} autoFocus={true}>
 
         {/* Circle showing current color */}
         <div className="color-circle" style={{ backgroundColor: `${color}` }} onClick={handleColorClick}></div>
