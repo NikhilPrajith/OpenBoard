@@ -1,0 +1,115 @@
+
+.container {
+    width: 100%;
+    background: rgb(249, 249, 249);
+    font-size: 12px;
+    margin: auto;
+    font-family: Inter, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    border:1px solid #eee;
+    cursor: default;
+    border-top: none;
+    border-left: none;
+    height: 100%;
+  
+  
+  }
+
+
+.header {
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    margin-top: 0px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+.taskHeader{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+  
+  }
+  .taskHeader{
+    width: 100%;
+  }
+.editTask{
+    font-size: 13px;
+  font-weight: 500;
+  color:grey
+}
+
+.textField, .dateInput {
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    color: gray;
+    border-radius: 4px;
+    background-color: transparent;
+    width: calc(100%); /* Adjust padding */
+}
+
+.dateInput {
+    /* Additional styling for the date input if needed */
+}
+
+.editFields{
+    padding: 28px;
+    padding-top: 0px;
+}
+.saveButton{
+    font-size: 11px;
+    font-weight: 500;
+    color: white;
+    background-color: black;
+    padding: 9px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+.label{
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.saveButtonCont{
+    display: flex;
+    justify-content: end;
+}
+.categorySelect{
+    -webkit-appearance: none; /* for Chrome, Safari, and Opera */
+    -moz-appearance: none; /* for Firefox */
+    appearance: none;
+    padding: 4px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-right: 10px;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    color: gray;
+    border-radius: 4px;
+    background-color: transparent;
+  }
+  .categorySelect:focus {
+    outline: none; /* Remove the focus outline */
+    border-color: #666; /* Custom focus border color */
+  }
+  
+  /* You might want to add styles for disabled state as well */
+  .categorySelect:disabled {
+    cursor: not-allowed;
+  }
+  
+  .categorySelect option {
+    color: #333; /* Text color for options */
+  }
+.extraDetails{
+    display: flex;
+    justify-content: space-between;
+}
+.extraDetails>div{
+    width:100%;
+    align-items: center;
+    margin-right: 10px;
+}

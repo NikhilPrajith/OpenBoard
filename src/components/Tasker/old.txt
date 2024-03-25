@@ -1,0 +1,54 @@
+{taskLists.map((_, index) => (
+        <div key={index}><ToDoTask blank={true}/></div> 
+      ))}
+      <button onClick={addTaskList} className={styles.addButton}>
+        <FaPlus /> <span>Add List</span>
+      </button>
+
+  
+.container{
+    display: flex;
+    margin-top: 90px;
+    justify-content:flex-start;
+    height: calc(100vh - 90px - 10px); /* Adjusted height */
+    padding-top: 10px;
+
+    overflow-x: scroll;
+    overflow-y: scroll;
+    margin-right: 10px;
+}
+.container::-webkit-scrollbar {
+    width: 1px;
+}
+.container > div {
+    margin: 0px 13px 20px 0px; /* Adjusted margin shorthand */
+    width: auto; /* Ensure width is based on content */
+    min-width: fit-content; /* Ensure div does not shrink below container width */
+    overflow-y: auto; /* Show vertical scrollbar when content overflows */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    white-space: nowrap; /* Prevent content from wrapping */
+}
+.container>div::-webkit-scrollbar {
+    width: 1px;
+}
+
+  
+
+.addButton{
+    display: flex;
+    font-size: 11px;
+    color: grey;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+    background-color: rgb(187, 183, 183);
+height: 100px;
+border-radius: 6px;
+color: white;
+padding: 39px;
+    
+  }
+  .addButton>span{
+    margin-left: 5px;
+  }
