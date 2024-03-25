@@ -3,7 +3,10 @@
     font-size: 12px;
     background-color: white;
     border-radius: 6px;
-
+    position: absolute;
+    top: -45px;
+    left: 0;
+    z-index: 40;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .lineA,.lineB{
@@ -92,4 +95,27 @@
   
   .categorySelect option {
     color: #333; /* Text color for options */
+  }
+
+
+.colorCircle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border:0.1px black solid;
+  }
+  
+  .colorPicker {
+    position: absolute;
+    z-index: 300;
+    margin-top: 40px;
+    margin-left: 90px;
+  }
+  .colorPickerCont{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
   }

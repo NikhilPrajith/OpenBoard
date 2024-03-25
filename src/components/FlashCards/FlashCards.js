@@ -10,7 +10,7 @@ import { MdModeEdit,MdDelete,MdAddCircle } from "react-icons/md";
 import { PiShuffleBold } from "react-icons/pi";
 
 const initialCards = [
-  { question: "Study Card", answer: "Your answer", color:'rgb(254, 240, 113)'  },
+  { question: "Study Card", answer: "Your answer", color:'rgb(229, 187, 247)'  },
   { question: "Who's the best?", answer: "You are!", color:'rgb(92, 241, 192)' },
   { question: "Random card", answer: "An answer", color:'rgb(255, 205, 205)' }
   // Add more cards as needed

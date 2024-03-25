@@ -9,10 +9,10 @@ export default function TextNode({ selected, data }) {
   const [backgroundColor, setBackgroundColor] = useState(data?.transparent || 'transparent');
   const [textAlign, setTextAlign] = useState(data?.textAlign || 'left');
   const [italic, setItalic] = useState(false);
-  const [bold, setBold] = useState(false);
-  const [underline, setUnderline] = useState(false);
-  const [strike, setStrike] = useState(false);
-  const [text, setTextValue] = useState('Random text');
+  const [bold, setBold] = useState(data?.bold || false);
+  const [underline, setUnderline] = useState(data?.italic || false);
+  const [strike, setStrike] = useState(data?.strike || false);
+  const [text, setTextValue] = useState(data?.text || 'Random text');
   const [showControls, setShowControls] = useState(false);
 
   const handleChange = (name, value) => {
@@ -35,6 +35,9 @@ export default function TextNode({ selected, data }) {
       case 'strikeThrough':
         setStrike(!strike);
         break;
+      case 'color':
+          setColor(`rgba(${value.r}, ${value.g}, ${value.b}, ${value.a})`);
+          break;
       default:
         break;
     }
@@ -48,6 +51,7 @@ export default function TextNode({ selected, data }) {
     padding: '5px',
     borderRadius: '5px',
     minWidth: '100px',
+    minHeight: '150px',
     width: '100%',
     height: '100%',
     cursor: 'text',
@@ -62,20 +66,21 @@ export default function TextNode({ selected, data }) {
   };
 
   return (
+    <>
+    {selected && (
+      <TextEdit 
+        bold={bold}
+        strike={strike} 
+        underline={underline} 
+        details={textStyle} 
+        handleChange={handleChange}
+      />
+    )}
     <div 
+    
       style={{ width: '100%', height: '100%' }} 
-      className="dragHandle"
-      onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
+      className="dragHandle nowheel"
     >
-      {showControls && (
-        <TextEdit 
-          strike={strike} 
-          underline={underline} 
-          details={textStyle} 
-          handleChange={handleChange}
-        />
-      )}
       <NodeResizer 
         color="#000" 
         isVisible={selected} 
@@ -87,5 +92,6 @@ export default function TextNode({ selected, data }) {
         style={textStyle}
       />
     </div>
+    </>
   );
 }

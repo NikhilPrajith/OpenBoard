@@ -22,7 +22,7 @@ const snapGrid = [10, 10];
 
 
 
-const defaultViewport = { x: 0, y: 0, zoom: 0.75 };
+const defaultViewport = { x: 10, y: 75, zoom: 0.78 };
 const initBgColor = 'white';
 const snowColor= 'rgb(148, 213, 255)';
 const nodeTypes = {
@@ -198,6 +198,18 @@ export default function InfiniteCanvas({}){
   const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;
 
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  function formatDate(date) {
+    return new Intl.DateTimeFormat('en-US', { 
+      weekday: 'long', 
+      month: 'long', 
+      day: 'numeric' 
+    }).format(date);
+  }
+  function CurrentDate() {
+    const now = new Date();
+    const formattedDate = formatDate(now);
+    return formattedDate;
+  }
   useEffect(() => {
 
     setNodes([
@@ -274,6 +286,33 @@ export default function InfiniteCanvas({}){
                   y: 500,
                   },
                 },
+                {
+
+                  id: getNodeId(),
+                  type: 'textElement',
+                  data:{text:`${CurrentDate()}`, bold:true},
+                  dragHandle: '.dragHandle',
+                  style: {padding: 4 },
+                  position: {
+                    x:window.innerWidth /5,
+                    y: 10,
+                    },
+                  },
+                  {
+
+                    id: getNodeId(),
+                    type: 'textElement',
+                    data:{text:'Add, drag and use tools to plan your day. Have fun! 🤩 ', 
+                        bold:true, fontSize:'16px', color:`rgb(175, 176, 177)`},
+                    dragHandle: '.dragHandle',
+                    style: {padding: 4 },
+                    position: {
+                      x:window.innerWidth /5,
+                      y: 70,
+                      },
+                    },
+
+                
 
     ]);
 
