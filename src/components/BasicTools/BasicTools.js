@@ -21,7 +21,7 @@ export default function BasicTools({addingNode, setShowSidebar, showSideBar}) {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} drag` }>
         <div className={styles.innerContainer}>
               <button onClick={(event) => onClick(event, 'taskListNode')} ><FaListAlt></FaListAlt></button>
 

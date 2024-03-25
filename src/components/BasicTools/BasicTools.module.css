@@ -7,9 +7,11 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 100%;
+    width: min-content;
     min-height: 80px;
-    z-index: 100;
+    z-index: 1000;
+    left: 0;
+    margin: auto;
 
     
   }
