@@ -326,7 +326,7 @@ export default function InfiniteCanvas({}){
   
   const onAdd = (type) => {
     let dragHandle = '';
-    if (type == 'taskListNode'){
+    if (type == 'taskListNode' || type == "textElement"){
       dragHandle = '.dragHandle'
     }
     const newNode = {

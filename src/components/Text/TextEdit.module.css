@@ -1,8 +1,10 @@
 .parent{
-    padding: 15px;
-    padding-bottom: 10px;
-    padding-top: 0px;
+    padding: 8px;
     font-size: 12px;
+    background-color: white;
+    border-radius: 6px;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .lineA,.lineB{
     /*border-bottom: 0.03px rgb(199, 197, 197) solid;*/
@@ -38,7 +40,6 @@
     width: 100%;
     display: flex;
     align-items: center;
-    padding-bottom: 8px;
     font-size: 12px;
 
 }
@@ -70,3 +71,25 @@
     font-size: 20px;
     margin-right: 6px;
 }
+.categorySelect{
+    -webkit-appearance: none; /* for Chrome, Safari, and Opera */
+    -moz-appearance: none; /* for Firefox */
+    appearance: none;
+    padding: 4px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-right: 10px;
+  }
+  .categorySelect:focus {
+    outline: none; /* Remove the focus outline */
+    border-color: #666; /* Custom focus border color */
+  }
+  
+  /* You might want to add styles for disabled state as well */
+  .categorySelect:disabled {
+    cursor: not-allowed;
+  }
+  
+  .categorySelect option {
+    color: #333; /* Text color for options */
+  }

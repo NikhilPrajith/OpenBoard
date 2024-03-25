@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
-import styles from "./Text.module.css";
-import { Handle, Position, NodeResizer } from 'reactflow';
+import styles from "./Text.module.css"; // Ensure this CSS file has the required styles
+import { NodeResizer } from 'reactflow';
 import TextEdit from './TextEdit';
 
-export default function TextNode({ isConnectable, selected, data }) {
-  const [fontSize, setFontSize] = useState(data?.fontSize || 16);
+export default function TextNode({ selected, data }) {
+  const [fontSize, setFontSize] = useState(data?.fontSize || '32px');
   const [color, setColor] = useState(data?.color || '#000000');
-  const [backgroundColor, setBackgroundColor] = useState(data?.backgroundColor || '#FFFFFF');
-  const [fontFamily, setFontFamily] = useState(data?.fontFamily || 'Arial');
+  const [backgroundColor, setBackgroundColor] = useState(data?.transparent || 'transparent');
+  const [textAlign, setTextAlign] = useState(data?.textAlign || 'left');
+  const [italic, setItalic] = useState(false);
+  const [bold, setBold] = useState(false);
+  const [underline, setUnderline] = useState(false);
+  const [strike, setStrike] = useState(false);
+  const [text, setTextValue] = useState('Random text');
+  const [showControls, setShowControls] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (name, value) => {
     switch (name) {
       case 'fontSize':
         setFontSize(value);
         break;
-      case 'color':
-        setColor(value);
+      case 'textAlign':
+        setTextAlign(value);
         break;
-      case 'backgroundColor':
-        setBackgroundColor(value);
+      case 'bold':
+        setBold(!bold);
         break;
-      case 'fontFamily':
-        setFontFamily(value);
+      case 'italic':
+        setItalic(!italic);
+        break;
+      case 'underline':
+        setUnderline(!underline);
+        break;
+      case 'strikeThrough':
+        setStrike(!strike);
         break;
       default:
         break;
@@ -30,56 +41,51 @@ export default function TextNode({ isConnectable, selected, data }) {
   };
 
   const textStyle = {
-    fontSize: `${fontSize}px`,
-    color: color,
-    backgroundColor: backgroundColor,
-    fontFamily: fontFamily,
+    fontSize,
+    color,
+    backgroundColor, // This should be backgroundColor, not data?.transparent
+    fontWeight: bold ? 'bold' : 'normal',
     padding: '5px',
     borderRadius: '5px',
-    minWidth: '100px', // Adjust as needed
-    minHeight: '20px', // Adjust as needed
+    minWidth: '100px',
+    width: '100%',
+    height: '100%',
     cursor: 'text',
+    textAlign,
+    textDecoration: `${strike ? 'line-through' : ''} ${underline ? 'underline' : ''}`,
+    fontStyle: italic ? 'italic' : 'normal',
+    overflowY: 'auto', // Make the textarea scrollable
   };
 
+  const handleTextChange = (event) => {
+    setTextValue(event.target.value);
+  };
 
   return (
-    <>
+    <div 
+      style={{ width: '100%', height: '100%' }} 
+      className="dragHandle"
+      onMouseEnter={() => setShowControls(true)}
+      onMouseLeave={() => setShowControls(false)}
+    >
+      {showControls && (
+        <TextEdit 
+          strike={strike} 
+          underline={underline} 
+          details={textStyle} 
+          handleChange={handleChange}
+        />
+      )}
       <NodeResizer 
         color="#000" 
         isVisible={selected} 
       />
-      <TextEdit details={textStyle}></TextEdit>
-      <div style={textStyle}>
-        <input
-          type="text"
-          name="fontSize"
-          value={fontSize}
-          onChange={handleChange}
-          style={{ display: 'none' }}
-        />
-        <input
-          type="color"
-          name="color"
-          value={color}
-          onChange={handleChange}
-          style={{ display: 'none' }}
-        />
-        <input
-          type="color"
-          name="backgroundColor"
-          value={backgroundColor}
-          onChange={handleChange}
-          style={{ display: 'none' }}
-        />
-        <input
-          type="text"
-          name="fontFamily"
-          value={fontFamily}
-          onChange={handleChange}
-          style={{ display: 'none' }}
-        />
-        sdsd
-      </div>
-    </>
+      <textarea 
+        className={`${styles.inputText} dragHandle`} 
+        value={text} 
+        onChange={handleTextChange}  
+        style={textStyle}
+      />
+    </div>
   );
 }

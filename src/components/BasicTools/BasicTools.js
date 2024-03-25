@@ -34,6 +34,7 @@ export default function BasicTools({addingNode, setShowSidebar, showSideBar}) {
 
               <button onClick={(event) => onClick(event, 'flashCards')} ><PiCardsFill></PiCardsFill></button>
 
+              <button onClick={(event) => onClick(event, 'textElement')} ><PiTextTBold></PiTextTBold></button>
 
             
         </div>

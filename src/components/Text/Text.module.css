@@ -9,4 +9,16 @@
     left: 0;
     opacity: 0;
   }
+.inputText{
+  background-color: transparent;
+
+  resize: none;
+  font-family: Inter, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
   
+.inputText:focus{
+  outline: none;
+  border:none;
+  
+
+}
