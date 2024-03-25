@@ -15,7 +15,7 @@ const DocumentNoSSR = dynamic(() => import('@/components/Docs/Document'), {
 });
 
 export default function Home() {
-  const [type, setType] = useState('Tasker');
+  const [type, setType] = useState('Endless Board');
   const [open, setOpen] = useState(false)
 
   // Determine display styles based on the `type`
