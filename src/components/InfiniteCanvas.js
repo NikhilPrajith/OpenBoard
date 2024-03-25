@@ -22,7 +22,7 @@ const snapGrid = [10, 10];
 
 
 
-const defaultViewport = { x: 10, y: 75, zoom: 0.78 };
+const defaultViewport = { x: 10, y: 75, zoom: 0.77 };
 const initBgColor = 'white';
 const snowColor= 'rgb(148, 213, 255)';
 const nodeTypes = {

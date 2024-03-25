@@ -28,3 +28,6 @@ fix the flash cards to make it colorful and neat
 add text placement node
 add a drawign icon to draw freely on the canvas
 add lofi music and sounds
+
+to do: 
+kanban style board: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.youtube.com/watch%3Fv%3DgjrVCY3oPds&ved=2ahUKEwjf07604Y-FAxW52MkDHSgFAkUQtwJ6BAgpEAI&usg=AOvVaw3bQwBWCQxO3mt3AyPIuPLL
