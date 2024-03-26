@@ -170,7 +170,6 @@
 
 .boardCont{
     height: 100%;
-    overflow-x: scroll;
     display: flex;
     justify-content: space-between;
     height: 100%;

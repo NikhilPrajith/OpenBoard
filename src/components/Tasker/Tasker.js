@@ -16,7 +16,6 @@ export default function Tasker({ open , tasks, setTasks, selectedTask, setSelect
   const date = 'Today'
 
   const handleSelectTask = (task) => {
-    console.log("selected taks", task, tasks)
     setSelectedTask(task);
   };
   const updateTask = (updatedTask) => {

@@ -24,9 +24,8 @@ const itemsFromBackend = [
 
 
 
-function Board({tasks, listCategories, setTasks, taskCategories}) {
+function Board({tasks, listCategories, setTasks, taskCategories, selectedTask, setSelectedTask }) {
   const onDragEnd = (result, columns, setColumns) => {
-    console.log("result", result, "columns", columns)
 
     if (!result.destination) return;
     const { source, destination } = result;
@@ -37,6 +36,7 @@ function Board({tasks, listCategories, setTasks, taskCategories}) {
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
+      updateListCategory(removed.id,destColumn.name )
       destItems.splice(destination.index, 0, removed);
       setColumns({
         ...columns,
@@ -93,25 +93,62 @@ function Board({tasks, listCategories, setTasks, taskCategories}) {
   }, [tasks])
   
   const deleteTask = (taskId) => {
+    const index = tasks.findIndex(task => task.id === taskId);
     const updatedTasks = tasks.filter(task => task.id !== taskId);
     
     setTasks(updatedTasks);
+  
+    // Check if the deleted task is the currently selected one
+    if (selectedTask && taskId === selectedTask.id) {
+      let nextSelectedTask = null;
+  
+      // If there are still tasks after deletion, proceed to find the next selection
+      if (updatedTasks.length > 0) {
+        // If the deleted task was not the last, select the next task in the list
+        // Otherwise, select the previous task (now at the current index - 1)
+        nextSelectedTask = updatedTasks[index] || updatedTasks[index - 1];
+      }
+  
+      // Set the next selected task or null if no tasks left
+      setSelectedTask(nextSelectedTask);
+    }
   };
+  
 
   
   const [columns, setColumns] = useState({});
 
   const updateCategory = (id, newCategory) => {
+    let updatedTask = {};
     setTasks(tasks.map((task) => {
       if (task.id === id) {
-        return { ...task, category: newCategory, bgColor: taskCategories[newCategory] };
+        updatedTask = { ...task, category: newCategory, bgColor: taskCategories[newCategory] }
+        return updatedTask;
       }
       return task;
     }));
+    if(id == selectedTask.id){
+      console.log("updating current")
+      setSelectedTask(updatedTask)
+    }
+  };
+  const updateListCategory = (id, newCategory) => {
+    let updatedTask = {};
+    setTasks(tasks.map((task) => {
+      if (task.id === id) {
+        updatedTask = { ...task, list: newCategory }
+        return updatedTask;
+      }
+      return task;
+    }));
+    if(id == selectedTask.id){
+      setSelectedTask(updatedTask)
+    }
   };
 
   const toggleCompletion = (taskId) => {
     setTasks(tasks.map((task) => task.id === taskId ? { ...task, completed: !task.completed } : task));
+
   };
   const strikeThroughAnimation = useSpring({
     from: { textDecoration: "none" },
@@ -123,11 +160,23 @@ function Board({tasks, listCategories, setTasks, taskCategories}) {
   };
 
 
-  const onValueChangeTitle = (index, event) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index] = { ...updatedTasks[index], title: event.target.value };
+  const onValueChangeTitle = (id, event) => {
+    let updatedTask = {}
+    console.log("change title", event.target.value);
+    
+    const updatedTasks = tasks.map(task => {
+      if (task.id === id) {
+        updatedTask = { ...task, title: event.target.value }
+        return updatedTask;
+      }
+      return task;
+    });
     setTasks(updatedTasks);
-};
+    if(id == selectedTask.id){
+      console.log("updating current")
+      setSelectedTask(updatedTask)
+    }
+  };
   
 
   return (
@@ -199,7 +248,7 @@ function Board({tasks, listCategories, setTasks, taskCategories}) {
                                   checked={task.completed}
                                   onChange={() => toggleCompletion(task.id)}
                                 />
-                                  <input onChange={(event) =>{onValueChangeTitle(index,event)}} value={task.title} htmlFor={`checkbox-${task.id}`} className={styles.taskLabel} placeholder='Task Title...'>
+                                  <input onChange={(event) =>{onValueChangeTitle(task.id,event)}} value={task.title || ""} htmlFor={`checkbox-${task.id}`} className={styles.taskLabel} placeholder='Task Title...'>
                                   </input>
 
                                 </div>

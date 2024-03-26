@@ -32,7 +32,7 @@ export default function Home() {
     'School': 'rgb(249, 211, 199)',
     'IDK': 'rgb(249, 238, 199)',
   };
-  const [type, setType] = useState('Lists');
+  const [type, setType] = useState('Endless Board');
   const [open, setOpen] = useState(false)
 
   // Determine display styles based on the `type`
@@ -43,7 +43,9 @@ export default function Home() {
   // Initialize the taskLists state with two default ToDoTask components
   const [tasks, setTasks] = useState([
     
-    { id: '1', list:'Personal', title: 'Have fun', category: '😍', bgColor: taskCategories['😍'] , completed: false, dueDate : new Date().toISOString().split('T')[0] },
+    { id: '1', list:'Fun', title: 'Have fun', category: '😍', bgColor: taskCategories['😍'] , completed: false, dueDate : new Date().toISOString().split('T')[0] },
+
+    { id: '2', list:'Personal', title: 'Personal Time', category: '😴', bgColor: taskCategories['😴'] , completed: false, dueDate : new Date().toISOString().split('T')[0],},
 
     { id: '3', list:'Work', title: 'Work', category: '😭', bgColor: taskCategories['😭'] , completed: false, dueDate : new Date().toISOString().split('T')[0],},
 
@@ -67,7 +69,7 @@ export default function Home() {
         <div><Tasker tasks={tasks} setTasks={setTasks} selectedTask={selectedTask} setSelectedTask={setSelectedTask} open={open} taskCategories={taskCategories} listCategories={listCategories}></Tasker></div>
       </div>
       <div style={displayStyleForType('Lists')}>
-        <div><Board tasks={tasks} setTasks={setTasks} taskCategories={taskCategories} listCategories={listCategories} open={open}></Board></div>
+        <div><Board selectedTask={selectedTask} setSelectedTask={setSelectedTask} tasks={tasks} setTasks={setTasks} taskCategories={taskCategories} listCategories={listCategories} open={open}></Board></div>
       </div>
       <div style={displayStyleForType('Docs')}>
         <div><DocumentNoSSR></DocumentNoSSR></div>
