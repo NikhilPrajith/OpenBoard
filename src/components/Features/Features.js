@@ -18,6 +18,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { MdPlaylistAddCircle } from "react-icons/md";
 import { RiDashboardFill } from "react-icons/ri";
 import { IoDocumentText } from "react-icons/io5";
+import { FaThList } from "react-icons/fa";
 
 const drawerWidth = 180;
 
@@ -81,7 +82,8 @@ export default function Features({setType, setOpenParent}) {
   const pageIcons = {
     0:<RiDashboardFill size={iconSize} />,
     1:<MdPlaylistAddCircle size={iconSize}/>,
-    2:<IoDocumentText size={iconSize}/>
+    2:<FaThList size={iconSize}></FaThList>,
+    3: <IoDocumentText size={iconSize}/>,
   }
 
   return (
@@ -98,7 +100,7 @@ export default function Features({setType, setOpenParent}) {
         '& .MuiListItemIcon-root': { color: 'black', fontSize: '12px' }, // Adjusted font size for text
         '& .MuiSvgIcon-root': { fontSize: '12px' }, // Adjusted font size for icons
       }}>
-        {['Endless Board', 'Tasker', 'Docs'].map((text, index) => (
+        {['Endless Board', 'Tasker', 'Lists', 'Docs'].map((text, index) => (
           <ListItem onClick={()=>{setType(text)}} key={text} disablePadding sx={{ display: 'block' }}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center'}}> {/* Explicitly target icons within ListItemIcon */}

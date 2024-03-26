@@ -1,0 +1,35 @@
+.container{
+    width: fit-content !important;
+    min-width: 180px;
+background: rgb(249, 249, 249);
+font-size: 12px;
+margin: auto;
+font-family: Inter, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+border: 1px solid #eee;
+cursor: default;
+border-top: none;
+border-left: none;
+height: 100%;
+padding: 15px;
+padding-top: 29px;
+}
+.tabTitle{
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 20px;
+
+}
+.cont{
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    justify-content: start;
+}
+.title{
+    font-size: 12px;
+    margin-bottom: 15px;
+
+}
+.cont>button{
+    text-align: left;
+}

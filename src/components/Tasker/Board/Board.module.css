@@ -1,0 +1,207 @@
+/*TaskList css*/
+.container {
+    font-family: Inter, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'Arial', sans-serif;
+    border:1px solid #eee;
+    cursor: default;
+    margin:10px;
+    height: fit-content;
+  
+  }
+  
+  .header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  }
+  .taskHeader{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+  
+  }
+  .taskHeader{
+    width: 100%;
+  }
+  
+  .timerInput {
+    border: none;
+    background-color: transparent;
+    color: #333;
+  }
+  
+  .taskContainer {
+    padding: 28px;
+    height: 100%;
+    padding-bottom: 50px;
+    font-size: 12px;
+    color: black;
+    overflow-y: scroll;
+  }
+  .taskContainer> div:last-of-type {
+    margin-bottom: 300px;
+  }
+  .taskItemCont{
+  
+    align-items: center;
+    justify-content: space-between;
+  
+    background: #fff;
+    padding: 10px 8px;
+    cursor: pointer;
+    border-radius:6px;
+    border: 1px solid #eee;
+  }
+  
+  .taskItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 10px 8px;
+    padding-bottom: 0px;
+  }
+  .taskItemDiv1{
+    display: flex;
+    margin-right: 25px;
+    align-items: center;
+  }
+  
+  .taskItemDiv2{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+  .taskLabel {
+    margin-left: 10px;
+    background-color: transparent;
+    color: black;
+  }
+  
+  .category {
+    background-color: #E0E0E0;
+    border-radius: 6px;
+    font-size: 10px;
+    padding:5px;
+  }
+  
+  .dragHandle{
+    cursor:grab;
+    margin-left: 10px;
+  }
+  .categorySelect{
+    -webkit-appearance: none; /* for Chrome, Safari, and Opera */
+    -moz-appearance: none; /* for Firefox */
+    appearance: none;
+    padding: 4px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-right: 10px;
+  }
+  .categorySelect:focus {
+    outline: none; /* Remove the focus outline */
+    border-color: #666; /* Custom focus border color */
+  }
+  
+  /* You might want to add styles for disabled state as well */
+  .categorySelect:disabled {
+    cursor: not-allowed;
+  }
+  
+  .categorySelect option {
+    color: #333; /* Text color for options */
+  }
+  .addButton{
+    display: flex;
+    color: grey;
+    align-items: center;
+    padding-bottom: 15px;
+    width: -webkit-fill-available;
+    padding-top: 15px;
+    margin-left: 28px;
+    margin-right: 28px;
+    border-bottom:1px solid #eee;
+  }
+  .addButton>span{
+    margin-left: 15px;
+  }
+  .deleteIcon{
+    color:rgb(238, 83, 31);
+    cursor: pointer;
+  }
+  .deleteIcon:hover{
+    opacity: 0.8;
+  }
+  .nodeDrag{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.89);
+    padding: 2px;
+    color: white;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  .numOfTasks{
+    font-size: 13px;
+    font-weight: 500;
+    color:grey
+  }
+  .dateCont{
+    display: flex;
+    align-items: center;
+  }
+  .lineTwo{
+    margin-left: 29px;
+    margin-right: 9px;
+    display: flex;
+  }
+  .dateCont>span{
+    margin-left: 5px;
+    font-size: 100;
+    color: grey;
+    border-right: 1px solid #eee;
+    padding-right: 10px;
+  
+  }
+/*New CSS*/
+
+.boardCont{
+    height: 100%;
+    overflow-x: scroll;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    overflow-y: hidden;
+}
+.boardContCont{
+  height: 100%;
+    margin-top: 90px;
+    margin-top: 55px;
+    margin-left: 65px;
+    height: 100vh;
+
+}
+
+.mainheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+.maintaskHeader{
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+
+}
+.maintaskHeader{
+  width: 100%;
+}
+.contentContainerDrag{
+  max-height: 65vh;
+  overflow-y: scroll;
+}

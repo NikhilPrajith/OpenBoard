@@ -54,7 +54,7 @@
   border-bottom: 1px solid #eee;
   background: #fff;
   padding: 10px 8px;
-  cursor: default;
+  cursor: pointer;
 }
 
 .taskItem {
@@ -64,7 +64,6 @@
 
   padding: 10px 8px;
   padding-bottom: 0px;
-  cursor: default;
 }
 .taskItemDiv1{
   display: flex;
@@ -157,6 +156,8 @@
 .lineTwo{
   margin-left: 29px;
   margin-right: 9px;
+  display: flex;
+  align-items: center;
 }
 .dateCont>span{
   margin-left: 5px;

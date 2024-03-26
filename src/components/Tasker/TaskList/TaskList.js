@@ -93,7 +93,7 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
     const newId =  `randomtask_${+new Date()}_${+Math.random(4000)}}`;
 
     const randomIndex = Math.floor(Math.random() * Object.keys(taskCategories).length);
-    const newTask = { id: newId, title: '',category: Object.keys(taskCategories)[randomIndex], bgColor: taskCategories[Object.keys(taskCategories)[randomIndex]], completed: false }
+    const newTask = { id: newId, list:'Personal', title: '',category: Object.keys(taskCategories)[randomIndex], bgColor: taskCategories[Object.keys(taskCategories)[randomIndex]], completed: false }
     setTasks([...tasks,newTask ]);
     handleSelectTask(newTask)
   };
@@ -124,7 +124,6 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
   
     // Check if the deleted task is the currently selected one
     if (selectedTask && taskId === selectedTask.id) {
-      console.log("deleting selected")
       let nextSelectedTask = null;
   
       if (updatedTasks.length > 0) {
@@ -154,7 +153,7 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
       <div className={styles.header}>
         {/* Header content, e.g., datetime inputs */}
         <div className={styles.taskHeader}>
-              {date} 
+              Tasks 
               <div className={styles.numOfTasks}>{tasks.length} tasks</div>
               </div>
       </div>
@@ -180,8 +179,9 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
             </div>
             <div className={styles.taskItemDiv2}>
             <select
+            disabled
               value={task.category}
-              style={{ backgroundColor: task.bgColor }}
+              style={{ backgroundColor: task.bgColor, cursor:'auto' }}
               onChange={(e) => updateCategory(task.id, e.target.value)}
               className={styles.categorySelect}
             >
@@ -196,6 +196,8 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
             </div>
             <div className={styles.lineTwo}>
               {task.dueDate && <div className={styles.dateCont}><MdDateRange color='grey'/><span>{task.dueDate}</span></div>}
+
+              {task.list && <div className={styles.dateCont}><span>{task.list}</span></div>}
             </div>
           </div>
         ))}
