@@ -1,10 +1,13 @@
 import React from 'react'
-import DocumentComp from '@/components/Docs/Document'
+const DocumentNoSSR = dynamic(() => import('@/components/Docs/Document'), {
+  ssr: false,
+});
 
 export default function page() {
   return (
     <div>
-        <DocumentComp></DocumentComp>
+        
+        <div><DocumentNoSSR></DocumentNoSSR></div>
       
     </div>
   )
