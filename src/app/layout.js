@@ -6,8 +6,8 @@ import Provider from "./Provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Vibing",
-  description: "A simple and fun activity and task board!",
+  title: "Vibing - Organize Tasks and Plan with Ease",
+  description: "Stay organized and have fun with Vibing, the simple and customizable activity and task board. Effortlessly manage tasks and stay on top of your to-do list.",
 };
 
 export default function RootLayout({ children }) {
