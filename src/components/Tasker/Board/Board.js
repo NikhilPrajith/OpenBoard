@@ -107,7 +107,7 @@ function Board({}) {
             {/* Header content, e.g., datetime inputs */}
             <div className={styles.maintaskHeader}>
                   Simplified Lists 
-                <div className={styles.numOfTasks}>{Object.keys(categories).length} lists</div>
+                <div className={styles.numOfTasks}>{categories ? Object.keys(categories).length : 0} lists</div>
             </div>
         </div>
         <div className={styles.boardCont}>

@@ -7,7 +7,7 @@
     top: 0;
     z-index: 130;
     display: flex;
-    padding: 15px;
+    padding: 13px;
     padding-left: 80px;
     padding-right: 20px;
     justify-content: space-between;
@@ -46,7 +46,7 @@
     font-weight: 500; 
     color: white; 
     background-color: black;
-    padding: 9px;
+    padding: 7px;
     padding-left: 12px;
     padding-right: 12px;
     border-radius: 6px;
@@ -65,26 +65,34 @@
     margin-right: 10px;
   }
   .isSavedText{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 
   }
   .saved{
-    color: grey;
+    color: color(srgb 0.3623 0.9449 0.7532);
 
   }
   .unsaved{
-    color: rgb(247, 80, 80);
+    color: rgb(251, 151, 151);
     font-weight: 700;
   }
   .saveNowButton{
 
     font-size: 11px;
     font-weight: 500; 
-    color: white; 
-    background-color: rgb(163, 211, 249);
-    padding: 9px;
+    color: black; 
+    background-color: rgb(251, 151, 151);;
+    padding: 7px;
     padding-left: 12px;
     padding-right: 12px;
     border-radius: 6px;
     cursor: pointer;
-    border:0.1px black solid;
+  }
+  .autoSave{
+
+
+    color: grey;
+    font-size: 8px;
   }

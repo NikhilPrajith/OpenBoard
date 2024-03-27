@@ -44,26 +44,6 @@ const TaskList = ({}) => {
   };
 
 
-  const prevCompletionStatesRef = useRef(tasks.map(task => task.completed));
-  useEffect(() => {
-    // Map current completion states
-    const currentCompletionStates = tasks.map(task => task.completed);
-
-    // Check if there's any change in completion status
-    const isCompletionStatusChanged = currentCompletionStates.some((state, index) => state !== prevCompletionStatesRef.current[index]);
-
-    // If there's a change in any task's completion status, trigger confetti
-    if (isCompletionStatusChanged) {
-      if (tasks.every(task => task.completed)) {
-        launchConfetti();
-      }
-      
-    }
-    // Update the ref with current completion states for the next comparison
-    prevCompletionStatesRef.current = currentCompletionStates;
-    
-  }, [tasks]);
-
   const strikeThroughAnimation = useSpring({
     from: { textDecoration: "none" },
     to: { textDecoration: "line-through" },
@@ -79,7 +59,7 @@ const TaskList = ({}) => {
         {/* Header content, e.g., datetime inputs */}
         <div className={styles.taskHeader}>
               Tasks 
-              <div className={styles.numOfTasks}>{tasks.length} tasks</div>
+              <div className={styles.numOfTasks}>{tasks?.length || 0} tasks</div>
               </div>
       </div>
       <button onClick={addTask} className={styles.addButton}>
@@ -88,7 +68,7 @@ const TaskList = ({}) => {
       
       <div className={styles.taskContainer} ref={taskListRef}>
       
-        {tasks.map((task, index) => (
+        {tasks?.map((task, index) => (
           <div onClick={()=> {setSelectedTask(task)}} key={task.id} className={styles.taskItemCont} style={{backgroundColor: selectedTask?.id ==task.id ? '#F8F9FA' : 'white'}}>
             <div  className={styles.taskItem}>
             <div className={styles.taskItemDiv1}>
