@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./TaskEditor.module.css";
+import { useTasks } from '@/context/TaskContext';
 
-export default function TaskEditor({ selectedTask, updateTask, taskCategories,listCategories }) {
+export default function TaskEditor({}) {
     // Local state to manage the edited fields, initializing with selectedTask values or defaults
     const [editedTitle, setEditedTitle] = useState('');
     const [editedDueDate, setEditedDueDate] = useState('');
-
     const [description, setDesc] = useState('');
-
     const [category, setTaskCategory] = useState('');
-
     const [categoryColor, setTaskCategoryColor] = useState('');
-
     const [listVal, setListCategory] = useState('');
+    
+    //Context
+    const {updateTask, categories,taskCategoriesState, selectedTask} = useTasks()
 
     // Effect to reset local form state when selectedTask changes
     useEffect(() => {
@@ -21,11 +21,11 @@ export default function TaskEditor({ selectedTask, updateTask, taskCategories,li
         setEditedDueDate(selectedTask?.dueDate ? new Date(selectedTask.dueDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]);
         setDesc(selectedTask?.description || '');
         setTaskCategory(selectedTask?.category || '😍');
-        setTaskCategoryColor(selectedTask?.bgColor || taskCategories['😍'])
+        setTaskCategoryColor(selectedTask?.bgColor || taskCategoriesState['😍'])
         setListCategory(selectedTask?.list || 'Personal')
     }, [selectedTask]);
 
-    // Handles the submission and updates the task list in the parent component
+    // Handles the submission and updates the task list in the context
     const handleUpdate = () => {
         if (!selectedTask) return;
 
@@ -44,7 +44,7 @@ export default function TaskEditor({ selectedTask, updateTask, taskCategories,li
     };
     const updateCategory = (value) =>{
         setTaskCategory(value);
-        setTaskCategoryColor(taskCategories[value]);
+        setTaskCategoryColor(taskCategoriesState[value]);
     }
     const updateList = (value) =>{
         setListCategory(value);
@@ -93,7 +93,7 @@ export default function TaskEditor({ selectedTask, updateTask, taskCategories,li
                             onChange={(e) => updateCategory(e.target.value)}
                             className={styles.categorySelect}
                             >
-                            {Object.entries(taskCategories).map(([emoji, color]) => (
+                            {Object.entries(taskCategoriesState).map(([emoji, color]) => (
                                 <option key={emoji} value={emoji}>{emoji}</option>
                             ))}
                         </select>
@@ -107,7 +107,7 @@ export default function TaskEditor({ selectedTask, updateTask, taskCategories,li
                             onChange={(e) => updateList(e.target.value)}
                             className={styles.categorySelect}
                             >
-                            {Object.entries(listCategories).map(([name, val]) => (
+                            {Object.entries(categories).map(([name, val]) => (
                                 <option key={name} value={name}>{name}</option>
                             ))}
                         </select>

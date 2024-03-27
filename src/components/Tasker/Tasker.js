@@ -8,32 +8,19 @@ import TaskEditor from './TaskEditor/TaskEditor';
 import SideBar from '../SideBar/SideBar';
 import Sidehandle from './Sidehandle/Sidehandle';
 import Board from './Board/Board';
+import { useTasks } from '@/context/TaskContext';
 
 
 
-export default function Tasker({ open , tasks, setTasks, selectedTask, setSelectedTask, listCategories, taskCategories}) {
-
-  const date = 'Today'
-
-  const handleSelectTask = (task) => {
-    setSelectedTask(task);
-  };
-  const updateTask = (updatedTask) => {
-    setTasks((prevTasks) => 
-      prevTasks.map((task) => 
-        task.id === updatedTask.id ? updatedTask : task
-      )
-    );
-  };
-
+export default function Tasker({}) {
 
   return (
     <div className={styles.container}>
       <div>
-        <TaskList listCategories={listCategories} handleSelectTask={handleSelectTask} selectedTask={selectedTask} tasks={tasks} setTasks={setTasks} taskCategories={taskCategories} date={date}></TaskList>
+        <TaskList></TaskList>
       </div>
       <div>
-        <TaskEditor listCategories={listCategories}  taskCategories={taskCategories} updateTask={updateTask} selectedTask={selectedTask}></TaskEditor>
+        <TaskEditor></TaskEditor>
       </div>
     </div>
   );

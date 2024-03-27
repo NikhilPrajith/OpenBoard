@@ -10,46 +10,23 @@ import confetti from 'canvas-confetti';
 
 import { useSpring, animated } from 'react-spring';
 import { MdDateRange } from "react-icons/md";
+import { useTasks } from '@/context/TaskContext';
 
 
-const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTask, selectedTask}) => {
-
-
-  const [deadline, setDeadline] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+const TaskList = ({}) => {
+  
+  const {tasks, 
+        deleteTask, 
+        addTask, 
+        updateCategory, 
+        setSelectedTask, 
+        selectedTask, 
+        taskCategoriesState, 
+        toggleCompletion} = useTasks()
 
   const taskListRef = useRef(null);
   const confettiRef = useRef(null);
-  const launchConfetti2 = () => {
-      let originX = 0;
-      let originY =0;
 
-      if(confettiRef){
-        const rect = confettiRef.current.getBoundingClientRect();
-            // Calculate the center of the timer component
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Convert these to a ratio of the viewport dimensions
-        originX = centerX / window.innerWidth;
-        originY = centerY / window.innerHeight;
-      }
-      confetti({
-        angle: 90,
-        spread: 40,
-        startVelocity: 30,
-        elementCount: 200,
-        dragFriction: 0.122,
-        duration: 2000,
-        stagger: 1,
-        width: "6px",
-        height: "6px",
-        perspective: "500px",
-        colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
-        origin:{x:originX,y:originY}
-    });
-  };
   const launchConfetti = () => {
     if (confettiRef.current) {
       const canvasConfetti = confetti.create(confettiRef.current, { resize: true });
@@ -87,28 +64,6 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
     
   }, [tasks]);
 
-
-
-  const addTask = () => {
-    const newId =  `randomtask_${+new Date()}_${+Math.random(4000)}}`;
-
-    const randomIndex = Math.floor(Math.random() * Object.keys(taskCategories).length);
-    const newTask = { id: newId, list:'Personal', title: '',category: Object.keys(taskCategories)[randomIndex], bgColor: taskCategories[Object.keys(taskCategories)[randomIndex]], completed: false }
-    setTasks([...tasks,newTask ]);
-    handleSelectTask(newTask)
-  };
-  const updateCategory = (id, newCategory) => {
-    setTasks(tasks.map((task) => {
-      if (task.id === id) {
-        return { ...task, category: newCategory, bgColor: taskCategories[newCategory] };
-      }
-      return task;
-    }));
-  };
-
-  const toggleCompletion = (taskId) => {
-    setTasks(tasks.map((task) => task.id === taskId ? { ...task, completed: !task.completed } : task));
-  };
   const strikeThroughAnimation = useSpring({
     from: { textDecoration: "none" },
     to: { textDecoration: "line-through" },
@@ -116,36 +71,6 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
   });
 
 
-  const deleteTask = (taskId, index) => {
-    const updatedTasks = tasks.filter(task => task.id !== taskId);
-    
-    setTasks(updatedTasks);
-    
-  
-    // Check if the deleted task is the currently selected one
-    if (selectedTask && taskId === selectedTask.id) {
-      let nextSelectedTask = null;
-  
-      if (updatedTasks.length > 0) {
-        // Check if the deleted task was not the last in the list
-        if (index < tasks.length - 1) {
-          nextSelectedTask = updatedTasks[index]; // Select the next task
-        } else {
-          nextSelectedTask = updatedTasks[index - 1]; // Select the previous task if the deleted one was the last
-        }
-      }
-      
-      // Set the next selected task or null if no tasks left
-      handleSelectTask(nextSelectedTask);
-    }
-    
-  };
-  
-  const onValueChangeTitle = (index, event) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index] = { ...updatedTasks[index], title: event.target.value };
-    setTasks(updatedTasks);
-  };
   return (
     <div  className={styles.container}>
       <canvas ref={confettiRef} className={styles.confettiCanvas} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}></canvas>
@@ -164,7 +89,7 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
       <div className={styles.taskContainer} ref={taskListRef}>
       
         {tasks.map((task, index) => (
-          <div onClick={()=> {handleSelectTask(task)}} key={task.id} className={styles.taskItemCont} style={{backgroundColor: selectedTask?.id ==task.id ? '#F8F9FA' : 'white'}}>
+          <div onClick={()=> {setSelectedTask(task)}} key={task.id} className={styles.taskItemCont} style={{backgroundColor: selectedTask?.id ==task.id ? '#F8F9FA' : 'white'}}>
             <div  className={styles.taskItem}>
             <div className={styles.taskItemDiv1}>
             <input
@@ -185,7 +110,7 @@ const TaskList = ({blank, setTasks, tasks, taskCategories, date, handleSelectTas
               onChange={(e) => updateCategory(task.id, e.target.value)}
               className={styles.categorySelect}
             >
-              {Object.entries(taskCategories).map(([emoji, color]) => (
+              {Object.entries(taskCategoriesState).map(([emoji, color]) => (
                 <option key={emoji} value={emoji}>{emoji}</option>
               ))}
             </select>
