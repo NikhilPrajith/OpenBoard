@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";

@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import styles from './Tasker.module.css';
 import ToDoTask from '../ToDoTask/ToDoTask';
