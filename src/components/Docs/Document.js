@@ -48,7 +48,7 @@ export default function DocumentComp() {
       )}
 
       {/* BlockNoteView */}
-      <BlockNoteView data-theming-css-demo editor={editor} autoFocus={true}>
+      <BlockNoteView theme="light" data-theming-css-demo editor={editor} autoFocus={true}>
 
         {/* Circle showing current color */}
         <div className="color-circle" style={{ backgroundColor: `${color}` }} onClick={handleColorClick}></div>

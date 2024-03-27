@@ -24,7 +24,7 @@ const itemsFromBackend = [
 
 
 
-function Board({tasks, listCategories, setTasks, taskCategories, selectedTask, setSelectedTask }) {
+function Board({categories, setListCategories, tasks, listCategories, setTasks, taskCategories, selectedTask, setSelectedTask }) {
   const onDragEnd = (result, columns, setColumns) => {
 
     if (!result.destination) return;
@@ -286,6 +286,7 @@ function Board({tasks, listCategories, setTasks, taskCategories, selectedTask, s
           );
         })}
         </>}
+
         </DragDropContext>
       </div>
       </div>

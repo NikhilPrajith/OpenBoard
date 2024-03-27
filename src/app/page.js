@@ -33,7 +33,8 @@ export default function Home() {
     'IDK': 'rgb(249, 238, 199)',
   };
   const [type, setType] = useState('Endless Board');
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [categories, setListCategories] = useState(listCategories);
 
   // Determine display styles based on the `type`
   const displayStyleForType = (currentType) => {
@@ -69,7 +70,7 @@ export default function Home() {
         <div><Tasker tasks={tasks} setTasks={setTasks} selectedTask={selectedTask} setSelectedTask={setSelectedTask} open={open} taskCategories={taskCategories} listCategories={listCategories}></Tasker></div>
       </div>
       <div style={displayStyleForType('Lists')}>
-        <div><Board selectedTask={selectedTask} setSelectedTask={setSelectedTask} tasks={tasks} setTasks={setTasks} taskCategories={taskCategories} listCategories={listCategories} open={open}></Board></div>
+        <div><Board categories={categories} setListCategories={setListCategories} selectedTask={selectedTask} setSelectedTask={setSelectedTask} tasks={tasks} setTasks={setTasks} taskCategories={taskCategories} listCategories={listCategories} open={open}></Board></div>
       </div>
       <div style={displayStyleForType('Docs')}>
         <div><DocumentNoSSR></DocumentNoSSR></div>
