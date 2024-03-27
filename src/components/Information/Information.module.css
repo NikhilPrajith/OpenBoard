@@ -52,6 +52,39 @@
     border-radius: 6px;
 
   }
-  .feedbackButton:hover{
+  .feedbackButton:hover, .saveNowButton:hover{
     opacity: 0.8;
+  }
+  .infoCont{
+    display: flex;
+    font-size: 11px;
+    align-items: center;
+
+  }
+  .infoCont>div{
+    margin-right: 10px;
+  }
+  .isSavedText{
+
+  }
+  .saved{
+    color: grey;
+
+  }
+  .unsaved{
+    color: rgb(247, 80, 80);
+    font-weight: 700;
+  }
+  .saveNowButton{
+
+    font-size: 11px;
+    font-weight: 500; 
+    color: white; 
+    background-color: rgb(163, 211, 249);
+    padding: 9px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    border:0.1px black solid;
   }

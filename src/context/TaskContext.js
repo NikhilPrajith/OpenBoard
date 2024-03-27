@@ -1,5 +1,5 @@
 // contexts/TaskContext.js
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const TaskContext = createContext();
 
@@ -23,20 +23,26 @@ export const TaskProvider = ({ children }) => {
     'School': 'rgb(249, 211, 199)',
     'IDK': 'rgb(249, 238, 199)',
   };
-
-  const [categories, setListCategories] = useState(listCategories);
-
-  const [taskCategoriesState, setTaskCategories] = useState(taskCategories)
-
-  const [tasks, setTasks] = useState([
-    { id: '1', list:'Fun', title: 'Have fun', category: '😍', bgColor: taskCategories['😍'] , completed: false, dueDate : new Date().toISOString().split('T')[0] },
+  const defaultTasks = [{ id: '1', list:'Fun', title: 'Have fun', category: '😍', bgColor: taskCategories['😍'] , completed: false, dueDate : new Date().toISOString().split('T')[0] },
 
     { id: '2', list:'Personal', title: 'Personal Time', category: '😴', bgColor: taskCategories['😴'] , completed: false, dueDate : new Date().toISOString().split('T')[0],},
 
     { id: '3', list:'Work', title: 'Work', category: '😭', bgColor: taskCategories['😭'] , completed: false, dueDate : new Date().toISOString().split('T')[0],},
+  ]
+  const [categories, setListCategories] = useState(() => {
+    const localCategories = localStorage.getItem('categories');
+    return localCategories ? JSON.parse(localCategories) : listCategories
+  });
 
-  ]);
+  const [taskCategoriesState, setTaskCategories] = useState(() => {
+    const localTaskCategories = localStorage.getItem('taskCategoriesState');
+    return localTaskCategories ? JSON.parse(localTaskCategories) : taskCategories
+  });
 
+  const [tasks, setTasks] = useState(() => {
+    const localTasks = localStorage.getItem('tasks');
+    return localTasks ? JSON.parse(localTasks) : defaultTasks;
+  });
   const [selectedTask, setSelectedTask] = useState(tasks ? tasks[0] : null);
 
   const deleteTask = (taskId, index) => {
@@ -99,7 +105,6 @@ export const TaskProvider = ({ children }) => {
   const toggleCompletion = (taskId) => {
     setTasks(tasks.map((task) => task.id === taskId ? { ...task, completed: !task.completed } : task));
   };
-
   //Title input change
   const onValueChangeTitle = (id, event) => {
     let updatedTask = {}
@@ -134,6 +139,32 @@ export const TaskProvider = ({ children }) => {
   };
 
 
+  const [isSaved, setIsSaved] = useState(true);
+  const saveDataToLocalStorage = () => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('categories', JSON.stringify(categories));
+    localStorage.setItem('taskCategoriesState', JSON.stringify(taskCategoriesState));
+    setIsSaved(true); // Indicate that data has been saved
+  };
+  // Function to update local storage periodically or on specific actions
+  useEffect(() => {
+    if(isSaved){
+      return;
+    }
+    const handle = setInterval(() => {
+      saveDataToLocalStorage();
+    }, 10000); // Update local storage every 5000 ms (5 seconds)
+
+    return () => clearInterval(handle); // Clear interval on component unmount
+  }, [tasks, categories, taskCategoriesState]);
+
+
+  useEffect(() => {
+    setIsSaved(false);
+  }, [tasks, categories, taskCategoriesState]);
+
+
   // Add other states and functions you want to make globally available
   const value = {
     tasks,
@@ -153,7 +184,10 @@ export const TaskProvider = ({ children }) => {
     updateTask,
     toggleCompletion,
     onValueChangeTitle,
-    updateListCategory
+    updateListCategory,
+
+    isSaved,
+    saveDataToLocalStorage
     // Add more as needed
   };
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
