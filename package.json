@@ -20,6 +20,7 @@
     "@mui/icons-material": "^5.15.12",
     "@mui/lab": "^5.0.0-alpha.169",
     "@mui/material": "^5.15.12",
+    "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.7",
     "canvas-confetti": "^1.9.2",

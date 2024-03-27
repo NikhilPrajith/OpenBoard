@@ -18,7 +18,7 @@ export default function TaskEditor({ selectedTask, updateTask, taskCategories,li
     useEffect(() => {
         setEditedTitle(selectedTask?.title || '');
         // Ensure dueDate is in the right format for the input[type=date], which is YYYY-MM-DD
-        setEditedDueDate(selectedTask?.dueDate ? new Date(selectedTask.dueDate).toISOString().split('T')[0] : 'dd/mm/year');
+        setEditedDueDate(selectedTask?.dueDate ? new Date(selectedTask.dueDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]);
         setDesc(selectedTask?.description || '');
         setTaskCategory(selectedTask?.category || '😍');
         setTaskCategoryColor(selectedTask?.bgColor || taskCategories['😍'])
