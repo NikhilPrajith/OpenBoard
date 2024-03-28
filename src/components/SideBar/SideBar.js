@@ -4,12 +4,15 @@ import CustomTab from '../Tab/Tab'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import IconButton from '@mui/material/IconButton';
+import { useTasks } from '@/context/TaskContext';
 
-
-export default function SideBar({alignment, setAlignment, themes, showSideBar, changeTheme,addImageFunction, setShowSidebar}) {
+export default function SideBar({themes, showSideBar, changeTheme,addImageFunction, setShowSidebar}) {
   const toggleSidebar = () => {
     setShowSidebar(!showSideBar);
   };
+  const {alignment,setAlignment} = useTasks();
+
+
 
   return (
     <div>

@@ -13,7 +13,7 @@ export default function Heading({open}) {
         <div className={styles.infoCont}>
           <div className={styles.isSavedText}>{isSaved ? <span className={styles.saved}>Data Persisted</span> : 
                 <span className={styles.unsaved}>Unsaved changes!</span>}
-              <div className={styles.autoSave}>Auto saves every 5 seconds</div>
+              <div className={styles.autoSave}>Auto saves every 10 seconds</div>
           </div>
           {!isSaved  && <div className={styles.saveNowButton} onClick={saveDataToLocalStorage}>Save Now</div>}
           <a target="_blank" rel="noopener noreferrer" className={styles.feedbackButton} href="https://forms.gle/YKWZ8iL1w6fHmp1RA">

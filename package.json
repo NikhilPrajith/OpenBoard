@@ -44,7 +44,9 @@
     "react-trello": "^2.2.11",
     "reactflow": "^11.10.4",
     "sortablejs": "^1.15.2",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "y-websocket": "^2.0.2",
+    "yjs": "^13.6.14"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",

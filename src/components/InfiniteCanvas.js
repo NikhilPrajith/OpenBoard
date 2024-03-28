@@ -15,6 +15,7 @@ import Video from './Video/Video';
 import VideoSearch from './VideoSearch/VideoSearch';
 import FlashCards from './FlashCards/FlashCards';
 import TextNode from './Text/Text';
+import { useTasks } from '@/context/TaskContext';
 
 
 const snapGrid = [10, 10];
@@ -206,17 +207,129 @@ const themes = {
     // Add more themes here as needed
   };
 
+  
 export default function InfiniteCanvas({}){
-
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [bgColor, setBgColor] = useState(initBgColor);
   const [selectedEffect, setSelectedEffect] = useState('')
   const [showEffect, setShowEffect] = useState(false);
   const [showSideBar, setShowSidebar] = useState(false);
+  const defaultNodes =  [
+    {
 
+    id: getNodeId(),
+    type: 'timer',
+    style: {padding: 4 },
+    position: {
+      x:window.innerWidth /2 +110,
+      y: 10,
+      },
+    },
+    {
+
+      id: getNodeId(),
+      type: 'stickyNote',
+      style: {padding: 4 },
+      position: {
+        x:window.innerWidth /5 *4,
+        y: 300,
+        },
+      },
+    {
+
+      id: getNodeId(),
+      type: 'stickyNote',
+      style: {padding: 4 },
+      position: {
+        x:window.innerWidth /5 *4 +100,
+        y: 400,
+        },
+      },
+      {
+
+        id: getNodeId(),
+        type: 'stickyNote',
+        style: {padding: 4 },
+        position: {
+          x:window.innerWidth /5 *4 +200,
+          y: 500,
+          },
+        },
+        {
+
+          id: getNodeId(),
+          type: 'taskListNode',
+          dragHandle: '.dragHandle',
+          style: {padding: 4 },
+          position: {
+            x:window.innerWidth /5,
+            y: 300,
+            },
+          },
+          
+          {
+
+            id: getNodeId(),
+            type: 'video',
+            style: {padding: 10 },
+            data:{url:'https://www.youtube.com/watch?v=jfKfPfyJRdk'},
+            position: {
+              x:window.innerWidth /2,
+              y: 250,
+              },
+            },
+            {
+
+              id: getNodeId(),
+              type: 'flashCards',
+              style: {padding: 4 },
+              position: {
+                x:window.innerWidth /4,
+                y: 500,
+                },
+              },
+              {
+
+                id: getNodeId(),
+                type: 'textElement',
+                data:{text:`${CurrentDate()}`, bold:true},
+                dragHandle: '.dragHandle',
+                style: {padding: 4 },
+                position: {
+                  x:window.innerWidth /5,
+                  y: 10,
+                  },
+                },
+                {
+
+                  id: getNodeId(),
+                  type: 'textElement',
+                  data:{text:'Add, drag and use tools to plan your day. Have fun! 🤩 ', 
+                      bold:true, fontSize:'16px', color:`rgb(175, 176, 177)`},
+                  dragHandle: '.dragHandle',
+                  style: {padding: 4 },
+                  position: {
+                    x:window.innerWidth /5,
+                    y: 70,
+                    },
+                  },
+
+              
+
+  ];
+
+  const {nodes,
+        setNodes,
+        onNodesChange,
+
+        edges,
+        setEdges,
+        onEdgesChange,
+
+        alignment,
+        setAlignment
+        } = useTasks();
   //For theme selection
-  const [alignment, setAlignment] = useState('');
+  
 
   const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
 
@@ -236,120 +349,21 @@ export default function InfiniteCanvas({}){
     return formattedDate;
   }
   useEffect(() => {
-
-    setNodes([
-      {
-
-      id: getNodeId(),
-      type: 'timer',
-      style: {padding: 4 },
-      position: {
-        x:window.innerWidth /2 +110,
-        y: 10,
-        },
-      },
-      {
-
-        id: getNodeId(),
-        type: 'stickyNote',
-        style: {padding: 4 },
-        position: {
-          x:window.innerWidth /5 *4,
-          y: 300,
-          },
-        },
-      {
-
-        id: getNodeId(),
-        type: 'stickyNote',
-        style: {padding: 4 },
-        position: {
-          x:window.innerWidth /5 *4 +100,
-          y: 400,
-          },
-        },
-        {
-
-          id: getNodeId(),
-          type: 'stickyNote',
-          style: {padding: 4 },
-          position: {
-            x:window.innerWidth /5 *4 +200,
-            y: 500,
-            },
-          },
-          {
-
-            id: getNodeId(),
-            type: 'taskListNode',
-            dragHandle: '.dragHandle',
-            style: {padding: 4 },
-            position: {
-              x:window.innerWidth /5,
-              y: 300,
-              },
-            },
-            
-            {
-
-              id: getNodeId(),
-              type: 'video',
-              style: {padding: 10 },
-              data:{url:'https://www.youtube.com/watch?v=jfKfPfyJRdk'},
-              position: {
-                x:window.innerWidth /2,
-                y: 250,
-                },
-              },
-              {
-
-                id: getNodeId(),
-                type: 'flashCards',
-                style: {padding: 4 },
-                position: {
-                  x:window.innerWidth /4,
-                  y: 500,
-                  },
-                },
-                {
-
-                  id: getNodeId(),
-                  type: 'textElement',
-                  data:{text:`${CurrentDate()}`, bold:true},
-                  dragHandle: '.dragHandle',
-                  style: {padding: 4 },
-                  position: {
-                    x:window.innerWidth /5,
-                    y: 10,
-                    },
-                  },
-                  {
-
-                    id: getNodeId(),
-                    type: 'textElement',
-                    data:{text:'Add, drag and use tools to plan your day. Have fun! 🤩 ', 
-                        bold:true, fontSize:'16px', color:`rgb(175, 176, 177)`},
-                    dragHandle: '.dragHandle',
-                    style: {padding: 4 },
-                    position: {
-                      x:window.innerWidth /5,
-                      y: 70,
-                      },
-                    },
-
-                
-
-    ]);
-
     
     /*const themeKeys = Object.keys(themes);
     const randomIndex = Math.floor(Math.random() * themeKeys.length);
     const randomTheme = themeKeys[randomIndex];*/
-    setAlignment('Paper')
     if(changeTheme){
-      changeTheme('Paper') 
+      console.log("inital change theme", alignment)
+      changeTheme(alignment) 
     }
-  }, []);
+  }, [alignment]);
+
+  useEffect(()=>{
+    if(!nodes){
+      setNodes(defaultNodes);
+    }
+  }, [nodes])
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
   const onDragOver = useCallback((event) => {
@@ -505,7 +519,7 @@ export default function InfiniteCanvas({}){
       </ReactFlow>
         <BasicTools setShowSidebar={setShowSidebar} showSideBar={showSideBar} addingNode={onAdd}></BasicTools>
         <VideoSearch setShowSidebar={setShowSidebar} onAddVideoFunction={onAddVideoFunction}></VideoSearch>
-        <SideBar alignment={alignment} setAlignment={setAlignment} themes={themes} isVisible={true} setShowSidebar={setShowSidebar} showSideBar={showSideBar} changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>
+        <SideBar themes={themes} isVisible={true} setShowSidebar={setShowSidebar} showSideBar={showSideBar} changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>
       </ReactFlowProvider>
     </div>
   );
