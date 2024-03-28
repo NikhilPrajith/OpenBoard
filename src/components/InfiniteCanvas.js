@@ -365,7 +365,7 @@ export default function InfiniteCanvas({}){
   }, [nodes]);
   useEffect(() => {
     if (nodes.length === 0 || nodes.filter(node => !node.id.startsWith('themeStickers')).length === nodes.length) {
-      setNodes(defaultNodes);
+      setNodes(currentNodes => [...currentNodes, ...defaultNodes]);
     }
   }, []); // Dependency array to re-run the effect when `nodes` changes
 
