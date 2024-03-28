@@ -142,7 +142,6 @@ export const TaskProvider = ({ children }) => {
     const formattedDate = formatDate(now);
     return formattedDate;
   }
-
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
@@ -169,7 +168,7 @@ export const TaskProvider = ({ children }) => {
       setTaskCategories(localTaskCategoriesData);
 
       const localNodes = localStorage.getItem('nodes');
-      const localNodesData = localNodes ? JSON.parse(localNodes) : [];
+      let localNodesData = localNodes ? JSON.parse(localNodes) : [];
       setNodes(localNodesData);
 
       const theme = localStorage.getItem('theme');

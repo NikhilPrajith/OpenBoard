@@ -213,6 +213,38 @@ export default function InfiniteCanvas({}){
   const [selectedEffect, setSelectedEffect] = useState('')
   const [showEffect, setShowEffect] = useState(false);
   const [showSideBar, setShowSidebar] = useState(false);
+
+  const {nodes,
+        setNodes,
+        onNodesChange,
+
+        edges,
+        setEdges,
+        onEdgesChange,
+
+        alignment,
+        setAlignment
+        } = useTasks();
+  //For theme selection
+  
+
+  const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
+
+  const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;
+
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  function formatDate(date) {
+    return new Intl.DateTimeFormat('en-US', { 
+      weekday: 'long', 
+      month: 'long', 
+      day: 'numeric' 
+    }).format(date);
+  }
+  function CurrentDate() {
+    const now = new Date();
+    const formattedDate = formatDate(now);
+    return formattedDate;
+  };
   const defaultNodes =  [
     {
 
@@ -317,37 +349,6 @@ export default function InfiniteCanvas({}){
 
   ];
 
-  const {nodes,
-        setNodes,
-        onNodesChange,
-
-        edges,
-        setEdges,
-        onEdgesChange,
-
-        alignment,
-        setAlignment
-        } = useTasks();
-  //For theme selection
-  
-
-  const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
-
-  const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;
-
-  const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  function formatDate(date) {
-    return new Intl.DateTimeFormat('en-US', { 
-      weekday: 'long', 
-      month: 'long', 
-      day: 'numeric' 
-    }).format(date);
-  }
-  function CurrentDate() {
-    const now = new Date();
-    const formattedDate = formatDate(now);
-    return formattedDate;
-  }
   useEffect(() => {
     
     /*const themeKeys = Object.keys(themes);
@@ -359,11 +360,14 @@ export default function InfiniteCanvas({}){
     }
   }, [alignment]);
 
-  useEffect(()=>{
-    if(!nodes){
+  useEffect (()=>{
+
+  }, [nodes]);
+  useEffect(() => {
+    if (nodes.length === 0 || nodes.filter(node => !node.id.startsWith('themeStickers')).length === nodes.length) {
       setNodes(defaultNodes);
     }
-  }, [nodes])
+  }, []); // Dependency array to re-run the effect when `nodes` changes
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
   const onDragOver = useCallback((event) => {
