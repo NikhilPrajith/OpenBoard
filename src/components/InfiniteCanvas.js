@@ -150,6 +150,31 @@ const themes = {
         backgroundColor: '#36454f',
         effect: 'aot'
       },
+      'Ricky and Morty': {
+        images: ['https://i.pinimg.com/564x/b6/37/6d/b6376dceb072f550315279a04ebe548f.jpg',
+          'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXZ2anQ0aXJuNmlwbHFkdGVieTY5cXllMzB4ajVrNXppbHF5MTU0dSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/gk3R16JhLP8RUka2nD/200.webp',
+          'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRvOTVvNmZlejIwMThwNjM5bGV0ZXo4bWE2dTJ2em1pcnE3Mm5vMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/3o7aD2d7hy9ktXNDP2/200.webp',
+          'https://media0.giphy.com/media/35nU79vBbeOm4/giphy.webp?cid=790b761124o95o6fez2018p639letez8ma6u2vzmirq72no3&ep=v1_stickers_search&rid=giphy.webp&ct=s',
+          'https://media2.giphy.com/media/JsEDe5fTepBIDnaZKT/200.webp?cid=790b761124o95o6fez2018p639letez8ma6u2vzmirq72no3&ep=v1_stickers_search&rid=200.webp&ct=s',
+
+      ],
+        textColor:'white',
+        backgroundColor: 'url(https://i.pinimg.com/564x/b6/37/6d/b6376dceb072f550315279a04ebe548f.jpg) center / cover no-repeat',
+        effect: ''
+      },
+      'Office': {
+        images: ['https://media3.giphy.com/media/BY8ORoRpnJDXeBNwxg/200.webp?cid=790b7611k90n30nw8hbaulv4stcs454a3sh3l2iy2xp593oz&ep=v1_gifs_search&rid=200.webp&ct=g',
+          'https://media3.giphy.com/media/BY8ORoRpnJDXeBNwxg/200.webp?cid=790b7611k90n30nw8hbaulv4stcs454a3sh3l2iy2xp593oz&ep=v1_gifs_search&rid=200.webp&ct=g',
+          'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDVnMDUxNTMxYjFpMDlyZ25kZzBtYXlscTdrNGUzdDVxbnlzbGlrMiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/lZzhBZW7kvzWYtydVA/200.webp',
+          'https://media1.giphy.com/media/v1uV0oxObr9ZT48Kpa/200.webp?cid=790b7611h5g051531b1i09rgndg0maylq7k4e3t5qnyslik2&ep=v1_stickers_search&rid=200.webp&ct=s',
+          'https://media0.giphy.com/media/l4FGJh0rrcvEBsIO4/giphy.webp?cid=ecf05e473lehc3hv287y5o87m7zq3e4t6006bchow335wtip&ep=v1_stickers_search&rid=giphy.webp&ct=s',
+          'https://media4.giphy.com/media/rK9jBbuVeOqzY4Zg0y/giphy.webp?cid=ecf05e478d834adcybty14zl9br9ofqy7rnxwogng8aqd2pk&ep=v1_stickers_search&rid=giphy.webp&ct=s',
+
+      ],
+        textColor:'white',
+        backgroundColor: 'url(https://i.pinimg.com/564x/42/82/a1/4282a1bb7364f273e06b9aa37966538d.jpg) center / cover no-repeat',
+        effect: ''
+      },
       'NewJeans': {
         images: ['https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdreWl0NWl0aHg2MXhwbnZqZmVxc3R3c3drdnRkanNtNzd1b2hqaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b6NgTiPadHTVmDOWnk/giphy.gif',
           'https://media0.giphy.com/media/12uxuixeCP6JBUOP17/giphy.webp?cid=790b7611dc9u1dklcosz4nkhwk8qy4unz0kazqtgbfzpxrs0&ep=v1_gifs_search&rid=giphy.webp&ct=g',

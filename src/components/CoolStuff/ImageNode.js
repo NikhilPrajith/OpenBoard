@@ -16,6 +16,7 @@ export default function ImageNode({ data, isConnectable, selected }) {
         color="#000" 
         isVisible={selected} 
         onResize={handleResize} 
+        keepAspectRatio={true}
       />
       <div 
         style={{
