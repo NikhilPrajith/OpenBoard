@@ -20,11 +20,6 @@ export default function Home() {
 
   const [type, setType] = useState('Endless Board');
   const [open, setOpen] = useState(false);
-  const {tasks, setTasks, selectedTask, setSelectedTask, 
-    categories,
-    setListCategories,
-  taskCategories, 
-  listCategories} = useTasks();
 
   // Determine display styles based on the `type`
   const displayStyleForType = (currentType) => {
@@ -38,7 +33,7 @@ export default function Home() {
     <div>
       <div style={{ position: 'absolute', top: '0' }}>
         <Features setOpenParent={setOpen} type={type} setType={setType}></Features>
-        <Heading open={open} ></Heading>
+        <Heading type={type} open={open} ></Heading>
       </div>
 
       {/* Apply styles to toggle visibility instead of conditional rendering */}

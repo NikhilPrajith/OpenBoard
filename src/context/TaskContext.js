@@ -1,6 +1,5 @@
 // contexts/TaskContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import ReactFlow, { MiniMap, Controls,Background, useNodesState, useEdgesState, addEdge,ReactFlowProvider } from 'reactflow';
 
 const TaskContext = createContext();
 
@@ -127,29 +126,7 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
-
-  //React flow context
-  const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;
-  function formatDate(date) {
-    return new Intl.DateTimeFormat('en-US', { 
-      weekday: 'long', 
-      month: 'long', 
-      day: 'numeric' 
-    }).format(date);
-  }
-  function CurrentDate() {
-    const now = new Date();
-    const formattedDate = formatDate(now);
-    return formattedDate;
-  }
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-
-
-  //Theme context
-  const [alignment, setAlignment] = useState('Paper');
-
-   //Iffy approach to get data from localstorage 
+  //Iffy approach to get data from localstorage 
   //Multiple renders take place and remmeber this is Server side
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -166,22 +143,12 @@ export const TaskProvider = ({ children }) => {
       const localTaskCategories = localStorage.getItem('taskCategoriesState');
       const localTaskCategoriesData = localTaskCategories ? JSON.parse(localTaskCategories) : taskCategories;
       setTaskCategories(localTaskCategoriesData);
-
-      const localNodes = localStorage.getItem('nodes');
-      let localNodesData = localNodes ? JSON.parse(localNodes) : [];
-      setNodes(localNodesData);
-
-      const theme = localStorage.getItem('theme');
-      const themeData = theme ? JSON.parse(theme) : 'Paper';
-      console.log("setting theme data", themeData);
-      setAlignment(themeData);
       // Repeat for any other pieces of state you wish to initialize from localStorage
       setIsSaved(true)
     }
   }, []);
 
 
-  //Saving to localStorage methods and states
   const [isSaved, setIsSaved] = useState(false);
 
   const saveDataToLocalStorage = () => {
@@ -190,11 +157,6 @@ export const TaskProvider = ({ children }) => {
       localStorage.setItem('tasks', JSON.stringify(tasks));
       localStorage.setItem('categories', JSON.stringify(categories));
       localStorage.setItem('taskCategoriesState', JSON.stringify(taskCategoriesState));
-
-      localStorage.setItem('nodes', JSON.stringify(nodes));
-
-
-      localStorage.setItem('theme', JSON.stringify(alignment));
       setIsSaved(true); // Indicate that data has been saved
     }
   };
@@ -205,25 +167,17 @@ export const TaskProvider = ({ children }) => {
       if (!isSaved) {
         saveDataToLocalStorage();
       }
-    }, 10000); // Update local storage every 5000 ms (5 seconds)
+    }, 5000); // Update local storage every 5000 ms (5 seconds)
 
     return () => clearInterval(handle); // Clear interval on component unmount
-  }, [ isSaved]);
+  }, [tasks, categories, taskCategoriesState, isSaved]);
 
 
   useEffect(() => {
     console.log("setting save to false", isSaved)
     setIsSaved(false);
-  }, [tasks, categories, taskCategoriesState, nodes,alignment]);
+  }, [tasks, categories, taskCategoriesState]);
 
-
-
-
-
-
-  //Context for the reactFlow board
-
-  
 
   // Add other states and functions you want to make globally available
   const value = {
@@ -247,23 +201,8 @@ export const TaskProvider = ({ children }) => {
     updateListCategory,
 
     isSaved,
-    saveDataToLocalStorage,
-
-    nodes,
-    setNodes,
-    onNodesChange,
-
-    edges,
-    setEdges,
-    onEdgesChange,
-
-    alignment,
-    setAlignment
-
+    saveDataToLocalStorage
     // Add more as needed
   };
-
-
-  
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };

@@ -4,9 +4,12 @@ import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { IoSearch } from "react-icons/io5";
+import { useBoard } from '@/context/BoardContext';
 
-export default function Themes({ alignment, setAlignment, changeTheme, themes }) {
+export default function Themes({ changeTheme, themes }) {
   const [filter, setFilter] = useState('');
+  const {alignment, setAlignment} = useBoard();
+
 
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);

@@ -15,7 +15,7 @@ import Video from './Video/Video';
 import VideoSearch from './VideoSearch/VideoSearch';
 import FlashCards from './FlashCards/FlashCards';
 import TextNode from './Text/Text';
-import { useTasks } from '@/context/TaskContext';
+import { useBoard } from '@/context/BoardContext';
 
 
 const snapGrid = [10, 10];
@@ -207,30 +207,29 @@ const themes = {
     // Add more themes here as needed
   };
 
-  
 export default function InfiniteCanvas({}){
+
   const [bgColor, setBgColor] = useState(initBgColor);
   const [selectedEffect, setSelectedEffect] = useState('')
   const [showEffect, setShowEffect] = useState(false);
   const [showSideBar, setShowSidebar] = useState(false);
+  const {isSavedBoard,
+    setIsSavedBoard,
+    saveDataToLocalStorageBoard,
+    nodes,
+    setNodes,
+    onNodesChange,
+    edges,
+    setEdges,
+    onEdgesChange,
+    alignment,
+    setAlignment} = useBoard()
 
-  const {nodes,
-        setNodes,
-        onNodesChange,
-
-        edges,
-        setEdges,
-        onEdgesChange,
-
-        alignment,
-        setAlignment
-        } = useTasks();
-  //For theme selection
-  
 
   const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
 
   const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;
+
 
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   function formatDate(date) {
@@ -244,8 +243,8 @@ export default function InfiniteCanvas({}){
     const now = new Date();
     const formattedDate = formatDate(now);
     return formattedDate;
-  };
-  const defaultNodes =  [
+  }
+  const defaultNodes = [
     {
 
     id: getNodeId(),
@@ -347,27 +346,30 @@ export default function InfiniteCanvas({}){
 
               
 
-  ];
-
+  ]
   useEffect(() => {
-    
-    /*const themeKeys = Object.keys(themes);
-    const randomIndex = Math.floor(Math.random() * themeKeys.length);
-    const randomTheme = themeKeys[randomIndex];*/
-    if(changeTheme){
-      console.log("inital change theme", alignment)
-      changeTheme(alignment) 
-    }
-  }, [alignment]);
+    setNodes(defaultNodes)
+    if (typeof window !== "undefined") {
+      console.log("not undieifed")
+      const localNodes = localStorage.getItem('nodes');
+      if(localNodes){
+        let localNodesData = JSON.parse(localNodes);
+        if (localNodesData.length ==0){
+          localNodesData = defaultNodes;
+        }
+        setNodes(localNodesData);
+      }
 
-  useEffect (()=>{
-
-  }, [nodes]);
-  useEffect(() => {
-    if (nodes.length === 0 || nodes.filter(node => !node.id.startsWith('themeStickers')).length === nodes.length) {
-      setNodes(currentNodes => [...currentNodes, ...defaultNodes]);
+      console.log("nod exists", localNodes)
+      const theme = localStorage.getItem('theme');
+      const themeData = theme ? JSON.parse(theme) : 'Paper';
+      console.log("setting theme data", themeData);
+      setAlignment(themeData);
+      changeTheme(themeData);
+      setIsSavedBoard(true);
+      // Repeat for any other pieces of state you wish to initialize from localStorage
     }
-  }, []); // Dependency array to re-run the effect when `nodes` changes
+  }, []);
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
   const onDragOver = useCallback((event) => {
@@ -460,7 +462,7 @@ export default function InfiniteCanvas({}){
     setBgColor(theme.backgroundColor);
     setSelectedEffect(theme.effect);
     setShowEffect(theme.effect !== '');
-  
+
     let themeStickerTemp = [];
     if (theme.images && theme.images.length > 1) {
       console.log("add image");
@@ -518,6 +520,7 @@ export default function InfiniteCanvas({}){
         onDrop={onDrop}
         onDragOver={onDragOver}
         >
+          <MiniMap nodeStrokeWidth={3} nodeColor='rgb(231, 231, 231)' maskColor='rgba(231, 240, 254, 0.76)' />
         {showEffect && <ParticleEffect selectedEffect={selectedEffect}></ParticleEffect> }
       <Background size={1.4} variant="dots"></Background>
       </ReactFlow>
@@ -528,4 +531,3 @@ export default function InfiniteCanvas({}){
     </div>
   );
 };
-
