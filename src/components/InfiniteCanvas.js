@@ -308,31 +308,6 @@ export default function InfiniteCanvas({}){
               y: 250,
               },
             },
-              {
-
-                id: getNodeId(),
-                type: 'textElement',
-                data:{text:`${CurrentDate()}`, bold:true},
-                dragHandle: '.dragHandle',
-                style: {padding: 4 },
-                position: {
-                  x:window.innerWidth /5,
-                  y: 10,
-                  },
-                },
-                {
-
-                  id: getNodeId(),
-                  type: 'textElement',
-                  data:{text:'Add, drag and use tools to plan your day. Have fun! 🤩 ', 
-                      bold:true, fontSize:'16px', color:`rgb(175, 176, 177)`},
-                  dragHandle: '.dragHandle',
-                  style: {padding: 4 },
-                  position: {
-                    x:window.innerWidth /5,
-                    y: 70,
-                    },
-                  },
 
               
 
