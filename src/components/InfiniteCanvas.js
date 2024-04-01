@@ -308,16 +308,6 @@ export default function InfiniteCanvas({}){
               y: 250,
               },
             },
-            {
-
-              id: getNodeId(),
-              type: 'flashCards',
-              style: {padding: 4 },
-              position: {
-                x:window.innerWidth /4,
-                y: 500,
-                },
-              },
               {
 
                 id: getNodeId(),
@@ -520,13 +510,13 @@ export default function InfiniteCanvas({}){
         onDrop={onDrop}
         onDragOver={onDragOver}
         >
-          <MiniMap nodeStrokeWidth={3} nodeColor='rgb(231, 231, 231)' maskColor='rgba(231, 240, 254, 0.76)' />
+          {/*<MiniMap nodeStrokeWidth={3} nodeColor='rgb(231, 231, 231)' maskColor='rgba(231, 240, 254, 0.76)' />*/}
         {showEffect && <ParticleEffect selectedEffect={selectedEffect}></ParticleEffect> }
       <Background size={1.4} variant="dots"></Background>
       </ReactFlow>
-        <BasicTools setShowSidebar={setShowSidebar} showSideBar={showSideBar} addingNode={onAdd}></BasicTools>
+        <BasicTools themes={themes} changeTheme={changeTheme} setShowSidebar={setShowSidebar} showSideBar={showSideBar} addingNode={onAdd} addImageFunction={onAddStcikers}></BasicTools>
         <VideoSearch setShowSidebar={setShowSidebar} onAddVideoFunction={onAddVideoFunction}></VideoSearch>
-        <SideBar themes={themes} isVisible={true} setShowSidebar={setShowSidebar} showSideBar={showSideBar} changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>
+        {/*<SideBar themes={themes} isVisible={true} setShowSidebar={setShowSidebar} showSideBar={showSideBar} changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>*/}
       </ReactFlowProvider>
     </div>
   );

@@ -68,10 +68,10 @@ const Stickers = ({addImageFunction}) => {
       >
         <ToggleButton value="stickers" style={{ fontFamily: 'inherit', fontSize: '9px',
       textTransform: 'none',
-      padding: '5px',width:'100%', borderRadius:'25px',marginRight:'10px'}}
+      padding: '5px',width:'100%', borderRadius:'6px',marginRight:'10px'}}
       sx={{
         '&.Mui-selected': {
-          backgroundColor: 'rgb(120, 151, 213)', // Your custom styles here
+          backgroundColor: 'black', // Your custom styles here
           color: 'white',
           // Add more styles as needed
         },
@@ -83,11 +83,11 @@ const Stickers = ({addImageFunction}) => {
         </ToggleButton>
         <ToggleButton value="gifs" style={{ fontFamily: 'inherit', fontSize: '9px',
       textTransform: 'none',
-      padding: '5px',width:'100%', borderRadius:'25px',marginLeft:'10px', borderLeft:'1px solid rgba(0, 0, 0, 0.12)'}}
+      padding: '5px',width:'100%', borderRadius:'6px',marginLeft:'10px', borderLeft:'1px solid rgba(0, 0, 0, 0.12)'}}
       
       sx={{
         '&.Mui-selected': {
-          backgroundColor: 'rgb(120, 151, 213)', // Your custom styles here
+          backgroundColor: 'black', // Your custom styles here
           color: 'white',
           // Add more styles as needed
         },

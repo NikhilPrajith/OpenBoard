@@ -15,6 +15,7 @@ import { MdDateRange } from "react-icons/md";
 
 function Board({}) {
   const {categories, 
+        setListCategories,
         tasks, 
         taskCategoriesState,
         deleteTask, 

@@ -53,9 +53,11 @@
 }
 .resultCont{
     margin-top: 15px;
+    height: 200px;
     overflow-y: scroll;
 
 }
 .imageParent{
-    height: 90px;
+    height: 84px;
+    background-color: rgba(240, 240, 240, 0.59);
 }

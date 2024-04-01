@@ -47,7 +47,7 @@ export default function Home() {
         <div><Board></Board></div>
       </div>
       <div style={displayStyleForType('Docs')}>
-        <div><DocumentNoSSR></DocumentNoSSR></div>
+        <div><DocumentNoSSR ></DocumentNoSSR></div>
       </div>
     </div>
   );

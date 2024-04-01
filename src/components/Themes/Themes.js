@@ -48,9 +48,9 @@ export default function Themes({ changeTheme, themes }) {
         exclusive
         onChange={handleAlignment}
         aria-label="Theme selection"
-        style={{ width: '100%', display: 'flex', justifyContent: 'center', alignContent: 'center' }}
+        style={{ width: '100%', display: 'flex', justifyContent: 'center', alignContent: 'center', height:'250px', overflowY:'scroll' }}
       >
-        <div style={{ margin: '16px', paddingTop: '8px', width: '100%' }} className="grid grid-cols-2 gap-4">
+        <div style={{ margin: '16px', paddingTop: '8px', width: '' }} className="grid grid-cols-2 gap-4">
           {filteredThemes.length > 0 ? (
             filteredThemes.map((themeKey) => (
               <ToggleButton
