@@ -74,7 +74,6 @@ export const BoardProvider = ({ children }) => {
     
 
     if (prevNodesRef.current.length !=0 && (nodesChanged || alignmentChanged)) {
-      console.log("Significant change detected, setting isSavedBoard to false");
       setIsSavedBoard(false);
     }
 

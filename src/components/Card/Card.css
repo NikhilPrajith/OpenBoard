@@ -1,0 +1,325 @@
+.card {
+    /* Adjust card styling as needed */
+    background-color: white;
+    width: 100%;
+    height:100%;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    padding: 15px;
+
+    border-radius: 10px;
+    padding-left: 22px;
+    padding-right: 22px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border:1px solid #eee;
+
+  }
+  .documentEditingContChange{
+    background-color: white;
+    width:650px;
+    height:750px;
+    border-radius: 6px;
+    border:1px solid #eee;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+
+  blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre, ol, ul, menu {
+    padding: revert;
+  font-size: revert;
+  font-weight: revert;
+  list-style: revert;
+ } 
+  .cardBody {
+    /* Styling for the body to make it clear it's clickable */
+    transition: background-color 0.3s ease;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .content{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .cardBody:hover {
+    background-color: #f0f0f0; /* Light hover effect */
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed to align content and button */
+    align-items: start;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+}
+
+.sideContent {
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+}
+
+.editButton {
+    /* Your styles for the button */
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+  .editButton {
+    display: none; /* Hide the button, trigger popover by clicking the card body */
+  }
+  .IconButton{
+    width: 100%;
+    height: 100%;
+  }
+  
+
+  
+  /* Additional styles for color picker, buttons, etc., as needed */
+  
+
+/*Radix styles*/
+
+.PopoverContent {
+    border-radius: 6px;
+    width: 500px;
+    background-color: white;
+    /*box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;*/
+    height: 600px;
+    border: 5px black solid;
+    overflow: hidden;
+    padding-top: 45px;
+  }
+  .PopoverContent:focus {
+    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px,
+      0 0 0 2px var(--violet-7);
+  }
+  /*
+  .PopoverContent[data-state='open'][data-side='top'] {
+    animation-name: slideDownAndFade;
+  }
+  .PopoverContent[data-state='open'][data-side='right'] {
+    animation-name: slideLeftAndFade;
+  }
+  .PopoverContent[data-state='open'][data-side='bottom'] {
+    animation-name: slideUpAndFade;
+  }
+  .PopoverContent[data-state='open'][data-side='left'] {
+    animation-name: slideRightAndFade;
+  }*/
+  
+  .PopoverClose {
+    font-family: inherit;
+    border-radius: 100%;
+    height: 25px;
+    width: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    z-index: 20;
+  }
+  .PopoverClose:hover {
+    background-color: var(--violet-4);
+  }
+  .PopoverClose:focus {
+    box-shadow: 0 0 0 2px var(--violet-7);
+  }
+  
+  
+  .Fieldset {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .Label {
+    font-size: 13px;
+    color: var(--violet-11);
+    width: 75px;
+  }
+  
+  .Input {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    border-radius: 4px;
+    padding: 0 10px;
+    font-size: 13px;
+    line-height: 1;
+    color: var(--violet-11);
+    box-shadow: 0 0 0 1px var(--violet-7);
+    height: 25px;
+  }
+  .Input:focus {
+    box-shadow: 0 0 0 2px var(--violet-8);
+  }
+  
+  .Text {
+    font-size: 13px;
+    margin: 15px;
+    font-family: Arial, sans-serif;
+  }
+  /*
+  @keyframes slideUpAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideRightAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideDownAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideLeftAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .PopoverPortal{
+    background-color: red;
+  }*/
+.popoverTrigger{
+    width:300px;
+    height:220px;
+}
+.controls{
+    width: 100%;
+    background-color: black;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+
+}
+
+.saveNowButton{
+    font-weight: 500; 
+    color: black; 
+    background-color: rgb(251, 151, 151);;
+    padding: 5px;
+    padding-left: 12px;
+    margin: 4px;
+    padding-right: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+
+.nodeDrag{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.89);
+  padding: 2px;
+  color: white;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  z-index: 7;
+  display: none;
+
+
+
+}
+
+.bn-container{
+  height:90%;
+
+  overflow-y: scroll;
+  padding: 4px;
+}
+
+  
+.colorPicker {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding-bottom: 8px;
+  margin-bottom: 7px;
+
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.colorOption {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  border:1px solid #eee;
+}
+.colorIndicator{
+  width: 12px;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  top:0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  z-index: 3;
+  border:0.1px solid #838383;
+}
+.controlSec{
+  display: flex;
+  padding-left: 5px;
+  border-left: 1px solid #eee;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.initalDesc{
+  color: lightgrey;
+}
+

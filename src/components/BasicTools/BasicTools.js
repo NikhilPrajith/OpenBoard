@@ -11,6 +11,7 @@ import Themes from '../Themes/Themes';
 import { IoIosClose } from "react-icons/io";
 import Stickers from '../CoolStuff/Stickers';
 import { RiEmojiStickerFill } from "react-icons/ri";
+import { BsCardText } from "react-icons/bs";
 
 export default function BasicTools({ addingNode, themes,changeTheme, addImageFunction }) {
   const onClick = (event, nodeType) => {
@@ -25,6 +26,8 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
         <button onClick={(event) => onClick(event, 'timer')}><FcAlarmClock /></button>
         <button onClick={(event) => onClick(event, 'video')}><FcStart /></button>
         <button onClick={(event) => onClick(event, 'textElement')}><PiTextTBold /></button>
+        
+        <button onClick={(event) => onClick(event, 'cardComp')}><BsCardText /></button>
         {/*Sticker button popover*/}
         <Popover.Root>
           <Popover.Trigger asChild>

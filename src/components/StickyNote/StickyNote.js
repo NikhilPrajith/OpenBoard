@@ -26,7 +26,6 @@ export default function StickyNote({ initialColor = selectableColors[Math],isCon
   return (
     <div>
 
-<div className={`${styles.nodeDrag} dragHandle`}><MdOutlineDragHandle></MdOutlineDragHandle></div>
     <div className={styles.container} style={{ backgroundColor: color }}>
         <div className={styles.colorPicker}>
             {selectableColors.map((color) => (
