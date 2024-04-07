@@ -1,0 +1,59 @@
+.documentContainer{
+  margin-left: 65px;
+  padding-left: 0px;
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+  height: 100vh;
+  position: absolute;
+  padding-bottom: 25px;
+  border-radius: 1px #eee solid;
+}
+
+.heading1{
+  width: 75%;
+  margin-bottom: 28;
+  margin-left: 55px;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgb(63, 63, 63);
+  background-color: transparent;
+  /*font-family: Inter, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;*/
+}
+.heading1:focus{
+  outline: none;
+}
+.bn-container{
+  height: 95%;
+}
+
+.bn-editor{
+  background-color: transparent;
+}
+ 
+.bn-block-content{
+  transition: none;
+}
+.bn-block-content:before{
+  transition: none;
+}
+.bn-inline-content:has(>.ProseMirror-trailingBreak):before{
+  font-style: normal;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  cursor: pointer;
+  border:0.1px black solid;
+  z-index: 10000;
+}
+
+.color-picker {
+  position: absolute;
+  top: 100px;
+  left: 5px;
+  z-index: 300;
+}

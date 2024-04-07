@@ -18,6 +18,7 @@ import TextNode from './Text/Text';
 import { useBoard } from '@/context/BoardContext';
 import CardComp from './Card/Card';
 import CardDataNode from './Card/CardDataNode';
+import InViewDocument from './Card/InViewDocument';
 
 
 const snapGrid = [10, 10];
@@ -378,58 +379,9 @@ export default function InfiniteCanvas({}){
     [reactFlowInstance],
   );
 
-  const onAddCardEditor = (editor, saveFunc, sourceNodeId) => {
-    console.log("data", nodes, edges);
-    const targetEditorNodeId = `editor_${sourceNodeId}`;
-
-    const existingEdge = edges.find(edge => edge.source === sourceNodeId && edge.target === targetEditorNodeId);
-    console.log("existsing edge", existingEdge)
-
-    if (existingEdge) {
-        // If such an edge exists, toggle by removing the editor node and the edge connecting it to the source node
-        setEdges(eds => eds.filter(edge => edge.id !== existingEdge.id));
-        setNodes(nds => nds.filter(node => node.id !== targetEditorNodeId));
-
-        console.log(`Removed existing editor node (${targetEditorNodeId}) and its edge.`);
-    } else {
-        // Ensure no other edges can be created to this editor node
-        // This step assumes your logic elsewhere prevents multiple connections when this condition is true
-        const isEditorNodeConnected = edges.some(edge => edge.target === targetEditorNodeId);
-        if (!isEditorNodeConnected) {
-            console.log("new node creation");
-            // If no such edge exists, and no other connections are to the editor, create and add the new editor node and its connecting edge
-            const newNode = {
-                id: targetEditorNodeId, // Use the constructed ID for the new editor node
-                type: "cardDataNode",
-                data: { editor: editor, saveFunc: saveFunc },
-                dragHandle: '.dragHandle',
-                style: { padding: 4 },
-                position: {
-                    x: Math.random() * window.innerWidth + 100,
-                    y: Math.random() * window.innerHeight,
-                },
-            };
-            const newEdge = {
-                id: `e${sourceNodeId}-${newNode.id}`, // Create a unique edge ID based on the source and the new node
-                source: sourceNodeId,
-                target: newNode.id,
-                animated: true,
-                style: { stroke: '#e5bbf7', strokeWidth: 2 }, // Make the edge solid and potentially more visible
-            };
-
-            // Add the new node and edge to their respective state arrays
-            setNodes(nds => [...nds, newNode]);
-            setEdges(eds => [...eds, newEdge]);
-
-            console.log(`Added new editor node (${newNode.id}) and edge.`);
-        } else {
-            console.log(`Editor node for ${sourceNodeId} is already connected or exists.`);
-        }
-    }
-};
 
   
-  
+ 
   
   const onAdd = (type) => {
     let dragHandle = '';
@@ -440,8 +392,8 @@ export default function InfiniteCanvas({}){
     const newNodeId = getNodeId();
     let data={}
     if(type=='cardComp'){
-      console.log("cardComp")
-      data={addingEditor:onAddCardEditor, id:newNodeId}
+      console.log("cardComp new function",)
+      data={id:newNodeId}
     }
     const newNode = {
       id: newNodeId,
@@ -526,6 +478,8 @@ export default function InfiniteCanvas({}){
     });
   };
 
+
+
   
   
 
@@ -559,6 +513,7 @@ export default function InfiniteCanvas({}){
       </ReactFlow>
         <BasicTools themes={themes} changeTheme={changeTheme} setShowSidebar={setShowSidebar} showSideBar={showSideBar} addingNode={onAdd} addImageFunction={onAddStcikers}></BasicTools>
         <VideoSearch setShowSidebar={setShowSidebar} onAddVideoFunction={onAddVideoFunction}></VideoSearch>
+
         {/*<SideBar themes={themes} isVisible={true} setShowSidebar={setShowSidebar} showSideBar={showSideBar} changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>*/}
       </ReactFlowProvider>
     </div>
