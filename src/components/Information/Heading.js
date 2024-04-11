@@ -25,7 +25,7 @@ export default function Heading({open, type}) {
                 <span className={styles.unsaved}>Unsaved baord changes!</span>}
               <div className={styles.autoSave}>Auto save not available</div>
           </div>
-          <div className={styles.saveNowButton} onClick={onSave}>Save Now</div>
+          {!isSavedBoard && <div className={styles.saveNowButton} onClick={onSave}>Save Now</div>}
           </>}
           <a target="_blank" rel="noopener noreferrer" className={styles.feedbackButton} href="https://forms.gle/YKWZ8iL1w6fHmp1RA">
             Feedback

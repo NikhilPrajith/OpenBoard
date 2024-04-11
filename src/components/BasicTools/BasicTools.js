@@ -28,6 +28,8 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
         <button onClick={(event) => onClick(event, 'video')}><FcStart /></button>
         <button onClick={(event) => onClick(event, 'textElement')}><PiTextTBold /></button>
 
+        <button onClick={(event) => onClick(event, 'flashCards')}><PiCardsFill/></button>
+
         <button onClick={(event) => onClick(event, 'picNote')}><IoIosImage/></button>
         
         {/*Sticker button popover*/}

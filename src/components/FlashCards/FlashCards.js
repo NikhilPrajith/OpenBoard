@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FlashCard.module.css';
 
 import IconButton from '@mui/material/IconButton';
@@ -8,6 +8,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdOutlineDragHandle } from "react-icons/md";
 import { MdModeEdit,MdDelete,MdAddCircle } from "react-icons/md";
 import { PiShuffleBold } from "react-icons/pi";
+import { card } from '@nextui-org/react';
 
 const initialCards = [
   { question: "Study Card", answer: "Your answer", color:'rgb(229, 187, 247)'  },
@@ -16,8 +17,8 @@ const initialCards = [
   // Add more cards as needed
 ];
 
-export default function FlashCards() {
-  const [cards, setCards] = useState(initialCards);
+export default function FlashCards({data}) {
+  const [cards, setCards] = useState(data.cards || initialCards);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -131,6 +132,12 @@ export default function FlashCards() {
     setCurrentCardIndex(Math.floor(Math.random() * shuffledCards.length)); // Show a random card location
     setIsFlipped(false); // Reset any flipped card to show the question side
   };
+
+  useEffect(() => {
+    data.cards = cards;
+  }, [cards])
+  
+
   return (
     <>    
     <div className={styles.container}>
