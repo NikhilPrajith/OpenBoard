@@ -19,6 +19,8 @@ import { useBoard } from '@/context/BoardContext';
 import CardComp from './Card/Card';
 import CardDataNode from './Card/CardDataNode';
 import InViewDocument from './Card/InViewDocument';
+import DocumentCardComp from './Card/DocumentCard';
+import PicNote from './PicNote/PicNote';
 
 
 const snapGrid = [10, 10];
@@ -38,7 +40,9 @@ const nodeTypes = {
     flashCards: FlashCards,
     textElement: TextNode,
     cardComp:CardComp,
-    cardDataNode:CardDataNode
+    cardDataNode:CardDataNode,
+    documentComp:DocumentCardComp,
+    picNote: PicNote,
 
   };
 
@@ -228,7 +232,12 @@ export default function InfiniteCanvas({}){
     setEdges,
     onEdgesChange,
     alignment,
-    setAlignment} = useBoard()
+    setAlignment,
+    rfInstance,
+    setRfInstance,
+    onSave,
+    onRestore
+  } = useBoard()
 
 
   const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
@@ -255,6 +264,7 @@ export default function InfiniteCanvas({}){
     id: getNodeId(),
     type: 'timer',
     style: {padding: 4 },
+    data:{},
     position: {
       x:window.innerWidth /2 +110,
       y: 10,
@@ -265,6 +275,7 @@ export default function InfiniteCanvas({}){
       id: getNodeId(),
       type: 'stickyNote',
       style: {padding: 4 },
+      data:{color: 'rgb(92, 241, 192)'},
       position: {
         x:window.innerWidth /5 *4,
         y: 300,
@@ -275,6 +286,7 @@ export default function InfiniteCanvas({}){
       id: getNodeId(),
       type: 'stickyNote',
       style: {padding: 4 },
+      data:{color: 'rgb(92, 241, 192)'},
       position: {
         x:window.innerWidth /5 *4 +100,
         y: 400,
@@ -285,6 +297,7 @@ export default function InfiniteCanvas({}){
         id: getNodeId(),
         type: 'stickyNote',
         style: {padding: 4 },
+        data:{color: 'rgb(92, 241, 192)'},
         position: {
           x:window.innerWidth /5 *4 +200,
           y: 500,
@@ -295,6 +308,7 @@ export default function InfiniteCanvas({}){
           id: getNodeId(),
           type: 'taskListNode',
           dragHandle: '.dragHandle',
+          data:{},
           style: {padding: 4 },
           position: {
             x:window.innerWidth /5,
@@ -318,6 +332,7 @@ export default function InfiniteCanvas({}){
 
   ]
   useEffect(() => {
+    {/*
     setNodes(defaultNodes);
     setEdges([]);
     if (typeof window !== "undefined") {
@@ -339,7 +354,16 @@ export default function InfiniteCanvas({}){
       changeTheme(themeData);
       setIsSavedBoard(true);
       // Repeat for any other pieces of state you wish to initialize from localStorage
-    }
+    }*/}
+
+    setNodes(defaultNodes);
+    onRestore();
+
+    const theme = localStorage.getItem('theme');
+    const themeData = theme ? JSON.parse(theme) : 'Paper';
+    setAlignment(themeData);
+    changeTheme(themeData, true);
+
   }, []);
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
@@ -395,6 +419,9 @@ export default function InfiniteCanvas({}){
       console.log("cardComp new function",)
       data={id:newNodeId}
     }
+    if(type == 'stickyNote'){
+      data.color = 'rgb(254, 240, 113)';
+    }
     const newNode = {
       id: newNodeId,
       type: type,
@@ -441,12 +468,15 @@ export default function InfiniteCanvas({}){
     setNodes((nds) => nds.concat(newNode));
   };
 
-  const changeTheme = (themeName) => {
+  const changeTheme = (themeName, initial) => {
     console.log("theme info", themeName);
     let theme = themes[themeName];
     setBgColor(theme.backgroundColor);
     setSelectedEffect(theme.effect);
     setShowEffect(theme.effect !== '');
+    if(initial){
+      return;
+    }
 
     let themeStickerTemp = [];
     if (theme.images && theme.images.length > 1) {
@@ -503,6 +533,9 @@ export default function InfiniteCanvas({}){
         snapGrid={snapGrid}
         defaultViewport={defaultViewport}
         onConnect={onConnect}
+
+
+        onInit={setRfInstance}
 
         onDrop={onDrop}
         onDragOver={onDragOver}

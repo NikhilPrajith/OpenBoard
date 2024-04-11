@@ -1,5 +1,5 @@
 // contexts/TaskContext.js
-import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react';
 import ReactFlow, { MiniMap, Controls,Background, useNodesState, useEdgesState, addEdge,ReactFlowProvider } from 'reactflow';
 
 const BoardContext = createContext();
@@ -24,6 +24,8 @@ export const BoardProvider = ({ children }) => {
   }
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [rfInstance, setRfInstance] = useState(null);
+  const flowKey = 'example-flow';
 
 
   //Theme context
@@ -83,6 +85,33 @@ export const BoardProvider = ({ children }) => {
   }, [nodes, alignment]);
 
 
+  //Saving
+  const onSave = useCallback(() => {
+    if (rfInstance) {
+      const flow = rfInstance.toObject();
+      localStorage.setItem(flowKey, JSON.stringify(flow));
+      console.log("whats the theme", alignment)
+      localStorage.setItem('theme', JSON.stringify(alignment));
+      setIsSavedBoard(true)
+    }
+  }, [rfInstance, alignment]);
+
+  //Restore
+  const onRestore = useCallback(() => {
+    const restoreFlow = async () => {
+      const flow = JSON.parse(localStorage.getItem(flowKey));
+      
+
+      if (flow) {
+        setNodes(flow.nodes || []);
+        setEdges(flow.edges || []);
+      }
+    };
+
+    restoreFlow();
+  }, [setNodes]);
+
+
 
 
 
@@ -105,7 +134,15 @@ export const BoardProvider = ({ children }) => {
     onEdgesChange,
 
     alignment,
-    setAlignment
+    setAlignment,
+
+    rfInstance,
+    setRfInstance,
+
+    onSave,
+    onRestore
+
+
 
     // Add more as needed
   };

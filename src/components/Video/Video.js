@@ -41,6 +41,7 @@ export default function Video({isConnectable, selected, data }) {
 
   const handleInputChange = (event) => {
     setInputUrl(event.target.value);
+    data.url = event.target.value;
   };
 
   const handleInputConfirm = (event) => {

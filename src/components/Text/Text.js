@@ -8,9 +8,9 @@ export default function TextNode({ selected, data }) {
   const [color, setColor] = useState(data?.color || '#000000');
   const [backgroundColor, setBackgroundColor] = useState(data?.transparent || 'transparent');
   const [textAlign, setTextAlign] = useState(data?.textAlign || 'left');
-  const [italic, setItalic] = useState(false);
+  const [italic, setItalic] = useState(data?.italic || false);
   const [bold, setBold] = useState(data?.bold || false);
-  const [underline, setUnderline] = useState(data?.italic || false);
+  const [underline, setUnderline] = useState(data?.underline || false);
   const [strike, setStrike] = useState(data?.strike || false);
   const [text, setTextValue] = useState(data?.text || 'Random text');
   const [showControls, setShowControls] = useState(false);
@@ -19,25 +19,33 @@ export default function TextNode({ selected, data }) {
     switch (name) {
       case 'fontSize':
         setFontSize(value);
+        data.fontSize = value;
         break;
       case 'textAlign':
         setTextAlign(value);
+        data.textAlign = value;
         break;
       case 'bold':
         setBold(!bold);
+        data.bold = !bold;
         break;
       case 'italic':
         setItalic(!italic);
+        data.italic = !italic;
         break;
       case 'underline':
         setUnderline(!underline);
+        data.underline = !underline;
         break;
       case 'strikeThrough':
         setStrike(!strike);
+        data.strike = !strike;
         break;
       case 'color':
-          setColor(`rgba(${value.r}, ${value.g}, ${value.b}, ${value.a})`);
-          break;
+        const tempColor = `rgba(${value.r}, ${value.g}, ${value.b}, ${value.a})`;
+        setColor(tempColor);
+        data.color = tempColor;
+        break;
       default:
         break;
     }
@@ -63,6 +71,7 @@ export default function TextNode({ selected, data }) {
 
   const handleTextChange = (event) => {
     setTextValue(event.target.value);
+    data.text = event.target.value;
   };
 
   return (

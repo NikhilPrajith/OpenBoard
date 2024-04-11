@@ -12,6 +12,7 @@ export default function Themes({ changeTheme, themes }) {
 
 
   const handleAlignment = (event, newAlignment) => {
+    console.log("changed alignment?")
     setAlignment(newAlignment);
     changeTheme(newAlignment);
   };

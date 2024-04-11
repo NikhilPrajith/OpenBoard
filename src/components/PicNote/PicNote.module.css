@@ -1,0 +1,64 @@
+.container{
+  width: 233px;
+  height: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+}
+.uploadButtonParent{
+  width: 100% !important;
+  overflow: hidden;
+  height: 150px;
+  border-radius: 10px;
+
+
+
+
+}
+.uploadButtonParent>div{
+  width: 100% !important;
+  height: 100% !important;
+  padding: 35px;
+}
+.uploadButtonCont{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+
+}
+.caption{
+  resize: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  width: 100%;
+  font-family:  Arial, sans-serif;
+  padding: 6px;
+  font-size: 15px;
+  color: black;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+.colorCircle{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  cursor: pointer;
+  border:0.1px black solid;
+  z-index:1000;
+}
+ 
+.colorPicker {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding-bottom: 8px;
+  margin-bottom: 7px;
+
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  margin-left: 12px;
+  margin-right: 12px;
+}

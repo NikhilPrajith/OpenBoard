@@ -239,22 +239,7 @@
 
 }
 
-.saveNowButton{
-    font-weight: 500; 
-    font-size: 11px;
-    color: black; 
-    background-color: rgb(251, 151, 151);;
-    padding: 5px;
-    padding-left: 12px;
-    margin: 4px;
-    padding-right: 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    position: absolute;
-right: 0;
-margin-top: 71px;
-margin-right: 18px;
-  }
+
 
 
 .nodeDrag{
@@ -326,12 +311,4 @@ margin-right: 18px;
 }
 .initalDesc{
   color: lightgrey;
-}
-
-
-.inviewCont{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 40%;
 }

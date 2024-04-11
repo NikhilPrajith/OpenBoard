@@ -5,7 +5,7 @@ import { RiDragMoveLine } from "react-icons/ri";
 import { MdOutlineDragHandle } from "react-icons/md";
 import styles from "./ToDoTask.module.css"
 
-export default function ToDoTaskNode ({ isConnectable,selected }){
+export default function ToDoTaskNode ({ isConnectable,selected, data }){
   return (
     <>
       <Handle
@@ -15,7 +15,7 @@ export default function ToDoTaskNode ({ isConnectable,selected }){
         isConnectable={isConnectable}
       />
       <div className={`${styles.nodeDrag} dragHandle`}><MdOutlineDragHandle></MdOutlineDragHandle></div>
-      <ToDoTask></ToDoTask>
+      <ToDoTask data={data}></ToDoTask>
       <Handle
         type="source"
         position={Position.Right}

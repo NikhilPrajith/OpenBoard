@@ -19,8 +19,8 @@ const taskCategories = {
   '😵‍💫': 'rgb(249, 199, 242)',
   '🤕': 'rgb(207, 249, 199)',
 };
-const ToDoTask = ({blank}) => {
-  const [tasks, setTasks] = useState([
+const ToDoTask = ({blank, data}) => {
+  const [tasks, setTasks] = useState( data.tasks || [
     { id: 1, title: '', category: '😍', bgColor: taskCategories['😍'] , completed: false },
   ]);
   
@@ -154,6 +154,11 @@ const ToDoTask = ({blank}) => {
     updatedTasks[index] = { ...updatedTasks[index], title: event.target.value };
     setTasks(updatedTasks);
 };
+
+  useEffect(() => {
+    data.tasks = tasks
+  }, [tasks])
+  
   return (
     <div  className={styles.container}>
       <canvas ref={confettiRef} className={styles.confettiCanvas} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}></canvas>

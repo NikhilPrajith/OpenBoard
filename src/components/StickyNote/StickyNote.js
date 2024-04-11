@@ -8,16 +8,19 @@ import {MdOutlineDragHandle} from "react-icons/md";
 // Define a limited set of selectable colors
 const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 205, 205)', 'rgb(229, 187, 247)', 'rgb(163, 211, 249)', 'white'];
 
-export default function StickyNote({ initialColor = selectableColors[Math],isConnectable }) {
+export default function StickyNote({isConnectable, data }) {
 
-  const [color, setColor] = useState(selectableColors[Math.floor(Math.random() * Object.keys(selectableColors).length)]);
+  const [color, setColor] = useState(data.color);
 
   const [title, setTitle] = useState('My Tasks');
 
   // Handler to change the sticky note's color
   const handleChangeColor = (newColor) => {
     setColor(newColor);
+    data.color = newColor;
   };
+
+  
 
 
   const handleTitleChange = (event) => {

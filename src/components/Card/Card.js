@@ -16,7 +16,7 @@ export default function CardComp({data, isConnectable}) {
     const [content, setContent] = useState(null);
     const editor = useCreateBlockNote(); // Initialize ySTour BlockNote editor
 
-    const [openEditor, setOpenEditor] = useState(true)
+    const [openEditor, setOpenEditor] = useState(false)
     const handleOpenAndSetup = () => {
         setOpenEditor(!openEditor);
     };
@@ -51,7 +51,7 @@ export default function CardComp({data, isConnectable}) {
             <div style={{backgroundColor:`${color}`}}  className='card' onClick={handleOpenAndSetup}>
                         <h1>{title}</h1>
                         {content && <div className='content' dangerouslySetInnerHTML={{ __html: content }} />}
-                        {!content &&<div className="initalDesc" style={{color: color != 'white'? "black": ""}}>
+                        {!content &&<div className="initalDesc">
                             Click to create document card!
                         </div>}
                     </div>
@@ -61,10 +61,11 @@ export default function CardComp({data, isConnectable}) {
                 id="a"
                 isConnectable={isConnectable}
             />
+            {/*
             {openEditor && ReactDOM.createPortal(
                 <InViewDocument handleContentUpdate={handleContentUpdate} handleOpenAndSetup={handleOpenAndSetup} setColor={setColor} color={color} handleTitleChange={handleTitleChange} title={title} editor={editor} />,
                 document.body
-            )}
+            )}*/}
         </>
     );
 }

@@ -2,10 +2,14 @@
   margin-left: 65px;
   padding-left: 0px;
   overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
-  height: 100vh;
+  height: 100%;
   position: absolute;
   padding-bottom: 25px;
-  border-radius: 1px #eee solid;
+  top: 0;
+left: 0;
+margin-top: 57px;
+border: 1px #eee solid;
+padding-top: 50px;
 }
 
 .heading1{
@@ -39,21 +43,39 @@
   font-style: normal;
 }
 
-.color-circle {
+.colorCircle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   position: absolute;
-  top: 70px;
-  left: 15px;
+  top: 12px;
+  left: 12px;
   cursor: pointer;
   border:0.1px black solid;
   z-index: 10000;
 }
 
-.color-picker {
+.colorPicker {
   position: absolute;
   top: 100px;
   left: 5px;
   z-index: 300;
+}
+
+.saveNowButton{
+  font-weight: 500; 
+  font-size: 11px;
+  color: black; 
+  background-color: rgb(251, 151, 151);;
+  padding: 5px;
+  padding-left: 12px;
+  margin: 4px;
+  padding-right: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: absolute;
+right: 0;
+margin-top: 12px;
+margin-right: 12px;
+top:0;
 }

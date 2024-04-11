@@ -5,7 +5,7 @@ import { TwitterPicker } from 'react-color';
 
 import { Handle, Position,NodeResizer } from 'reactflow';
 import "./Card.css"
-import "./Documents.css"
+import styles from "./Documents.module.css"
 import { MdOutlineDragHandle } from "react-icons/md";
 
 import { IoIosClose } from "react-icons/io";
@@ -30,10 +30,10 @@ export default function InViewDocument({editor, handleContentUpdate, color, setC
 
   return (
     <>
-    <div style={{ backgroundColor: `${color}` }} className='documentContainer inviewCont'>
+    <div style={{ backgroundColor: `${color}` }} className={styles.documentContainer}>
       {/* Color Picker */}
       {showColorPicker && (
-        <div className="color-picker">
+        <div className={styles.colorPicker}>
           <TwitterPicker triangle="top-left"
             color={color} onChange={handleColorChange} colors={customColors}
 
@@ -42,14 +42,16 @@ export default function InViewDocument({editor, handleContentUpdate, color, setC
         </div>
       )}
 
-      <button  className='saveNowButton' onClick={handleContentUpdate}>SaveNow</button>
+<button  className={styles.saveNowButton} onClick={handleContentUpdate}>SaveNow</button>
+
       {/* BlockNoteView */}
-      <BlockNoteView theme="light" data-theming-css-demo editor={editor} autoFocus={true}>
+      <BlockNoteView theme="light" editor={editor} autoFocus={true}>
 
         {/* Circle showing current color */}
-        <div className="color-circle" style={{ backgroundColor: `${color}` }} onClick={handleColorClick}></div>
+        <div className={styles.colorCircle} style={{ backgroundColor: `${color}` }} onClick={handleColorClick}></div>
 
-        <input onChange={handleTitleChange} className='heading1' value={title} placeholder="Document title..." style={{ fontStyle: 'normal' }} />
+
+        <input onChange={handleTitleChange} className={styles.heading1} value={title} placeholder="Document title..." style={{ fontStyle: 'normal' }} />
       </BlockNoteView>
     </div>
     </>
