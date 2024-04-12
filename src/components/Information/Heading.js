@@ -22,15 +22,7 @@ export default function Heading({open, type}) {
         </div>
         <div className={styles.infoCont}>
 
-        <ToggleButton
-          value="check"
-          selected={selected}
-          onChange={() => {
-            setSelected(!selected);
-          }}
-        >
-          Share
-        </ToggleButton>
+
         {type != 'Endless Board' && <>
           <div className={styles.isSavedText}>{isSaved ? <span className={styles.saved}>Data Persisted</span> : 
                 <span className={styles.unsaved}>Unsaved changes!</span>}
