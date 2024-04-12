@@ -1,11 +1,94 @@
-// contexts/TaskContext.js
+import {create} from 'zustand';
+import { createClient } from '@liveblocks/client';
+import { liveblocks } from '@liveblocks/zustand';
 import React, { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react';
-import ReactFlow, { MiniMap, Controls,Background, useNodesState, useEdgesState, addEdge,ReactFlowProvider } from 'reactflow';
+import ReactFlow, { MiniMap, Controls,Background, useNodesState, useEdgesState, addEdge,ReactFlowProvider, 
+  applyEdgeChanges,
+  applyNodeChanges,
+  ConnectionLineType,
+  Connection,
+  Edge,
+  EdgeChange,
+  Node,
+  NodeChange,
+} from 'reactflow';
 
+
+//New approach with zustand
+const PUBLIC_API_KEY = process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY;
+let client;
+
+function createLiveblocksClient() {
+  return createClient({
+    publicApiKey: PUBLIC_API_KEY,
+    throttle: 16,
+  });
+}
+
+const useStore = create((set) => ({
+  nodes: [],
+  edges: [],
+  sharingEnabled: false,
+
+  enableSharing: () => {
+    if (!client) {
+      client = createLiveblocksClient();
+      set({ sharingEnabled: true });
+    }
+  },
+
+  disableSharing: () => {
+    if (client) {
+      client.close();
+      client = null;
+      set({ sharingEnabled: false });
+    }
+  },
+
+  setNodes: (nodes) => set({ nodes }),
+  setEdges: (edges) => set({ edges }),
+
+  // Ensure changes is always an array
+  onNodesChange: (changes) => set((state) => {
+    console.log("Applying node changes:", changes);
+    const newNodes = applyNodeChanges(changes, state.nodes);
+    console.log("New nodes state:", newNodes);
+    return { nodes: newNodes };
+  }),
+  
+  onEdgesChange: (changes) => set((state) => {
+    console.log("Applying edge changes:", changes, "Current edges:", state.edges);
+    return { edges: applyEdgeChanges(changes, state.edges) };
+  }),
+
+  addNode: (newNode) => set((state) => ({
+    nodes: state.nodes.concat(newNode)
+  })),
+
+  updateThemeStickers: (newStickers = []) => {
+    const filteredNodes = get().nodes.filter(node => !node.id.startsWith('themeStickers'));
+    set({ nodes: [...filteredNodes, ...newStickers] });
+  },
+  // Function to remove all nodes that start with 'themeStickers'
+  removeAllThemeStickers: () => {
+    const filteredNodes = get().nodes.filter(node => !node.id.startsWith('themeStickers'));
+    set({ nodes: filteredNodes });
+  },
+
+  // Ensure a proper Connection object is passed
+  onConnect: (connection) => set((state) => ({
+    edges: addEdge(connection, state.edges),
+  })),
+}));
+
+export default useStore;
+
+
+
+
+//Old Approach with context
 const BoardContext = createContext();
-
 export const useBoard = () => useContext(BoardContext);
-
 export const BoardProvider = ({ children }) => {
 
   //React flow context
@@ -22,8 +105,10 @@ export const BoardProvider = ({ children }) => {
     const formattedDate = formatDate(now);
     return formattedDate;
   }
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  //const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  //const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const { nodes, setNodes, edges, setEdges, onNodesChange, onEdgesChange, addNode, updateThemeStickers,removeAllThemeStickers } = useStore();
+
   const [rfInstance, setRfInstance] = useState(null);
   const flowKey = 'example-flow';
 
@@ -115,6 +200,7 @@ export const BoardProvider = ({ children }) => {
 
 
 
+
   //Context for the reactFlow board
 
   
@@ -140,7 +226,10 @@ export const BoardProvider = ({ children }) => {
     setRfInstance,
 
     onSave,
-    onRestore
+    onRestore,
+    addNode,
+    updateThemeStickers,
+    removeAllThemeStickers
 
 
 

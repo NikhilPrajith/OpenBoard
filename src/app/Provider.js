@@ -9,9 +9,9 @@ export default function Provider({children}) {
   return (
     <>
     <TaskProvider>
-      <BoardProvider>
-        {children}
-      </BoardProvider>
+        <BoardProvider>
+          {children}
+        </BoardProvider>
     </TaskProvider>
     </>
   )

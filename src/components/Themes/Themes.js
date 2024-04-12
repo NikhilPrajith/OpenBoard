@@ -5,10 +5,12 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { IoSearch } from "react-icons/io5";
 import { useBoard } from '@/context/BoardContext';
+import useStore from '@/context/BoardContext';
 
 export default function Themes({ changeTheme, themes }) {
   const [filter, setFilter] = useState('');
   const {alignment, setAlignment} = useBoard();
+  //const {alignment, setAlignment} = useStore();
 
 
   const handleAlignment = (event, newAlignment) => {

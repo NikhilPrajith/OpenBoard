@@ -15,7 +15,7 @@ import Video from './Video/Video';
 import VideoSearch from './VideoSearch/VideoSearch';
 import FlashCards from './FlashCards/FlashCards';
 import TextNode from './Text/Text';
-import { useBoard } from '@/context/BoardContext';
+import useStore, { useBoard } from '@/context/BoardContext';
 import CardComp from './Card/Card';
 import CardDataNode from './Card/CardDataNode';
 import InViewDocument from './Card/InViewDocument';
@@ -236,11 +236,17 @@ export default function InfiniteCanvas({}){
     rfInstance,
     setRfInstance,
     onSave,
-    onRestore
+    onRestore,
+    addNode,
+    updateThemeStickers
   } = useBoard()
 
 
-  const [themeStickers, setThemeStickers, onStickerNodeChange] = useNodesState([]);
+  /*const {nodes, setNodes, onNodesChange, edges, setEdges,onEdgesChange,
+     setAlignment, onRestore, setRfInstance} = useStore();*/
+
+
+
 
   const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;
 
@@ -433,8 +439,7 @@ export default function InfiniteCanvas({}){
         y: Math.random() * window.innerHeight,
       },
     };
-    console.log("new node", newNode)
-    setNodes((nds) => nds.concat(newNode));
+    addNode(newNode);
   };
 
   const onAddStcikers = (url) => {
@@ -450,7 +455,7 @@ export default function InfiniteCanvas({}){
         y: Math.random() * window.innerHeight,
       },
     };
-    setNodes((nds) => nds.concat(newNode));
+    addNode(newNode)
   };
   const onAddVideoFunction = (url) => {
     console.log("add image url", url)
@@ -465,7 +470,7 @@ export default function InfiniteCanvas({}){
         y: Math.random() * window.innerHeight,
       },
     };
-    setNodes((nds) => nds.concat(newNode));
+    addNode(newNode);
   };
 
   const changeTheme = (themeName, initial) => {
@@ -501,11 +506,7 @@ export default function InfiniteCanvas({}){
       });
     }
   
-    // Filter out old theme stickers before adding new ones
-    setNodes((currentNodes) => {
-      const filteredNodes = currentNodes.filter((node) => !node.id.startsWith('themeStickers'));
-      return [...filteredNodes, ...themeStickerTemp];
-    });
+    updateThemeStickers(themeStickerTemp)
   };
 
 
