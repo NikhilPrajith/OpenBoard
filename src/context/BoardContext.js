@@ -25,7 +25,7 @@ function createLiveblocksClient() {
   });
 }
 
-const useStore = create((set) => ({
+const useStore = create((set,get) => ({
   nodes: [],
   edges: [],
   sharingEnabled: false,
