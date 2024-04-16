@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Features from '@/components/Features/Features';
 import Heading from '@/components/Information/Heading';
@@ -12,33 +12,44 @@ import { useBoard } from '@/context/BoardContext';
 // Dynamically import InfiniteCanvas with SSR disabled
 const InfiniteCanvasNoSSR = dynamic(() => import('@/components/InfiniteCanvas'), {
   ssr: false,
+  suspense: true,  // Enable suspense handling for this dynamic component
 });
 
 // Dynamically import Document component with SSR disabled
 const DocumentNoSSR = dynamic(() => import('@/components/Docs/Document'), {
   ssr: false,
+  suspense: true,  // Enable suspense handling for this dynamic component
 });
 
 export default function Home() {
+  return (
+    <div>
+      {/* Wrap the component that uses useSearchParams in Suspense */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <Content />
+      </Suspense>
+    </div>
+  );
+}
 
+function Content() {
   const searchParams = useSearchParams();
   const documentID = searchParams.get('documentId'); // Retrieve documentID from URL
   
   const {
     isSavedBoard, saveDataToLocalStorageBoard, onSave, setDocumentId
   } = useBoard();
- 
+
   const roomId = searchParams.get('roomId');
+
   /*
   useEffect(() => {
     enterRoom(roomId);
     return () => leaveRoom();
-  }, [enterRoom, leaveRoom, roomId]);*/
-  
+  }, [enterRoom, leaveRoom, roomId]);
+  */
+
   return (
-    <div>
-      {/* Pass documentID to the DocumentNoSSR component */}
       <InfiniteCanvasNoSSR documentID={documentID} />
-    </div>
   );
 }

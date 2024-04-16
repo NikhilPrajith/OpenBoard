@@ -31,6 +31,7 @@ Imp:
     Loading for the canvas 
     Improve the page switching component
     HOC for protected routes
+    fix the useSearchParams which uses Suspense in /canvas and / page
 
 
 https://ant.design/components/tour

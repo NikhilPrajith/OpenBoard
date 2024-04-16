@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Features from '@/components/Features/Features';
 import Heading from '@/components/Information/Heading';
@@ -12,44 +12,55 @@ import { useBoard } from '@/context/BoardContext';
 // Dynamically import InfiniteCanvas with SSR disabled
 const InfiniteCanvasNoSSR = dynamic(() => import('@/components/InfiniteCanvas'), {
   ssr: false,
+  suspense: true  // Enable suspense for this component
 });
 
 const DocumentNoSSR = dynamic(() => import('@/components/Docs/Document'), {
   ssr: false,
+  suspense: true  // Enable suspense for this component
 });
 
 export default function Home() {
-
   const [type, setType] = useState('Endless Board');
   const [open, setOpen] = useState(false);
 
-  // Determine display styles based on the `type`
   const displayStyleForType = (currentType) => {
     return type === currentType ? { display: 'block' } : { display: 'none' };
   };
   const date = 'Today';
-  // Initialize the taskLists state with two default ToDoTask components
 
-  
+  return (
+    <div>
+      {/* Wrap parts of your component that use useSearchParams with Suspense */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <Content />
+      </Suspense>
+      <div style={displayStyleForType('Endless Board')}>
+        {/* InfiniteCanvas and Document can be loaded here if needed */}
+        <InfiniteCanvasNoSSR />
+        {/* <DocumentNoSSR /> Optionally add if needed */}
+      </div>
+    </div>
+  );
+}
+
+function Content() {
   const searchParams = useSearchParams();
-  const {
-    isSavedBoard, saveDataToLocalStorageBoard, onSave} = useBoard();
- 
-  const roomId = searchParams.get('roomId')
+  const roomId = searchParams.get('roomId');
+  const { isSavedBoard, saveDataToLocalStorageBoard, onSave } = useBoard();
+
+  // Use effect or other logic that depends on roomId here
   /*
   useEffect(() => {
     enterRoom(roomId);
     return () => leaveRoom();
-  }, [enterRoom, leaveRoom, roomId]);*/
-  
-
+  }, [enterRoom, leaveRoom, roomId]);
+  */
 
   return (
     <div>
-      {/* Apply styles to toggle visibility instead of conditional rendering */}
-      <div>
-        <InfiniteCanvasNoSSR />
-      </div>
+      {/* Your additional component logic and JSX can go here */}
+      Room ID: {roomId}
     </div>
   );
 }

@@ -183,13 +183,14 @@ export default function InfiniteCanvas({documentID}){
     const fetchData = async () => {
 
       if(!documentID){
-
+        setShowCanvas(true);
         setNodes(defaultNodes);
         onRestore();
         const theme = localStorage.getItem('theme');
         const themeData = theme ? JSON.parse(theme) : 'Paper';
         setAlignment(themeData);
         changeTheme(themeData, true);
+
       }else{
         setDocumentId(documentID);
         console.log("getting it");
