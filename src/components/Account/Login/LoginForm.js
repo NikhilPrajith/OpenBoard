@@ -18,7 +18,6 @@ const LoginForm = ({onSwitch,closeDialog}) => {
             const userData = await signInWithEmailAndPassword(auth, email,password);
             closeDialog();
         }catch(error){
-            console.log("eroor",error)
             const errorCode = error.code;
             const errorMessage = error.message;
             setError(errorMessage);
@@ -52,7 +51,7 @@ const LoginForm = ({onSwitch,closeDialog}) => {
                 <button onClick={submitHandler} className={styles.submitButton}>Sign in</button>
                 <div className={styles.signUpText}>
                     <div>
-                        Don't have an account?
+                        Dont have an account?
                     </div>
                     <button onClick={onSwitch} className={styles.switch}> Sign up for free</button>
                 </div>

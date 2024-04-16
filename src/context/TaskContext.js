@@ -78,7 +78,6 @@ export const TaskProvider = ({ children }) => {
       return task;
     }));
     if(id == selectedTask.id){
-      console.log("updating current")
       setSelectedTask(updatedTask)
     }
   };
@@ -96,7 +95,6 @@ export const TaskProvider = ({ children }) => {
   //Title input change
   const onValueChangeTitle = (id, event) => {
     let updatedTask = {}
-    console.log("change title", event.target.value);
     
     const updatedTasks = tasks.map(task => {
       if (task.id === id) {
@@ -107,7 +105,6 @@ export const TaskProvider = ({ children }) => {
     });
     setTasks(updatedTasks);
     if(id == selectedTask.id){
-      console.log("updating current")
       setSelectedTask(updatedTask)
     }
   };
@@ -174,7 +171,6 @@ export const TaskProvider = ({ children }) => {
 
 
   useEffect(() => {
-    console.log("setting save to false", isSaved)
     setIsSaved(false);
   }, [tasks, categories, taskCategoriesState]);
 

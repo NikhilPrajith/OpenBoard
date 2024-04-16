@@ -12,7 +12,7 @@ export default function BoardListView() {
     <div style={{width:'100%'}} className="py-4">
       <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {data?.boards && data?.boards.map((board, index) => (
-           <PreviewCard data={board}></PreviewCard>
+           <PreviewCard key={index} data={board}></PreviewCard>
         ))}
 
       </div>
