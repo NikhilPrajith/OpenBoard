@@ -11,20 +11,26 @@ const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 2
 export default function StickyNote({isConnectable, data }) {
 
   const [color, setColor] = useState(data.color);
+  const [text, setText] = useState(data.text || '');
 
-  const [title, setTitle] = useState('My Tasks');
+  const [title, setTitle] = useState(data.title || 'My Note');
 
   // Handler to change the sticky note's color
   const handleChangeColor = (newColor) => {
     setColor(newColor);
     data.color = newColor;
   };
+  const handleTextChange = (event) => {
+    setText(event.target.value); // Update the text state with the new value from the textarea
+    data.text = event.target.value;
+  };
 
   
 
 
   const handleTitleChange = (event) => {
-    setTitle(event.target.value); // Update the state with the new value
+    setTitle(event.target.value);
+    data.title = event.target.value; // Update the state with the new value
   };
   return (
     <div>
