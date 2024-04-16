@@ -19,7 +19,12 @@ import { MdPlaylistAddCircle } from "react-icons/md";
 import { RiDashboardFill } from "react-icons/ri";
 import { IoDocumentText } from "react-icons/io5";
 import { FaThList } from "react-icons/fa";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { MdSpaceDashboard } from "react-icons/md";
 
+import { FcCloth } from "react-icons/fc";
+import useAuth from '@/context/Authentication/AuthProvider';
 const drawerWidth = 180;
 
 const openedMixin = (theme) => ({
@@ -71,6 +76,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 
+
+
 export default function Features({setType, setOpenParent}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -78,13 +85,30 @@ export default function Features({setType, setOpenParent}) {
     setOpen(!open);
     setOpenParent(!open);
   }
+  const {user} = useAuth();
+  const [showDasboard, setShowDashboard] = React.useState(false);
+
+
+  React.useEffect(()=>{
+    if(user){
+      setShowDashboard(true)
+    }else{
+      setShowDashboard(false);
+    }
+  },[user]);
   const iconSize = 17;
   const pageIcons = {
-    0:<RiDashboardFill size={iconSize} />,
-    1:<MdPlaylistAddCircle size={iconSize}/>,
-    2:<FaThList size={iconSize}></FaThList>,
-    3: <IoDocumentText size={iconSize}/>,
+    0:{icon: <FcCloth size={iconSize} />, page: "/"},
+    1:{icon:<MdPlaylistAddCircle size={iconSize}/>, page: "/tasks"},
+    2:{icon:<FaThList size={iconSize}></FaThList>, page: "/board"},
+    3:{icon:<IoDocumentText size={iconSize}/>, page: "/docs"},
+
+    4:{icon:<MdSpaceDashboard size={iconSize}/>, page: "/dashboard"},
   }
+  const router = useRouter();
+  const handleNavigation = (page) => {
+    router.push(page);
+  };
 
   return (
     <Box sx={{ display: 'flex', borderRight: '0.1px rgb(212, 210, 210) solid', fontFamily: 'Arial, sans-serif' }}> {/* Ensure the Box uses Arial */}
@@ -100,16 +124,28 @@ export default function Features({setType, setOpenParent}) {
         '& .MuiListItemIcon-root': { color: 'black', fontSize: '12px' }, // Adjusted font size for text
         '& .MuiSvgIcon-root': { fontSize: '12px' }, // Adjusted font size for icons
       }}>
-        {['Endless Board', 'Tasker', 'Lists', 'Docs'].map((text, index) => (
-          <ListItem onClick={()=>{setType(text)}} key={text} disablePadding sx={{ display: 'block' }}>
+        {['Local Playground', 'Tasker', 'Lists', 'Docs'].map((text, index) => (
+          <ListItem  onClick={() => handleNavigation(pageIcons[index].page)} key={text} disablePadding sx={{ display: 'block' }}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center'}}> {/* Explicitly target icons within ListItemIcon */}
-                {pageIcons[index]}
+                {pageIcons[index].icon}
               </ListItemIcon>
               <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
         ))}
+        {showDasboard && 
+          <ListItem  onClick={() => handleNavigation(pageIcons[4].page)} key={'Dashboard'} disablePadding sx={{ display: 'block' }}>
+          <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
+            <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center'}}> {/* Explicitly target icons within ListItemIcon */}
+              {pageIcons[4].icon}
+            </ListItemIcon>
+            <ListItemText primary={'Dashboard'} sx={{ opacity: open ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
+        
+        }
+        
       </List>
       <Divider />
     </Drawer>

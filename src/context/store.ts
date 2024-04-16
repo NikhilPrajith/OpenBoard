@@ -38,7 +38,7 @@ type FlowState = {
   setNodes: (nodes: Node[]) => void;
   setEdges: (edges: Edge[]) => void;
 };
-
+/*
 const useStore = create<WithLiveblocks<FlowState, {}, { nodes: Node[]; edges: Edge[] }>>(liveblocks(
   (set, get) => ({
     nodes,
@@ -85,10 +85,36 @@ const useStore = create<WithLiveblocks<FlowState, {}, { nodes: Node[]; edges: Ed
   {
     client,
     storageMapping: {
-      nodes: true,
-      edges: true,
+      nodes:false,
+      edges:false
     },
   }
-));
+));*/
+
+const useStore = create<FlowState>((set, get) => ({
+  nodes,
+  edges,
+
+  setNodes: (nodes: Node[]) => set({ nodes }),
+  setEdges: (edges: Edge[]) => set({ edges }),
+
+  onNodesChange: (changes: NodeChange[]) =>
+    set({ nodes: applyNodeChanges(changes, get().nodes) }),
+  onEdgesChange: (changes: EdgeChange[]) =>
+    set({ edges: applyEdgeChanges(changes, get().edges) }),
+  onConnect: (connection: Connection) =>
+    set({ edges: addEdge(connection, get().edges) }),
+
+  addNode: (newNode: Node) =>
+    set((state) => ({ nodes: [...state.nodes, newNode] })),
+  updateThemeStickers: (newStickers: Node[]) => {
+    const filteredNodes = get().nodes.filter(node => !node.id.startsWith('themeStickers'));
+    set({ nodes: [...filteredNodes, ...newStickers] });
+  },
+  removeAllThemeStickers: () =>
+    set(() => ({
+      nodes: get().nodes.filter(node => !node.id.startsWith('themeStickers'))
+    })),
+}));
 
 export default useStore;

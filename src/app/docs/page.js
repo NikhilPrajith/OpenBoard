@@ -9,7 +9,7 @@ const DocumentNoSSR = dynamic(() => import('@/components/Docs/Document'), {
 export default function page() {
   return (
     <div>
-        
+        <div>test</div>
         <div><DocumentNoSSR></DocumentNoSSR></div>
       
     </div>

@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import Features from '../Features/Features';
 import Heading from '../Information/Heading';
 
-export default function LayoutComp() {
+export default function LayoutComp({ children }) {
 
   const [open, setOpen] = useState(false);
   return (
@@ -12,6 +12,7 @@ export default function LayoutComp() {
             <Features setOpenParent={setOpen}></Features>
             <Heading open={open}></Heading>
           </div>
+          { children }
       
     </div>
   )

@@ -2,17 +2,23 @@
 import React from 'react';
 import { TaskProvider } from '@/context/TaskContext';
 import { BoardProvider } from '@/context/BoardContext';
+import { AuthProvider } from '@/context/Authentication/AuthProvider';
+import AuthStateChanged from '@/context/Authentication/AuthStateChanged';
 
 export default function Provider({children}) {
 
   
   return (
     <>
-    <TaskProvider>
-        <BoardProvider>
-          {children}
-        </BoardProvider>
-    </TaskProvider>
+    <AuthProvider>
+      <AuthStateChanged>
+        <TaskProvider>
+            <BoardProvider>
+              {children}
+            </BoardProvider>
+        </TaskProvider>
+      </AuthStateChanged>
+    </AuthProvider>
     </>
   )
 }

@@ -25,7 +25,6 @@ const ParticleEffect = ({ selectedEffect }) => {
 
   const startEffect = (effect) => {
 
-    console.log("startEffect for ",effect)
 
     const config = getEffectConfig(effect);
     return particlesJS('particle-container', config);
@@ -33,7 +32,6 @@ const ParticleEffect = ({ selectedEffect }) => {
   };
 
   const getEffectConfig = (effect) => {
-    console.log("effect",effect)
     switch (effect) {
       case 'web':
         return {

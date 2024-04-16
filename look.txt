@@ -25,17 +25,24 @@ When node is on the right side corder the parent of the sidebar is above it
 
 
 toDo:
-multiple copies of todoTask: toDoTask, taskList, board. Maybe make a context for all of This
-Filter process in board is slow
-add text placement node
 add a drawign icon to draw freely on the canvas
 add lofi music and sounds
+Imp:
+    Loading for the canvas 
+    Improve the page switching component
+    HOC for protected routes
+
+
+https://ant.design/components/tour
 
 to do: 
-kanban style board: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.youtube.com/watch%3Fv%3DgjrVCY3oPds&ved=2ahUKEwjf07604Y-FAxW52MkDHSgFAkUQtwJ6BAgpEAI&usg=AOvVaw3bQwBWCQxO3mt3AyPIuPLL
+kanban style board: 
 
-https://www.youtube.com/watch?v=Vqa9NMzF3wc
+
+
 
 
 Save and Restore
 https://reactflow.dev/examples/interaction/save-and-restore
+
+

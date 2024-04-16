@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Provider from "./Provider";
+import LayoutComp from "@/components/Layouts/LayoutComp";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          {children}
+          <LayoutComp>{children}</LayoutComp>
+            
         </Provider>
         <SpeedInsights/>
       </body>

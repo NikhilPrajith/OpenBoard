@@ -9,7 +9,7 @@
     top: 0;
     width: min-content;
     min-height: 80px;
-    z-index: 1000;
+    z-index: 999;
     right: 0;
     margin: auto;
 
