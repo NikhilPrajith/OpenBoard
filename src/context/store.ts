@@ -18,11 +18,12 @@ import type { WithLiveblocks } from "@liveblocks/zustand";
 import nodes from "./nodes";
 import edges from "./edges";
 
+/*
 const PUBLIC_API_KEY = process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY as string;
 const client = createClient({
   publicApiKey: PUBLIC_API_KEY,
   throttle: 16,
-});
+});*/
 
 type FlowState = {
   nodes: Node[];
