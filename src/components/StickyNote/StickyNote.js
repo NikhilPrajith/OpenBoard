@@ -49,7 +49,7 @@ export default function StickyNote({isConnectable, data }) {
         <input className={styles.taskHeader} placeholder='Task Title...' value={title} onChange={handleTitleChange}>
               
               </input>
-      <textarea className={styles.textArea} placeholder="Write away..."></textarea>
+      <textarea className={styles.textArea} placeholder="Write away..." value ={text} onChange={handleTextChange}></textarea>
       
     </div>
       </div>
