@@ -217,7 +217,7 @@ export const BoardProvider = ({ children }) => {
   }
   //const [nodes, setNodes, onNodesChange] = useNodesState([]);
   //const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const {liveblocks, nodes, setNodes, edges, setEdges, onNodesChange, onEdgesChange, addNode, updateThemeStickers,removeAllThemeStickers } = useStore();
+  const {liveblocks, nodes, setNodes, edges,onConnect, setEdges, onNodesChange, onEdgesChange, addNode, updateThemeStickers,removeAllThemeStickers } = useStore();
 
   //user signed in
   const {user, data} =  useAuth();
@@ -284,7 +284,7 @@ export const BoardProvider = ({ children }) => {
     // Update refs for next comparison
     prevNodesRef.current = nodes;
     prevAlignmentRef.current = alignment;
-  }, [nodes, alignment]);
+  }, [nodes, alignment, edges]);
 
 
   //Saving
@@ -298,9 +298,6 @@ export const BoardProvider = ({ children }) => {
       setIsSavedBoard(true)
     }
   }, [rfInstance, alignment]);
-
-
-  
 
   const saveBoardState = async () => {
     if (!user) {
@@ -416,6 +413,7 @@ export const BoardProvider = ({ children }) => {
       return "Error";
     }
   }
+
   async function deleteBoard(id){
     if (!user) {
       console.log("No user logged in.");
@@ -446,14 +444,6 @@ export const BoardProvider = ({ children }) => {
       return "Error deleting the board"; // Return an error message if there was a problem updating the document
     }
   }
-
-
-
-
-
-
-  //Context for the reactFlow board
-
   
 
   // Add other states and functions you want to make globally available
@@ -469,6 +459,8 @@ export const BoardProvider = ({ children }) => {
     edges,
     setEdges,
     onEdgesChange,
+
+    onConnect,
 
     alignment,
     setAlignment,

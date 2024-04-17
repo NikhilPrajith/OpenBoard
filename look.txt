@@ -33,6 +33,8 @@ Imp:
     HOC for protected routes
     fix the useSearchParams which uses Suspense in /canvas and / page
 
+    When data of the nodes change, update the isBoardSaved
+
 
 https://ant.design/components/tour
 

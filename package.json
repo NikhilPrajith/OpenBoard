@@ -17,6 +17,7 @@
     "@editorjs/paragraph": "^2.11.3",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@excalidraw/excalidraw": "^0.17.5",
     "@headlessui/react": "^1.7.18",
     "@liveblocks/client": "^1.11.1",
     "@liveblocks/react": "^1.11.1",

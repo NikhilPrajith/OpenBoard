@@ -56,13 +56,14 @@ export default function InfiniteCanvas({documentID}){
   const [showEffect, setShowEffect] = useState(false);
   const [showSideBar, setShowSidebar] = useState(false);
 
-  const {user, data} = useAuth();
+  const {user, data, initialLoading} = useAuth();
   const {isSavedBoard,
     setIsSavedBoard,
     saveDataToLocalStorageBoard,
     nodes,
     setNodes,
     onNodesChange,
+    onConnect,
     edges,
     setEdges,
     onEdgesChange,
@@ -194,6 +195,9 @@ export default function InfiniteCanvas({documentID}){
       }else{
         setDocumentId(documentID);
         console.log("getting it");
+        if(initialLoading){
+          return;
+        }
         if(!user){
 
           setShowCanvas(false);
@@ -223,12 +227,11 @@ export default function InfiniteCanvas({documentID}){
     
     
 
-  }, [documentID, user]);
+  }, [documentID, initialLoading]);
 
 
 
 
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
   const onDragOver = useCallback((event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
@@ -299,7 +302,6 @@ export default function InfiniteCanvas({documentID}){
   };
 
   const onAddStcikers = (url) => {
-    console.log("add image url", url)
 
     const newNode = {
       id: getNodeId(),
@@ -314,7 +316,6 @@ export default function InfiniteCanvas({documentID}){
     addNode(newNode)
   };
   const onAddVideoFunction = (url) => {
-    console.log("add image url", url)
 
     const newNode = {
       id: getNodeId(),
@@ -353,7 +354,6 @@ export default function InfiniteCanvas({documentID}){
         if (index ==0){
           return
         }
-        console.log("add image url", url);
   
         const newNode = {
           id: `themeStickers_${getNodeId(theme.name)}`, // Modify this to include theme identifier

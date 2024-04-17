@@ -34,18 +34,18 @@
     border: none;
     background-color: transparent;
     outline: none;
-    font-size: 12px;
-    font-weight: 200;
+    font-size: 13px;
     resize: both;
     min-height: 140px;
     min-width: 240px;
 
   }
   .taskHeader{
-    font-size: 13px;
+    font-size: 15px;
     margin-bottom: 10px;
     background-color: transparent;
     outline: none;
+    font-weight: 600;
   }
 
 .taskHeader{
