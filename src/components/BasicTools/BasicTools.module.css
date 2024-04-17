@@ -46,7 +46,6 @@
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
-  margin-bottom: -72px;
   margin-right: 91px;
 }
 .PopoverContent:focus {

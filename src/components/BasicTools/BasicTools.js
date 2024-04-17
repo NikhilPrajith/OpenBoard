@@ -13,6 +13,7 @@ import Stickers from '../CoolStuff/Stickers';
 import { RiEmojiStickerFill } from "react-icons/ri";
 import { BsCardText } from "react-icons/bs";
 import { IoIosImage } from "react-icons/io";
+import { FaLink } from "react-icons/fa";
 
 export default function BasicTools({ addingNode, themes,changeTheme, addImageFunction }) {
   const onClick = (event, nodeType) => {
@@ -31,6 +32,8 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
         <button onClick={(event) => onClick(event, 'flashCards')}><PiCardsFill/></button>
 
         <button onClick={(event) => onClick(event, 'picNote')}><IoIosImage/></button>
+        
+        <button onClick={(event) => onClick(event, 'linkPreview')}><FaLink/></button>
 
         
         {/*Sticker button popover*/}
@@ -41,7 +44,7 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
             </button>
           </Popover.Trigger>
           <Popover.Portal className={styles.PopoverPortal}>
-            <Popover.Content className={styles.PopoverContent} sideOffset={30}>
+            <Popover.Content className={styles.PopoverContent} sideOffset={0} align="start" side="top">
               <div>
                 <p className={styles.Text} style={{ marginBottom: 10 }}>
                  Stcikers
@@ -64,7 +67,7 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
             </button>
           </Popover.Trigger>
           <Popover.Portal className={styles.PopoverPortal}>
-            <Popover.Content className={styles.PopoverContent} sideOffset={30}>
+            <Popover.Content className={styles.PopoverContent} sideOffset={0} align="start" side="top">
               <div>
                 <p className={styles.Text} style={{ marginBottom: 10 }}>
                  Themes
