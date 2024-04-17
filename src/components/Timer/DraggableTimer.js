@@ -20,12 +20,12 @@ import confetti from 'canvas-confetti';
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 const lightTheme = createTheme({ palette: { mode: 'light' } });
 
-const DraggableTimer = ({isConnectable}) => {
+const DraggableTimer = ({isConnectable, data}) => {
     const defaultTime = 5 *60; // Default time is 5 minutes (5 * 60 seconds)
-    const [time, setTime] = useState(defaultTime);
+    const [time, setTime] = useState(data?.time || defaultTime);
     const [isRunning, setIsRunning] = useState(false);
 
-  const [title, setTitle] = useState('Annoying Timer');
+  const [title, setTitle] = useState(data?.title || 'Annoying Timer');
 
     const formatTime = (seconds) => {
         const hours = Math.floor(seconds / 3600);
@@ -109,7 +109,13 @@ const DraggableTimer = ({isConnectable}) => {
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value); // Update the state with the new value
+    data.title = event.target.value;
   };
+
+  useEffect(() => {
+    data.time = time;
+  }, [time])
+  
   const timerRef = useRef(null);
 
     return (

@@ -108,7 +108,7 @@ export const BoardProvider = ({ children }) => {
   
         ],
           textColor:'black',
-          backgroundColor: '#7f8c8d',
+          backgroundColor: 'rgb(235, 235, 235)',
           effect: 'rain'
         },
         'Forest': {

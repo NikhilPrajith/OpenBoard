@@ -214,7 +214,7 @@ export default function InfiniteCanvas({documentID}){
         changeTheme(theme, true);
         await data;
         if(!documentName){
-          if(!data){
+          if(!data || !data.boards){
             return;
           }
           const boardData = await data.boards.find(board => board.id === documentID);
@@ -228,9 +228,6 @@ export default function InfiniteCanvas({documentID}){
     
 
   }, [documentID, initialLoading]);
-
-
-
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
@@ -268,11 +265,12 @@ export default function InfiniteCanvas({documentID}){
     [reactFlowInstance],
   );
 
-
-  
- 
-  
   const onAdd = (type) => {
+    if(type == 'draw'){
+      setShowDraw(!showDraw);
+      return;
+    }
+
     let dragHandle = '';
     if (type == 'taskListNode' || type == "textElement"){
       dragHandle = '.dragHandle'
@@ -376,7 +374,7 @@ export default function InfiniteCanvas({documentID}){
 
   
   
-
+  const [showDraw, setShowDraw] = useState(false);
 
 
   return (
@@ -412,6 +410,8 @@ export default function InfiniteCanvas({documentID}){
         <VideoSearch setShowSidebar={setShowSidebar} onAddVideoFunction={onAddVideoFunction}></VideoSearch>
 
         {/*<SideBar themes={themes} isVisible={true} setShowSidebar={setShowSidebar} showSideBar={showSideBar} changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>*/}
+        
+      
       </ReactFlowProvider> 
     }
       {showCanvas == false &&

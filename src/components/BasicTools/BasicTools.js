@@ -31,6 +31,7 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
         <button onClick={(event) => onClick(event, 'flashCards')}><PiCardsFill/></button>
 
         <button onClick={(event) => onClick(event, 'picNote')}><IoIosImage/></button>
+
         
         {/*Sticker button popover*/}
         <Popover.Root>
