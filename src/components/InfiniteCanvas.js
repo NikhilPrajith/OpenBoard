@@ -227,7 +227,8 @@ export default function InfiniteCanvas({documentID}){
     
     
 
-  }, [documentID, initialLoading]);
+  }, [documentID, initialLoading, data.boards]);
+  
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();

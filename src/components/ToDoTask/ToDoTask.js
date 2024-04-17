@@ -28,7 +28,7 @@ const ToDoTask = ({blank, data}) => {
   const [deadline, setDeadline] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [title, setTitle] = useState('My Tasks');
+  const [title, setTitle] = useState(data.title || 'My Tasks');
 
   const taskListRef = useRef(null);
   const confettiRef = useRef(null);
@@ -143,6 +143,7 @@ const ToDoTask = ({blank, data}) => {
   });
   const handleTitleChange = (event) => {
     setTitle(event.target.value); // Update the state with the new value
+    data.title = event.target.value;
   };
 
   const deleteTask = (taskId) => {

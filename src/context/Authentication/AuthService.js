@@ -34,6 +34,7 @@ const AuthService = {
           },
           (error) => {
             console.error("Error fetching user data:", error);
+            setData({});
             setError(error.message);
           }
         );

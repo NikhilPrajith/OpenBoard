@@ -112,8 +112,18 @@ const DraggableTimer = ({isConnectable, data}) => {
     data.title = event.target.value;
   };
 
+
+  const [prevTime, setPrevTime] = useState(null);
+  //to avoid updating it frequently
   useEffect(() => {
-    data.time = time;
+    if(!prevTime){
+        setPrevTime(time);
+    }else{
+        if(prevTime - time > 3){
+            data.time = time;
+            setPrevTime(time);
+        }
+    }
   }, [time])
   
   const timerRef = useRef(null);
