@@ -256,7 +256,6 @@ export const BoardProvider = ({ children }) => {
 
   const prevNodesRef = useRef(nodes);
   const prevAlignmentRef = useRef(alignment);
-  const prevEdgesRef = useRef(edges);
   
   
   const haveNodesPositionOrLengthChanged = (prevNodes, newNodes) => {
@@ -266,7 +265,7 @@ export const BoardProvider = ({ children }) => {
       const prevNode = prevNodes[i];
       const newNode = newNodes.find(n => n.id === prevNode.id);
       // Assuming newNode always exists; you might need to handle cases where it doesn't
-      if (!newNode || prevNode.position.x !== newNode.position.x || prevNode.position.y !== newNode.position.y || prevNode.data !== newNode.data) {
+      if (!newNode || prevNode.position.x !== newNode.position.x || prevNode.position.y !== newNode.position.y) {
         return true;
       }
     }
@@ -277,17 +276,15 @@ export const BoardProvider = ({ children }) => {
   useEffect(() => {
     const nodesChanged = haveNodesPositionOrLengthChanged(prevNodesRef.current, nodes);
     const alignmentChanged = prevAlignmentRef.current !== alignment;
-    const edgesChanged = prevEdgesRef.current !== edges;
     
 
-    if (prevNodesRef.current.length !=0 && (nodesChanged || alignmentChanged ||edgesChanged )) {
+    if (prevNodesRef.current.length !=0 && (nodesChanged || alignmentChanged )) {
       setIsSavedBoard(false);
     }
 
     // Update refs for next comparison
     prevNodesRef.current = nodes;
   prevAlignmentRef.current = alignment;
-  prevEdgesRef.current = edges;
   }, [nodes, alignment, edges]);
 
 

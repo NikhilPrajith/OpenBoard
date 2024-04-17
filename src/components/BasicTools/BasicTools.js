@@ -33,7 +33,7 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
 
         <button onClick={(event) => onClick(event, 'picNote')}><IoIosImage/></button>
         
-        <button onClick={(event) => onClick(event, 'linkPreview')}><FaLink/></button>
+        {/*<button onClick={(event) => onClick(event, 'linkPreview')}><FaLink/></button>*/}
 
         
         {/*Sticker button popover*/}

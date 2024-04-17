@@ -22,6 +22,7 @@ import InViewDocument from './Card/InViewDocument';
 import DocumentCardComp from './Card/DocumentCard';
 import PicNote from './PicNote/PicNote';
 import useAuth from '@/context/Authentication/AuthProvider';
+import LinkPreview from './LinkPreview/LinkPreview';
 
 
 const snapGrid = [10, 10];
@@ -44,6 +45,7 @@ const nodeTypes = {
     cardDataNode:CardDataNode,
     documentComp:DocumentCardComp,
     picNote: PicNote,
+    linkPreview: LinkPreview,
 
   };
 
