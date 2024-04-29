@@ -10,7 +10,6 @@ import { auth,db, storage1 } from '@/firebase/firebase.config';
 import useAuth from '@/context/Authentication/AuthProvider';
 
 import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation'
 import { uploadBytes, getDownloadURL, ref, deleteObject } from 'firebase/storage';
 import { useBoard } from '@/context/BoardContext';
 
@@ -21,8 +20,6 @@ export default function PicNote({data, selected, isConnectable}) {
   const { user, initialLoading } = useAuth();
   const {setIsSavedBoard} = useBoard();
 
-  const pathname = usePathname();
-  const saveToStorage = [ '/canvas'].includes(pathname);
 
   // Handle file change (upload)
   const onChange = async ({ file }) => {
@@ -44,7 +41,7 @@ export default function PicNote({data, selected, isConnectable}) {
         return;
       }
   
-    if (file.status === 'done' && user && saveToStorage){
+    if (file.status === 'done' && user){
       console.log("Upload")
       const fileRef = ref(storage1, `userUploads/${user.uid}/${file.name}`);
       try {
@@ -66,7 +63,7 @@ export default function PicNote({data, selected, isConnectable}) {
         });
       }
 
-    }else if(file.status === 'done' && !user && saveToStorage){
+    }else if(file.status === 'done' && !user ){
       console.log("no user authenticated")  
       //JIC handiling
       notification.error({
