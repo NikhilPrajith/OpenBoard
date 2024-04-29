@@ -21,58 +21,8 @@ export default function PicNote({data, selected, isConnectable}) {
   const {setIsSavedBoard} = useBoard();
 
 
-  // Handle file change (upload)
-  const onChange = async ({ file }) => {
-    const maxSizeInBytes = 1024 * 1024 * 1; // 2MB for example
-    console.log("file error?", file)
-  
-    if (file.size > maxSizeInBytes && !fileTooLarge) {
-        notification.error({
-          message: 'File Size Too Big',
-          description: `File size exceeds the maximum limit of ${maxSizeInBytes / 1024 / 1024}MB.`,
-          icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
-        });
-        setFileTooLarge(true); // Prevents multiple notifications
-        return; // Stop processing the file
-      }
-  
-      // Reset the flag if user uploads a different file
-      if (file.status === 'done' && fileTooLarge) {
-        setFileTooLarge(false);
-        return;
-      }
-  
-    if (file.status === 'done' && user){
-      console.log("Upload")
-      const fileRef = ref(storage1, `userUploads/${user.uid}/${file.name}`);
-      try {
-        if(dataVal.url != '' ){
-          const delRef = ref(storage1, `userUploads/${user.uid}/${dataVal.fileName}`);
-          await deleteObject(delRef);
-        }
-        await uploadBytes(fileRef, file.originFileObj); // upload the file
-        const downloadURL = await getDownloadURL(fileRef); // get download URL
-        setData({ ...dataVal, url: downloadURL, fileName: file.name });
-        data.dataVal = { ...dataVal, url: downloadURL, fileName: file.name };
-        console.log("successful?");
-      } catch (error) {
-        console.log("error", error);
-        notification.error({
-          message: 'Upload Error',
-          description: 'Error occurred while uploading the file. Try again later!' ,
-          icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
-        });
-      }
-
-    }else if(file.status === 'done' && !user ){
-      console.log("no user authenticated")  
-      //JIC handiling
-      notification.error({
-        message: 'Sign in please!',
-        description: `File size exceeds the maximum limit of ${maxSizeInBytes / 1024 / 1024}MB.`,
-        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
-      });    
-    } else if(file.status === 'done') {
+  const customRequest = async ({ file, onSuccess, onError }) => {
+    if (!user) {
       const reader = new FileReader();
       reader.readAsDataURL(file.originFileObj);
       reader.onload = () => {
@@ -82,10 +32,45 @@ export default function PicNote({data, selected, isConnectable}) {
         // It's better to lift state up or use a context if this is needed
         data.dataVal = { ...dataVal, url: newUrl, fileName: file.name};
       };
+      return;
     }
-    setIsSavedBoard(false);
+
+    const fileRef = ref(storage1, `userUploads/${user.uid}/${file.name}`);
+    try {
+      if (dataVal.url && dataVal.fileName) {
+        const delRef = ref(storage1, `userUploads/${user.uid}/${dataVal.fileName}`);
+        await deleteObject(delRef);
+      }
+      await uploadBytes(fileRef, file);
+      const downloadURL = await getDownloadURL(fileRef);
+      setData({ ...dataVal, url: downloadURL, fileName: file.name });
+      data.dataVal = { ...dataVal, url: downloadURL, fileName: file.name };
+      onSuccess(null, file);
+    } catch (error) {
+      console.error("Upload error:", error);
+      onError(error);
+      notification.error({
+        message: 'Upload Error',
+        description: 'Error occurred while uploading the file. Try again later!',
+        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
+      });
+    }
   };
-  
+
+  const onChange = ({ file }) => {
+    const maxSizeInBytes = 1024 * 1024 * 1; // 1MB for example
+    if (file.size > maxSizeInBytes && !fileTooLarge) {
+      notification.error({
+        message: 'File Size Too Big',
+        description: `File size exceeds the maximum limit of 1MB.`,
+        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
+      });
+      setFileTooLarge(true);
+      return;
+    }
+    setFileTooLarge(false);
+  };
+
 
   const onPreview = async (file) => {
     let src = file.url || file.thumbUrl;
@@ -142,6 +127,8 @@ export default function PicNote({data, selected, isConnectable}) {
 
       <Upload
         listType="picture-card"
+
+        customRequest={customRequest}
         onChange={onChange}
         onPreview={onPreview}
         showUploadList={false}
