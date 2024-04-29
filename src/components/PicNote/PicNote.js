@@ -6,14 +6,26 @@ import { PlusOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { TwitterPicker } from 'react-color';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import styles from "./PicNote.module.css";
+import { auth,db, storage1 } from '@/firebase/firebase.config';
+import useAuth from '@/context/Authentication/AuthProvider';
+
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation'
+import { uploadBytes, getDownloadURL, ref, deleteObject } from 'firebase/storage';
+import { useBoard } from '@/context/BoardContext';
 
 export default function PicNote({data, selected, isConnectable}) {
-  const [dataVal, setData] = useState(data.dataVal || { url: '', caption: '' });
+  const [dataVal, setData] = useState(data.dataVal || { url: '', caption: '', fileName:''});
   const [showRemoveIcon, setShowRemoveIcon] = useState(false);
   const [fileTooLarge, setFileTooLarge] = useState(false);
+  const { user, initialLoading } = useAuth();
+  const {setIsSavedBoard} = useBoard();
+
+  const pathname = usePathname();
+  const saveToStorage = [ '/canvas'].includes(pathname);
 
   // Handle file change (upload)
-  const onChange = ({ file }) => {
+  const onChange = async ({ file }) => {
     const maxSizeInBytes = 1024 * 1024 * 1; // 2MB for example
   
     if (file.size > maxSizeInBytes && !fileTooLarge) {
@@ -32,17 +44,45 @@ export default function PicNote({data, selected, isConnectable}) {
         return;
       }
   
-    if (file.status === 'done') {
+    if (file.status === 'done' && user && saveToStorage){
+      const fileRef = ref(storage1, `userUploads/${user.uid}/${file.name}`);
+      try {
+        if(dataVal.url != '' ){
+          const delRef = ref(storage1, `userUploads/${user.uid}/${dataVal.fileName}`);
+          await deleteObject(delRef);
+        }
+        await uploadBytes(fileRef, file.originFileObj); // upload the file
+        const downloadURL = await getDownloadURL(fileRef); // get download URL
+        setData({ ...dataVal, url: downloadURL, fileName: file.name });
+        data.dataVal = { ...dataVal, url: downloadURL, fileName: file.name };
+      } catch (error) {
+        notification.error({
+          message: 'Upload Error',
+          description: 'Error occurred while uploading the file. Try again later!' ,
+          icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
+        });
+      }
+
+    }else if(file.status === 'done' && !user && saveToStorage){
+      console.log("no user authenticated")  
+      //JIC handiling
+      notification.error({
+        message: 'Sign in please!',
+        description: `File size exceeds the maximum limit of ${maxSizeInBytes / 1024 / 1024}MB.`,
+        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
+      });    
+    } else if(file.status === 'done') {
       const reader = new FileReader();
       reader.readAsDataURL(file.originFileObj);
       reader.onload = () => {
         const newUrl = reader.result;
-        setData({ ...dataVal, url: newUrl });
+        setData({ ...dataVal, url: newUrl, fileName: file.name });
         // You might not want to directly mutate the props like below
         // It's better to lift state up or use a context if this is needed
-        data.dataVal = { ...dataVal, url: newUrl};
+        data.dataVal = { ...dataVal, url: newUrl, fileName: file.name};
       };
     }
+    setIsSavedBoard(false);
   };
   
 
@@ -112,7 +152,7 @@ export default function PicNote({data, selected, isConnectable}) {
       >
         {dataVal.url ? (
 
-            <img src={dataVal.url} alt="uploaded" style={{ width: '100%' }} />
+            <img src={dataVal.url} alt="uploaded" style={{ width: '100%', height:'100%' }} />
 
         ) : uploadButton}
       </Upload>

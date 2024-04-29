@@ -36,6 +36,21 @@ Imp:
     When data of the nodes change, update the isBoardSaved
 
 
+Next up:
+    Images storage in firebase storage for picNotes
+        Maybe review edge connections for them?
+    Timer runs with edges, such that when one is done, the next one starts 
+    Link preview node
+    Save the size of sticky picNotes
+    Board node, a node that links to another board
+    Add plugins for emojis, and shapes
+    Use api for images 
+    Add a code editor node
+
+
+
+
+
 https://ant.design/components/tour
 
 to do: 
