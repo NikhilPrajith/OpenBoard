@@ -37,7 +37,7 @@ Imp:
 
 
 Next up:
-    Images storage in firebase storage for picNotes
+    DONE -Images storage in firebase storage for picNotes
         Maybe review edge connections for them?
     Timer runs with edges, such that when one is done, the next one starts 
     Link preview node

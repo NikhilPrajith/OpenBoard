@@ -45,6 +45,7 @@ export default function PicNote({data, selected, isConnectable}) {
       }
   
     if (file.status === 'done' && user && saveToStorage){
+      console.log("Upload")
       const fileRef = ref(storage1, `userUploads/${user.uid}/${file.name}`);
       try {
         if(dataVal.url != '' ){
@@ -55,7 +56,9 @@ export default function PicNote({data, selected, isConnectable}) {
         const downloadURL = await getDownloadURL(fileRef); // get download URL
         setData({ ...dataVal, url: downloadURL, fileName: file.name });
         data.dataVal = { ...dataVal, url: downloadURL, fileName: file.name };
+        console.log("successful?");
       } catch (error) {
+        console.log("error", error);
         notification.error({
           message: 'Upload Error',
           description: 'Error occurred while uploading the file. Try again later!' ,
