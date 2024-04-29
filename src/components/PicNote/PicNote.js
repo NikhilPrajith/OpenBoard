@@ -24,6 +24,7 @@ export default function PicNote({data, selected, isConnectable}) {
   // Handle file change (upload)
   const onChange = async ({ file }) => {
     const maxSizeInBytes = 1024 * 1024 * 1; // 2MB for example
+    console.log("file error?", file)
   
     if (file.size > maxSizeInBytes && !fileTooLarge) {
         notification.error({
