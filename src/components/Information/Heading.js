@@ -118,7 +118,7 @@ export default function Heading({open, type}) {
   return (
     <div className={styles.headingContainer}>
         <div className={styles.titleCont} style={{ marginLeft: open ? '120px' : '0px', transition: 'margin-left 0.1s ease' }}>
-          <div className={styles.title}>Vibing</div>
+          <div className={styles.title}><a href="/">Vibing</a></div>
           <div className={styles.subtitle}>A fun time project</div>
         </div>
 
