@@ -29,7 +29,7 @@ export default function page() {
   return (
     <div style={{marginTop:'55px', marginLeft:'65px'}}>
     <Tabs value="list">
-      <TabsHeader className='' style={{marginLeft:'16px', marginRight:'16px', marginTop:'16px'}}>
+      <TabsHeader className='' style={{marginLeft:'16px', marginRight:'16px', marginTop:'16px', backgroundColor:'color(srgb 0.9764 0.9765 0.9766)'}}>
         {data.map(({ label, value }) => (
           <Tab key={value} value={value}>
             {label}
@@ -38,9 +38,6 @@ export default function page() {
       </TabsHeader>
       <TabsBody
         animate={{
-          initial: { x: 250 },
-          mount: { y: 0 },
-          unmount: { x: 250 },
         }}
         style={{padding:'0px !important'}}
       >
