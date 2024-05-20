@@ -37,12 +37,8 @@ export default function Home() {
 function Content() {
   const searchParams = useSearchParams();
   const documentID = searchParams.get('documentId'); // Retrieve documentID from URL
-  
-  const {
-    isSavedBoard, saveDataToLocalStorageBoard, onSave, setDocumentId
-  } = useBoard();
 
-  const roomId = searchParams.get('roomId');
+  
   const {user, initialLoading} = useAuth();
   const router = useRouter();
 
@@ -56,7 +52,6 @@ function Content() {
     }
 
   }, [user, initialLoading, documentID])
-  
 
   /*
   useEffect(() => {
@@ -66,6 +61,6 @@ function Content() {
   */
 
   return (
-      <InfiniteCanvasNoSSR documentID={documentID} />
+      <DocumentNoSSR documentID={documentID} />
   );
 }

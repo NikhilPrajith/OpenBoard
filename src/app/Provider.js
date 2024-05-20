@@ -4,6 +4,7 @@ import { TaskProvider } from '@/context/TaskContext';
 import { BoardProvider } from '@/context/BoardContext';
 import { AuthProvider } from '@/context/Authentication/AuthProvider';
 import AuthStateChanged from '@/context/Authentication/AuthStateChanged';
+import { DocumentProvider } from '@/context/DocumentContext';
 
 export default function Provider({children}) {
 
@@ -12,11 +13,13 @@ export default function Provider({children}) {
     <>
     <AuthProvider>
       <AuthStateChanged>
-        <TaskProvider>
-            <BoardProvider>
-              {children}
-            </BoardProvider>
-        </TaskProvider>
+        <DocumentProvider>
+          <TaskProvider>
+              <BoardProvider>
+                {children}
+              </BoardProvider>
+          </TaskProvider>
+        </DocumentProvider>
       </AuthStateChanged>
     </AuthProvider>
     </>

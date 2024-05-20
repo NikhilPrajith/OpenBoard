@@ -45,7 +45,7 @@
     border: 1px solid #eee;
     color: gray;
     border-radius: 4px;
-    background-color: transparent;
+    background-color: white;
     width: calc(100%); /* Adjust padding */
 }
 
@@ -89,7 +89,7 @@
     border: 1px solid #eee;
     color: gray;
     border-radius: 4px;
-    background-color: transparent;
+    background-color: white;
   }
   .categorySelect:focus {
     outline: none; /* Remove the focus outline */

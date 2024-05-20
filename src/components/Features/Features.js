@@ -22,6 +22,7 @@ import { FaThList } from "react-icons/fa";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { MdSpaceDashboard } from "react-icons/md";
+import { FcTodoList } from "react-icons/fc";
 
 import { FcCloth } from "react-icons/fc";
 import useAuth from '@/context/Authentication/AuthProvider';
@@ -99,11 +100,11 @@ export default function Features({setType, setOpenParent}) {
   const iconSize = 17;
   const pageIcons = {
     0:{icon: <FcCloth size={iconSize} />, page: "/"},
-    1:{icon:<MdPlaylistAddCircle size={iconSize}/>, page: "/tasks"},
+    1:{icon:<FcTodoList size={iconSize}/>, page: "/tasks"},
     2:{icon:<FaThList size={iconSize}></FaThList>, page: "/board"},
-    3:{icon:<IoDocumentText size={iconSize}/>, page: "/docs"},
 
     4:{icon:<MdSpaceDashboard size={iconSize}/>, page: "/dashboard"},
+    //3:{icon:<IoDocumentText size={iconSize}/>, page: "/docs"},
   }
   const router = useRouter();
   const handleNavigation = (page) => {
@@ -124,7 +125,7 @@ export default function Features({setType, setOpenParent}) {
         '& .MuiListItemIcon-root': { color: 'black', fontSize: '12px' }, // Adjusted font size for text
         '& .MuiSvgIcon-root': { fontSize: '12px' }, // Adjusted font size for icons
       }}>
-        {['Local Playground', 'Tasker', 'Lists', 'Docs'].map((text, index) => (
+        {['Local Playground', 'Tasker'].map((text, index) => (
           <ListItem  onClick={() => handleNavigation(pageIcons[index].page)} key={text} disablePadding sx={{ display: 'block' }}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center'}}> {/* Explicitly target icons within ListItemIcon */}

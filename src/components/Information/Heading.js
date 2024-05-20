@@ -24,6 +24,7 @@ import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation'
 
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
+import { useDocument } from '@/context/DocumentContext';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -52,12 +53,14 @@ const SignUp = ({ onSwitch,closeDialog }) => (
 export default function Heading({open, type}) {
   const router = useRouter();
   const pathname = usePathname();
-  const {isSaved, saveDataToLocalStorage} = useTasks();
+  const {isSavedTasks, saveDataToLocalStorageTasks, saveTasksToDb} = useTasks();
   const {
     isSavedBoard, saveDataToLocalStorageBoard, onSave,
     saveBoardState,
     restoreBoardState, renameBoard, documentName} = useBoard();
   //const {isSavedBoard,saveFlow} = useStore();
+
+  const {setIsDocSaved, isDocSaved, saveDocumentData,documentId} = useDocument();
 
   const [selected, setSelected] = React.useState(false);
   /*
@@ -106,6 +109,10 @@ export default function Heading({open, type}) {
 
   const showLocalSave = [ '/'].includes(pathname);
 
+  const showDocSave = [ '/documents'].includes(pathname);
+
+  const showTaskSave = [ '/tasks'].includes(pathname);
+
 
   //collaboration:
   return (
@@ -135,6 +142,29 @@ export default function Heading({open, type}) {
               <div className={styles.autoSave}>Auto save unavailable</div>
           </div>
           {!isSavedBoard  && <div className={styles.saveNowButton} onClick={onSave}>Save locally</div>}
+          <div style={{width:'0.1px', border:'0.1px #eee solid', height:'17px'}}></div>
+          </>}
+          {/*Saving for tasks*/}
+          { showTaskSave && <>
+          <div className={styles.isSavedText}>{isSavedTasks ? <span className={styles.saved}>Data Persisted</span> : 
+                <span className={styles.unsaved}>Unsaved changes!</span>}
+              <div className={styles.autoSave}>Auto save unavailable</div>
+          </div>
+          {!isSavedTasks  && <div>
+            {user ? <div className={styles.saveNowButton} onClick={saveTasksToDb}>Save Now!</div> :
+            <div className={styles.saveNowButton} onClick={saveDataToLocalStorageTasks}>Save Now Locally!</div>
+          }</div>}
+          <div style={{width:'0.1px', border:'0.1px #eee solid', height:'17px'}}></div>
+          </> }
+
+
+          {/*Need document ID otherwise saving is not possible */}
+          {showDocSave && user &&  documentId &&<>
+          <div className={styles.isSavedText}>{isDocSaved ? <span className={styles.saved}>Doc Data Persisted!</span> : 
+                <span className={styles.unsaved}>Unsaved changes!</span>}
+              <div className={styles.autoSave}>Auto save unavailable</div>
+          </div>
+          {!isDocSaved  && <div className={styles.saveNowButton} onClick={saveDocumentData}>Save Now!</div>}
           <div style={{width:'0.1px', border:'0.1px #eee solid', height:'17px'}}></div>
           </>}
           <a target="_blank" rel="noopener noreferrer" className={styles.feedbackButton} href="https://forms.gle/YKWZ8iL1w6fHmp1RA">

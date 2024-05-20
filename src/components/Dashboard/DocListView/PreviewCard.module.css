@@ -1,0 +1,57 @@
+.parent{
+    height: 100%;
+    padding: 0px;
+    background-color: rgb(195, 198, 249);
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    border:1px #eee solid;
+    position: relative; /* Needed for absolute positioning of child */
+    cursor: pointer;
+    margin: 10px;
+
+}
+.parent:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+.cont{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+.cont>div:last-child{
+    margin-left: 10px;
+
+}
+.header{
+    font-weight: 500;
+}
+.cont2{
+    border-top:0.2px solid #eee;
+    margin-top: 7px;
+    padding-top: 7px;
+}
+.createdOn{
+    color: grey;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+/* Delete button styling */
+.delete {
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    right: -10px; /* Adjust as needed */
+    background-color: rgb(255, 83, 83); /* Example background color */
+    color: white; /* Text color */
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    display: none; /* Hide by default */
+  }
+  
+  /* Show the delete button only when the parent container is hovered */
+  .parent:hover .delete {
+    display: block;
+  }

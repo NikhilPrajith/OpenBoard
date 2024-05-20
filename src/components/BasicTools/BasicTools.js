@@ -1,19 +1,16 @@
 import React from 'react';
 import styles from "./BasicTools.module.css";
-import { FaListAlt, FaStickyNote } from "react-icons/fa";
-import { RiTimer2Fill } from "react-icons/ri";
-import { MdVideoLibrary } from "react-icons/md";
-import { PiCardsFill, PiTextTBold } from "react-icons/pi";
+import { PiCardsFill, PiTextTBold,PiVideoFill,PiTextTFill } from "react-icons/pi";
 import * as Popover from '@radix-ui/react-popover';
-import { Cross2Icon } from '@radix-ui/react-icons';
 import { FcStart,FcAlarmClock,FcRules,FcLike} from "react-icons/fc";
 import Themes from '../Themes/Themes';
 import { IoIosClose } from "react-icons/io";
 import Stickers from '../CoolStuff/Stickers';
 import { RiEmojiStickerFill } from "react-icons/ri";
-import { BsCardText } from "react-icons/bs";
 import { IoIosImage } from "react-icons/io";
-import { FaLink } from "react-icons/fa";
+import { FaLink, FaClipboardList } from "react-icons/fa";
+import { MdTimer, MdImage, MdDashboardCustomize } from "react-icons/md";
+import { FaNoteSticky, FaLightbulb } from "react-icons/fa6";
 
 export default function BasicTools({ addingNode, themes,changeTheme, addImageFunction }) {
   const onClick = (event, nodeType) => {
@@ -23,15 +20,12 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
   return (
     <div className={`${styles.container} drag`}>
       <div className={styles.innerContainer}>
-        <button onClick={(event) => onClick(event, 'taskListNode')}><FcRules /></button>
-        <button onClick={(event) => onClick(event, 'stickyNote')}><FaStickyNote /></button>
-        <button onClick={(event) => onClick(event, 'timer')}><FcAlarmClock /></button>
-        <button onClick={(event) => onClick(event, 'video')}><FcStart /></button>
-        <button onClick={(event) => onClick(event, 'textElement')}><PiTextTBold /></button>
-
-        <button onClick={(event) => onClick(event, 'flashCards')}><PiCardsFill/></button>
-
-        <button onClick={(event) => onClick(event, 'picNote')}><IoIosImage/></button>
+        <button onClick={(event) => onClick(event, 'taskListNode')}><FaClipboardList /></button>
+        <button onClick={(event) => onClick(event, 'stickyNote')}><FaNoteSticky /></button>
+        <button onClick={(event) => onClick(event, 'timer')}><MdTimer /></button>
+        <button onClick={(event) => onClick(event, 'video')}><PiVideoFill /></button>
+        <button onClick={(event) => onClick(event, 'textElement')}><PiTextTFill /></button>
+        <button onClick={(event) => onClick(event, 'picNote')}><MdImage/></button>
         
         {/*<button onClick={(event) => onClick(event, 'linkPreview')}><FaLink/></button>*/}
 
@@ -58,12 +52,30 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
           </Popover.Portal>
         </Popover.Root>
 
+        {/* for addittional features */}
+        <Popover.Root>
+          <Popover.Trigger asChild>
+            <button className={styles.IconButton} aria-label="Update dimensions">
+              <MdDashboardCustomize/>
+            </button>
+          </Popover.Trigger>
+          <Popover.Portal className={styles.PopoverPortal}>
+            <Popover.Content className={styles.PopoverContent} sideOffset={0} align="start" side="top">
+              <div>
+                
+              </div>
+              <Popover.Close className={styles.PopoverClose} aria-label="Close">
+                <IoIosClose />
+              </Popover.Close>
+            </Popover.Content>
+          </Popover.Portal>
+        </Popover.Root>
 
         {/* Theme button with Popover */}
         <Popover.Root>
           <Popover.Trigger asChild>
             <button className={styles.IconButton} aria-label="Update dimensions">
-              <FcLike/>
+              <FaLightbulb/>
             </button>
           </Popover.Trigger>
           <Popover.Portal className={styles.PopoverPortal}>

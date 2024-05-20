@@ -1,38 +1,67 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import { BlockNoteView, useCreateBlockNote } from "@blocknote/react";
+import React, { useState, useEffect, useMemo } from 'react';
+import { BlockNoteView,Block, BlockNoteEditor, PartialBlock, useCreateBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
 import "./Documents.css";
 import { TwitterPicker } from 'react-color';
+import { useDocument } from '@/context/DocumentContext';
 
-export default function DocumentComp() {
-  const [title, setTitle] = useState('');
+export default function DocumentComp({documentID}) {
+  const {title, setTitle, setIsDocSaved, setDocumentData, documentData, setTitleChanged, titleChanged,
+    setDocumentId, loading, setLoading, restoreDocumentData, initialContent, setInitialContent} = useDocument();
   const [color, setColor] = useState('#F9F9F9');
   const [showColorPicker, setShowColorPicker] = useState(false);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
+    setIsDocSaved(false);
+    setTitleChanged(true);
   }
-
   const handleColorClick = () => {
     setShowColorPicker(!showColorPicker);
   }
-
   const handleColorChange = (newColor) => {
     setColor(newColor.hex);
     setShowColorPicker(false); // Close color picker after selection
   }
 
-  const editor = useCreateBlockNote({
-    domAttributes: {
-      TextCursorPosition: {
-        class: 'cursor'
-      }
-    },
-  });
+  const saveToInstance = async (blocks) => {
+    console.log("Save to instance");
+    setIsDocSaved(false);
+    setDocumentData(JSON.stringify(blocks))
+  }
+
+  const editor = useMemo(() => {
+    if (initialContent && !loading) {
+      return useCreateBlockNote({
+        initialContent: JSON.parse(initialContent),
+        domAttributes: { TextCursorPosition: { class: 'cursor' } }
+      });
+    }
+    return null;
+  }, [initialContent, loading]);
+
+  if (editor === undefined) {
+    return "Loading content...";
+  }
+ 
 
   const customColors = ['#fff', '#F9F9F9', '#F9EAEA', '#EAF3F9', '#F7FFF4', '#FFF9F4',
     '#FFF4FE', '#F7CDF4', '#ECECEC'];
+
+  useEffect(() => {
+    if(documentID){
+      console.log("has id and call restore")
+      restoreDocumentData(documentID);
+
+    console.log("documentID exists", documentID);
+    setDocumentId(documentID);
+    }else{
+        setInitialContent(JSON.stringify([])); // Set to empty if no document ID
+        setLoading(false);
+    }
+  }, [documentID, user])
+  
 
   return (
     <div style={{ backgroundColor: `${color}` }} className='documentContainer'>
@@ -48,13 +77,18 @@ export default function DocumentComp() {
       )}
 
       {/* BlockNoteView */}
-      <BlockNoteView theme="light" data-theming-css-demo editor={editor} autoFocus={true}>
+      {editor &&<BlockNoteView theme="light" data-theming-css-demo editor={editor} autoFocus={true}
+        onChange={() => {
+          saveToInstance(editor.document);
+        }}
+      
+      >
 
         {/* Circle showing current color */}
         <div className="color-circle" style={{ backgroundColor: `${color}` }} onClick={handleColorClick}></div>
 
         <input onChange={handleTitleChange} className='heading1' value={title} placeholder="Document title..." style={{ fontStyle: 'normal' }} />
-      </BlockNoteView>
+      </BlockNoteView>}
     </div>
   );
 }

@@ -201,10 +201,11 @@ const ToDoTask = ({blank, data}) => {
             </div>
           </animated.div>
         ))}
+      
+      </div>
       <button onClick={addTask} className={styles.addButton}>
         <FaPlus /> <span>Add task</span>
       </button>
-      </div>
     </div>
   );
 };
