@@ -18,9 +18,8 @@ const EmojiHub = ({ addImageFunction }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div >
 
-      <div className={styles.lookingFor}></div>
       <Picker
         title='Pick your emoji…'
         emoji='point_up'
