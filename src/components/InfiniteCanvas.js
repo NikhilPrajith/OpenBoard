@@ -360,7 +360,7 @@ export default function InfiniteCanvas({documentID}){
         const newNode = {
           id: `themeStickers_${getNodeId(theme.name)}`, // Modify this to include theme identifier
           type: 'stickers',
-          data: { url: url },
+          data: { url: url, type:'Image' },
           style: { padding: 4 },
           position: {
             x: Math.random() * window.innerWidth - 100,
