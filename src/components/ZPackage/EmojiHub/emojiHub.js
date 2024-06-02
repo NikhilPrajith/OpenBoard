@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-import styles from './EmojiHub.module.css';
 
 import { IoSearch } from "react-icons/io5";
 
