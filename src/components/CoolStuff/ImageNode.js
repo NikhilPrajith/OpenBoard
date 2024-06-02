@@ -14,25 +14,34 @@ export default function ImageNode({ data, isConnectable, selected }) {
 
   return (
     <>
+    {data.type === 'Image' &&
       <NodeResizer 
         color="#000" 
         isVisible={selected} 
         onResize={handleResize} 
         keepAspectRatio={true}
-      />
+      />}
       <div 
-        style={{
-          width: `${size.width}`, 
-          height: `${size.height}`,
-          position: 'relative', 
-          opacity:'0.8'
-        }}
+         style={
+          data.type === 'Image'
+            ? {
+                width: `${size.width}`,
+                height: `${size.height}`,
+                position: 'relative',
+                opacity: '0.8',
+              }
+            : {}
+        }
       >
+      {data.type == 'Image' ?
         <img 
           src={data.url} 
           style={{ width: '100%', height: '100%' }} 
           alt=""
         />
+      :
+      <div style={{width:'100%',height:'100%', fontSize:'37px'}}>{data.url}</div>
+      }
       </div>
     </>
   );

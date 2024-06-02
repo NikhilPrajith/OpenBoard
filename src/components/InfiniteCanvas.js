@@ -13,7 +13,7 @@ import ImageNode from './CoolStuff/ImageNode';
 import Stickers from './CoolStuff/Stickers';
 import Video from './Video/Video';
 import VideoSearch from './VideoSearch/VideoSearch';
-import FlashCards from './FlashCards/FlashCards';
+import FlashCards from './ZPackage/FlashCards/FlashCards';
 import TextNode from './Text/Text';
 import useStore, { useBoard } from '@/context/BoardContext';
 import CardComp from './Card/Card';
@@ -269,6 +269,7 @@ export default function InfiniteCanvas({documentID}){
   );
 
   const onAdd = (type) => {
+    console.log("add type", type)
     if(type == 'draw'){
       setShowDraw(!showDraw);
       return;
@@ -302,12 +303,12 @@ export default function InfiniteCanvas({documentID}){
     addNode(newNode);
   };
 
-  const onAddStcikers = (url) => {
-
+  const onAddStcikers = (url, srcType='Image') => {
+    console.log("srcType", srcType, url);
     const newNode = {
       id: getNodeId(),
       type: 'stickers',
-      data:{url:url},
+      data:{url:url, type:srcType},
       style: {padding: 4 },
       position: {
         x: Math.random() * window.innerWidth +100,

@@ -5,7 +5,7 @@ import { getInitials } from "../../utils";
 import { Tooltip } from "../Tooltip";
 import styles from "./Avatar.module.css";
 
-const DEFAULT_SIZE = 24;
+const DEFAULT_SIZE = 20;
 const FONT_SIZE_FACTOR = 0.36;
 
 interface EllipsisProps extends ComponentProps<"div"> {

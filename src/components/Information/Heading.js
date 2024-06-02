@@ -141,7 +141,7 @@ export default function Heading({open, type}) {
                 <span className={styles.unsaved}>Unsaved changes!</span>}
               <div className={styles.autoSave}>Auto save unavailable</div>
           </div>
-          {!isSavedBoard  && <div className={styles.saveNowButton} onClick={onSave}>Save locally</div>}
+          {!isSavedBoard  && <div className={styles.saveNowButton} onClick={onSave}>Save Locally!</div>}
           <div style={{width:'0.1px', border:'0.1px #eee solid', height:'17px'}}></div>
           </>}
           {/*Saving for tasks*/}
@@ -152,7 +152,7 @@ export default function Heading({open, type}) {
           </div>
           {!isSavedTasks  && <div>
             {user ? <div className={styles.saveNowButton} onClick={saveTasksToDb}>Save Now!</div> :
-            <div className={styles.saveNowButton} onClick={saveDataToLocalStorageTasks}>Save Now Locally!</div>
+            <div className={styles.saveNowButton} onClick={saveDataToLocalStorageTasks}>Save Locally!</div>
           }</div>}
           <div style={{width:'0.1px', border:'0.1px #eee solid', height:'17px'}}></div>
           </> }
@@ -183,7 +183,7 @@ export default function Heading({open, type}) {
                   <Avatar
                 className={styles.profileAvatar}
                 name={user.displayName}
-                size={32}
+                size={29}
                 src={`https://liveblocks.io/avatars/avatar-2.png`}
               />
 

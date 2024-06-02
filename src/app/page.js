@@ -31,11 +31,12 @@ export default function Home() {
 
   return (
     <div>
-      {/* Wrap parts of your component that use useSearchParams with Suspense */}
+      {/* Wrap parts of your component that use useSearchParams with Suspense 
       <Suspense fallback={<div>Loading...</div>}>
         <Content />
-      </Suspense>
-      <div style={displayStyleForType('Endless Board')}>
+      </Suspense>*/}
+      {/*<div style={displayStyleForType('Endless Board')}>*/}
+      <div>
         {/* InfiniteCanvas and Document can be loaded here if needed */}
         <InfiniteCanvasNoSSR />
         {/* <DocumentNoSSR /> Optionally add if needed */}

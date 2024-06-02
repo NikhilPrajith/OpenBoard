@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "./BasicTools.module.css";
-import { PiCardsFill, PiTextTBold,PiVideoFill,PiTextTFill } from "react-icons/pi";
+import { PiCardsFill, PiTextTBold, PiVideoFill, PiTextTFill } from "react-icons/pi";
 import * as Popover from '@radix-ui/react-popover';
-import { FcStart,FcAlarmClock,FcRules,FcLike} from "react-icons/fc";
+import { FcStart, FcAlarmClock, FcRules, FcLike } from "react-icons/fc";
 import Themes from '../Themes/Themes';
 import { IoIosClose } from "react-icons/io";
 import Stickers from '../CoolStuff/Stickers';
@@ -11,8 +11,16 @@ import { IoIosImage } from "react-icons/io";
 import { FaLink, FaClipboardList } from "react-icons/fa";
 import { MdTimer, MdImage, MdDashboardCustomize } from "react-icons/md";
 import { FaNoteSticky, FaLightbulb } from "react-icons/fa6";
+import MoreFeaturesView from '../MoreFeaturesView/MoreFeaturesView';
 
-export default function BasicTools({ addingNode, themes,changeTheme, addImageFunction }) {
+export default function BasicTools({ addingNode, themes, changeTheme, addImageFunction }) {
+  const [popoverContent, setPopoverContent] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  const handleClick = (content) => {
+    setPopoverContent(content);
+    setOpen(true);
+  };
   const onClick = (event, nodeType) => {
     addingNode(nodeType);
   };
@@ -26,74 +34,45 @@ export default function BasicTools({ addingNode, themes,changeTheme, addImageFun
         <button onClick={(event) => onClick(event, 'video')}><PiVideoFill /></button>
         <button onClick={(event) => onClick(event, 'textElement')}><PiTextTFill /></button>
         <button onClick={(event) => onClick(event, 'picNote')}><MdImage/></button>
-        
-        {/*<button onClick={(event) => onClick(event, 'linkPreview')}><FaLink/></button>*/}
-
-        
-        {/*Sticker button popover*/}
-        <Popover.Root>
-          <Popover.Trigger asChild>
-            <button className={styles.IconButton} aria-label="Update dimensions">
-              <RiEmojiStickerFill/>
-            </button>
-          </Popover.Trigger>
-          <Popover.Portal className={styles.PopoverPortal}>
-            <Popover.Content className={styles.PopoverContent} sideOffset={0} align="start" side="top">
-              <div>
-                <p className={styles.Text} style={{ marginBottom: 10 }}>
-                 Stcikers
-                </p>
-                <Stickers addImageFunction={addImageFunction}></Stickers>
-              </div>
-              <Popover.Close className={styles.PopoverClose} aria-label="Close">
-                <IoIosClose />
-              </Popover.Close>
-            </Popover.Content>
-          </Popover.Portal>
-        </Popover.Root>
-
-        {/* for addittional features */}
-        <Popover.Root>
-          <Popover.Trigger asChild>
-            <button className={styles.IconButton} aria-label="Update dimensions">
-              <MdDashboardCustomize/>
-            </button>
-          </Popover.Trigger>
-          <Popover.Portal className={styles.PopoverPortal}>
-            <Popover.Content className={styles.PopoverContent} sideOffset={0} align="start" side="top">
-              <div>
-                
-              </div>
-              <Popover.Close className={styles.PopoverClose} aria-label="Close">
-                <IoIosClose />
-              </Popover.Close>
-            </Popover.Content>
-          </Popover.Portal>
-        </Popover.Root>
-
-        {/* Theme button with Popover */}
-        <Popover.Root>
-          <Popover.Trigger asChild>
-            <button className={styles.IconButton} aria-label="Update dimensions">
-              <FaLightbulb/>
-            </button>
-          </Popover.Trigger>
-          <Popover.Portal className={styles.PopoverPortal}>
-            <Popover.Content className={styles.PopoverContent} sideOffset={0} align="start" side="top">
-              <div>
-                <p className={styles.Text} style={{ marginBottom: 10 }}>
-                 Themes
-                </p>
-                <Themes themes={themes} changeTheme={changeTheme}></Themes>
-              </div>
-              <Popover.Close className={styles.PopoverClose} aria-label="Close">
-                <IoIosClose />
-              </Popover.Close>
-            </Popover.Content>
-          </Popover.Portal>
-        </Popover.Root>
-        
+        <button onClick={() => handleClick('stickers')}><RiEmojiStickerFill /></button>
+        <button onClick={() => handleClick('componentLibrary')}><MdDashboardCustomize /></button>
+        <button onClick={() => handleClick('themes')}><FaLightbulb /></button>
       </div>
+      
+      <Popover.Root open={open} onOpenChange={setOpen}>
+        <Popover.Trigger asChild>
+          <div style={{ display: 'none' }}></div>
+        </Popover.Trigger>
+        <Popover.Anchor />
+        <Popover.Portal>
+          <Popover.Content className={styles.PopoverContent} sideOffset={10} align="center" side="left">
+            <div>
+              {popoverContent === 'stickers' && (
+                <div>
+                  <p className={styles.Text} style={{ marginBottom: 10 }}>Stickers</p>
+                  <Stickers addImageFunction={addImageFunction} />
+                </div>
+              )}
+              {popoverContent === 'componentLibrary' && (
+                <div>
+                  <p className={styles.Text} style={{ marginBottom: 10 }}>Component Library</p>
+                  <MoreFeaturesView onClickFunc={(type) => addingNode(type)} addImageFunction={addImageFunction} />
+                </div>
+              )}
+              {popoverContent === 'themes' && (
+                <div>
+                  <p className={styles.Text} style={{ marginBottom: 10 }}>Themes</p>
+                  <Themes themes={themes} changeTheme={changeTheme} />
+                </div>
+              )}
+            </div>
+            <Popover.Close className={styles.PopoverClose} aria-label="Close">
+              <IoIosClose />
+            </Popover.Close>
+            <Popover.Arrow className="PopoverArrow" />
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
     </div>
   );
 }

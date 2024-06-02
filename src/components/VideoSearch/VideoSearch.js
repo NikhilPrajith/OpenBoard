@@ -39,8 +39,7 @@ const VideoSearch = ({ onAddVideoFunction }) => {
   }, []);
 
   const handleSearch = async () => {
-    console.log("hadnle search")
-    const key =  process.env.NEXT_PUBLIC_YOUTUBE_API; // Replace with your actual YouTube Data API key
+    const key =  process.env.NEXT_PUBLIC_YOUTUBE_API; 
     try {
       const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&key=${key}&maxResults=8`;
       const response = await axios.get(url);
@@ -60,6 +59,11 @@ const VideoSearch = ({ onAddVideoFunction }) => {
     onAddVideoFunction(videoUrl); // Call the passed function with the video URL
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
   return (
     <div className={styles.videoSearchContainer}>
       <button onClick={toggleSearch} className={styles.toggleButton}>
@@ -73,6 +77,7 @@ const VideoSearch = ({ onAddVideoFunction }) => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className={styles.searchBar}
+            onKeyPress={handleKeyPress}
           />
           <button onClick={handleSearch} className={styles.searchBarButton}>
             <IoSearch />

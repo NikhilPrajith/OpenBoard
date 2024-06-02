@@ -33,15 +33,6 @@ export const TaskProvider = ({ children }) => {
     IDK: "rgb(249, 238, 199)",
   };
   const defaultTasks = [
-    {
-      id: "1",
-      list: "Fun",
-      title: "Have fun",
-      category: "😍",
-      bgColor: taskCategories["😍"],
-      completed: false,
-      dueDate: new Date().toISOString().split("T")[0],
-    },
   ];
   const [categories, setListCategories] = useState(listCategories);
   const [taskCategoriesState, setTaskCategories] = useState(taskCategories);

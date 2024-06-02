@@ -25,6 +25,11 @@ body {
   border:3px black solid !important;
   border-radius: 6px !important;
 }
+/*
+[data-radix-popper-content-wrapper] {
+  top: 50% !important; 
+  transform: translateY(-50%) !important;
+}*/
 
 @layer utilities {
   .text-balance {

@@ -64,3 +64,22 @@ Save and Restore
 https://reactflow.dev/examples/interaction/save-and-restore
 
 
+
+
+function complete(answer) {
+    const flattened = answer.flat();
+
+    const cells = document.querySelectorAll('.grid-cell');
+
+    // Iterate through the flattened array
+    flattened.forEach((value, index) => {
+        cells[index].click()
+        if (value === 0) {
+            // Click the cell twice if the value is 0
+            cells[index].click();
+        }
+    });
+
+    console.log('Clicking completed.');
+}
+const complete = answer => answer.flat().forEach((value, index) => (document.querySelectorAll('.grid-cell')[index].click(), value === 0 && document.querySelectorAll('.grid-cell')[index].click()));
