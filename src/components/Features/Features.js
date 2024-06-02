@@ -23,6 +23,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { MdSpaceDashboard } from "react-icons/md";
 import { FcTodoList } from "react-icons/fc";
+import styles from "./Features.module.css"
 
 import { FcCloth } from "react-icons/fc";
 import useAuth from '@/context/Authentication/AuthProvider';
@@ -149,7 +150,11 @@ export default function Features({setType, setOpenParent}) {
         
       </List>
       <Divider />
+      <div className={styles.versionText}>
+        Version 0.5
+      </div>
     </Drawer>
+    
   </Box>
   );
 }
