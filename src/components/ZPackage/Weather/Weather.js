@@ -57,7 +57,7 @@ const Weather = ({data}) => {
     switch (weather) {
       case 'Sunny':
       case 'Clear':
-        return 'url(https://plus.unsplash.com/premium_photo-1675448891138-838478562f6a?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2xlYXIlMjBkYXl8ZW58MHx8MHx8fDA%3D)';
+        return 'url(https://images.unsplash.com/photo-1705847470673-e8dda03b502f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNsZWFyJTIwZGF5fGVufDB8fDB8fHww)';
       case 'Cloudy':
       case 'Partly cloudy':
         return 'url(https://images.unsplash.com/photo-1613508788423-c15176f2f964?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)';
@@ -70,7 +70,7 @@ const Weather = ({data}) => {
       case 'Thunderstorm':
         return 'url(https://images.unsplash.com/photo-1613820070607-ef1d3ccc07f9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dGh1bmRlcnN0b3JtfGVufDB8fDB8fHww)';
       default:
-        return 'url(https://plus.unsplash.com/premium_photo-1706625675302-af4d4bd854ea?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y2FsbSUyMGdyZXklMjBkYXl8ZW58MHx8MHx8fDA%3D)';
+        return 'url(https://plus.unsplash.com/premium_photo-1706625638472-21899066aab2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2lsZW50JTIwZGF5fGVufDB8fDB8fHww)';
     }
   };
 

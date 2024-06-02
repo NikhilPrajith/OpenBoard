@@ -13,6 +13,7 @@ import * as Popover from "@radix-ui/react-popover";
 import { IoIosClose } from "react-icons/io";
 import { MdEmojiEmotions } from "react-icons/md";
 import EmojiHub from "../ZPackage/EmojiHub/emojiHub";
+import { BsCloudsFill } from "react-icons/bs";
 
 export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
   const [filter, setFilter] = useState("");
@@ -47,7 +48,7 @@ export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
       label: "Weather",
       value: "weather",
       openWindow: false,
-      icon: MdEmojiEmotions,
+      icon: BsCloudsFill,
     },
   ];
 
