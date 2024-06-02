@@ -16,6 +16,7 @@
   width: 100%;
 }
 .weatherInfo {
+  position: relative;
   background: rgba(0, 0, 0, 0.15);
   padding: 13px;
   border-radius: 6px;
@@ -39,8 +40,6 @@
   flex-direction: column;
   align-items: center;
   padding: 8px;
-  border-right: 0.05px white solid;
-  border-left: 0.05px white solid;
 }
 
 .nodeDrag {
@@ -76,9 +75,8 @@
 }
 .mainIcon {
   position: absolute;
-  top: 14px;
+  top: 0px;
   left: -12px;
   margin: 10px;
   z-index: 10;
-  
 }
