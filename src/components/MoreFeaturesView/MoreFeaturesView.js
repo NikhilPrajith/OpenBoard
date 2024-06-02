@@ -11,6 +11,7 @@ import { TbCardsFilled } from "react-icons/tb";
 import * as Popover from "@radix-ui/react-popover";
 
 import { IoIosClose } from "react-icons/io";
+import { MdEmojiEmotions } from "react-icons/md";
 import EmojiHub from "../ZPackage/EmojiHub/emojiHub";
 
 export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
@@ -40,7 +41,13 @@ export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
       label: "EmojiHub",
       value: "emojiHub",
       openWindow: true,
-      icon: TbCardsFilled,
+      icon: MdEmojiEmotions,
+    },
+    {
+      label: "Weather",
+      value: "weather",
+      openWindow: false,
+      icon: MdEmojiEmotions,
     },
   ];
 

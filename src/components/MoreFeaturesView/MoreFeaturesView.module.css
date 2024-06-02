@@ -69,6 +69,7 @@
 
   /*max-height: var(--radix-popover-content-available-height);*/
   overflow-y: scroll;
+  overflow-x:hidden ;
 }
 .PopoverContent:focus {
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,

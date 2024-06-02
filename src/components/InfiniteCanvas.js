@@ -23,6 +23,7 @@ import DocumentCardComp from './Card/DocumentCard';
 import PicNote from './PicNote/PicNote';
 import useAuth from '@/context/Authentication/AuthProvider';
 import LinkPreview from './LinkPreview/LinkPreview';
+import Weather from './ZPackage/Weather/Weather';
 
 
 const snapGrid = [10, 10];
@@ -46,6 +47,7 @@ const nodeTypes = {
     documentComp:DocumentCardComp,
     picNote: PicNote,
     linkPreview: LinkPreview,
+    weather: Weather,
 
   };
 
