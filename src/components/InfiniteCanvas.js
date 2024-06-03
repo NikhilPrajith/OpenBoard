@@ -24,6 +24,7 @@ import PicNote from './PicNote/PicNote';
 import useAuth from '@/context/Authentication/AuthProvider';
 import LinkPreview from './LinkPreview/LinkPreview';
 import Weather from './ZPackage/Weather/Weather';
+import CodeEditor from './ZPackage/CodeEditor/CodeEditor';
 
 
 const snapGrid = [10, 10];
@@ -48,6 +49,7 @@ const nodeTypes = {
     picNote: PicNote,
     linkPreview: LinkPreview,
     weather: Weather,
+    codePresentation: CodeEditor,
 
   };
 

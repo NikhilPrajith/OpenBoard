@@ -50,6 +50,12 @@ export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
       openWindow: false,
       icon: BsCloudsFill,
     },
+    {
+      label: "Code Snippet",
+      value: "codePresentation",
+      openWindow: false,
+      icon: BsCloudsFill,
+    },
   ];
 
   const filteredFeatures = features.filter((feature) =>
