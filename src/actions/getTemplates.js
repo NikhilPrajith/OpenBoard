@@ -1,4 +1,5 @@
-// src/actions/getTemplates.js
+
+//to fix later
 import { collection, query, orderBy, limit, startAfter, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 
@@ -19,7 +20,7 @@ export async function getTemplates(lastVisible = null) {
       id: doc.id,
       ...doc.data(),
     }));
-    const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+    const lastDoc = querySnapshot.docs[querySnapshot.docs.length-1]; // Corrected
     const result = { templates, lastVisibleDoc: lastDoc ? lastDoc.id : null };
 
     return result;

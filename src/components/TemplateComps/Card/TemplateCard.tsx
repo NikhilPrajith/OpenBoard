@@ -48,7 +48,7 @@ export function TemplateCard({
         />
       </CardHeader>
       <CardBody className="p-6">
-        <Typography variant="small" color="color(srgb 0.8975 0.7331 0.9688)" className="mb-2 !font-medium">
+        <Typography variant="small" color="purple" className="mb-2 !font-medium">
           {tag}
         </Typography>
         <Typography
