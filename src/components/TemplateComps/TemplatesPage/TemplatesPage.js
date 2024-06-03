@@ -15,7 +15,6 @@ const TemplatesPage = ({ initialTemplates, initialLastVisible }) => {
 
   const loadMore = async () => {
     if (!lastVisible || !hasMore) {
-      console.log("no more");
       return;
     };
 
@@ -70,7 +69,7 @@ const TemplatesPage = ({ initialTemplates, initialLastVisible }) => {
           className="w-full max-w-md "
         />
       </div>
-      <div className="container my-auto grid grid-cols-2 gap-x-8 gap-y-16 items-start lg:grid-cols-4" style={{ padding: '25px' }}>
+      <div className="my-auto grid grid-cols-2 gap-x-8 gap-y-16 items-start lg:grid-cols-4" style={{ padding: '25px' }}>
         {displayedTemplates.map(({ id, img, tag, title, author }) => (
           <TemplateCard key={id} img={img} tag={tag} title={title} author={author} id={id} />
         ))}
