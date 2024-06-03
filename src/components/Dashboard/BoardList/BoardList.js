@@ -16,58 +16,14 @@ import { useBoard } from '@/context/BoardContext';
 const BoardList = ({}) => {
 
   const router = useRouter()
-  const {setNodes, setEdges, setAlignment, setDocumentName} = useBoard();
+  const {setNodes, setEdges, setAlignment, setDocumentName, createNew} = useBoard();
 
   const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 205, 205)', 'rgb(229, 187, 247)', 'rgb(163, 211, 249)', 'white'];
   const {user,data,logout} = useAuth();
-  const createNew = async () => {
-  
-    if (!user) {
-      console.log("User not authenticated");
-      return;
-    }
-  
-    try {
-      console.log("Firestore instance:", db);
-      // Reference to the user-specific 'boards' sub-collection
-      const boardsCollectionRef = collection(db, "users", user.uid, "boards");
-  
-      // Create a new board document with a random color
-      const newBoard = {
-        owner: user.uid,
-        createdAt: new Date(),
-        color: selectableColors[Math.floor(Math.random() * selectableColors.length)]
-      };
-      const boardRef = await addDoc(boardsCollectionRef, newBoard);
-  
-      // Update user's document with the new board ID
-      const userRef = doc(db, "users", user.uid);
-      await updateDoc(userRef, {
-        boards: arrayUnion({
-          id: boardRef.id,
-          name: 'Untitled',
-          createdOn: new Date(),
-          color: newBoard.color
-        })
-      });
-  
-      console.log("New board created with ID:", boardRef.id);
-      setNodes([]);
-      setEdges([]);
-      setAlignment('Paper');
-      setDocumentName('Untitled');
-  
-      // Navigate to the /canvas page with the new document ID
-      router.push(`/canvas?documentId=${boardRef.id}`);
-  
-    } catch (error) {
-      console.error("Error creating new board: ", error);
-      notification.error({
-        message: 'Failed to create!',
-        description: 'Please try again later.',
-        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
-      });
-    }
+
+  const createNewHandle = async () =>{
+    const id = await createNew();
+    router.push(`/canvas?documentId=${id}`);
   };
 
 
@@ -80,7 +36,7 @@ const BoardList = ({}) => {
               <div className={styles.numOfTasks}>{data?.boards?.length || 0} boards</div>
               </div>
       </div>
-      <button onClick={createNew} className={styles.addButton}>
+      <button onClick={createNewHandle} className={styles.addButton}>
         <FaPlus /> <span>Add New Board</span>
       </button>
       <div className={styles.taskContainer} >

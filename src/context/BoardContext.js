@@ -200,6 +200,7 @@ export const BoardProvider = ({ children }) => {
         }
       // Add more themes here as needed
     };
+    const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 205, 205)', 'rgb(229, 187, 247)', 'rgb(163, 211, 249)', 'white'];
 
   //React flow context
   const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;
@@ -294,7 +295,6 @@ export const BoardProvider = ({ children }) => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
       localStorage.setItem(flowKey, JSON.stringify(flow));
-      console.log("whats the theme", alignment)
       localStorage.setItem('theme', JSON.stringify(alignment));
       setIsSavedBoard(true)
     }
@@ -319,8 +319,21 @@ export const BoardProvider = ({ children }) => {
     try {
       // Use the modular SDK's methods to handle document references and set data
       const boardDocRef = doc(db, 'users', user.uid, 'boards', documentId); // flowKey should be passed correctly or defined
+      doc(db, 'users', user.uid, 'boards', documentId)
+
+      
       await setDoc(boardDocRef, boardState, { merge: true }); // Merge true to update only provided fields
-  
+      
+      /*
+      //test save
+      console.log("Save template test", boardState);
+
+
+    
+      const boardsCollection = collection(db, "boards");
+      const docRef = await addDoc(boardsCollection, boardState);*/
+
+
       setIsSavedBoard(true); // Update state to indicate the board is saved
   
     } catch (error) {
@@ -361,6 +374,40 @@ export const BoardProvider = ({ children }) => {
       const docSnap = await getDoc(boardDocRef);
 
       if (docSnap.exists()) {
+        const data = docSnap.data();
+        if (data.flow) {
+          setNodes(data.flow.nodes || []);
+          setEdges(data.flow.edges || []);
+        }else{
+          setNodes([]);
+          setEdges([]);
+        }
+        setIsSavedBoard(true);
+        await setAlignment(data.theme || 'Paper');
+        return {message:'Success', info:'Parsed data', theme: data.theme || 'Paper'}
+      } else {
+        console.log("No such document!");
+        setIsSavedBoard(true);
+        return {message:'Failed', info:'No such document', theme:'Paper'};
+      }
+    } catch (error) {
+      console.error("Error retrieving board state from Firestore: ", error);
+      notification.error({
+        message: 'Failed to load!',
+        description: `Please try again.`,
+        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
+      });
+      return {message:'Failed', info: error, theme:null};
+    }
+  }
+  async function restoreTemplateState(id) {
+    try {
+      // Reference to the specific board document
+      const boardDocRef = doc(db, 'boards', id);
+      const docSnap = await getDoc(boardDocRef);
+
+      if (docSnap.exists()) {
+        //some extra error handling
         const data = docSnap.data();
         if (data.flow) {
           setNodes(data.flow.nodes || []);
@@ -445,6 +492,99 @@ export const BoardProvider = ({ children }) => {
       return "Error deleting the board"; // Return an error message if there was a problem updating the document
     }
   }
+
+  const cloneBoardToAccount = async () => {
+  
+    if (!user) {
+      console.log("User not authenticated");
+      return;
+    }
+  
+    try {
+      // Reference to the user-specific 'boards' sub-collection
+      const boardsCollectionRef = collection(db, "users", user.uid, "boards");
+      const flow = rfInstance.toObject();
+      const newBoard = {
+        owner: user.uid,
+        createdAt: new Date(),
+        color: selectableColors[Math.floor(Math.random() * selectableColors.length)],
+        updatedAt: new Date(), // Store last updated time
+        flow,
+        theme: alignment,
+      };
+      const boardRef = await addDoc(boardsCollectionRef, newBoard);
+  
+      // Update user's document with the new board ID
+      const userRef = doc(db, "users", user.uid);
+      await updateDoc(userRef, {
+        boards: arrayUnion({
+          id: boardRef.id,
+          name: documentName,
+          createdOn: new Date(),
+          color: newBoard.color
+        })
+      });
+  
+      return boardRef.id;
+  
+    } catch (error) {
+      console.error("Error Cloing Template: ", error);
+      notification.error({
+        message: 'Failed to clone!',
+        description: 'Please try again later.',
+        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
+      });
+    }
+  };
+
+  const createNew = async () => {
+  
+    if (!user) {
+      return;
+    }
+  
+    try {
+      // Reference to the user-specific 'boards' sub-collection
+      const boardsCollectionRef = collection(db, "users", user.uid, "boards");
+  
+      // Create a new board document with a random color
+      const newBoard = {
+        owner: user.uid,
+        createdAt: new Date(),
+        color: selectableColors[Math.floor(Math.random() * selectableColors.length)]
+      };
+      const boardRef = await addDoc(boardsCollectionRef, newBoard);
+  
+      // Update user's document with the new board ID
+      const userRef = doc(db, "users", user.uid);
+      await updateDoc(userRef, {
+        boards: arrayUnion({
+          id: boardRef.id,
+          name: 'Untitled',
+          createdOn: new Date(),
+          color: newBoard.color
+        })
+      });
+  
+      console.log("New board created with ID:", boardRef.id);
+      setNodes([]);
+      setEdges([]);
+      setAlignment('Paper');
+      setDocumentName('Untitled');
+  
+      // Navigate to the /canvas page with the new document ID
+      
+      return boardRef.id;
+  
+    } catch (error) {
+      console.error("Error creating new board: ", error);
+      notification.error({
+        message: 'Failed to create!',
+        description: 'Please try again later.',
+        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
+      });
+    }
+  };
   
 
   // Add other states and functions you want to make globally available
@@ -479,6 +619,7 @@ export const BoardProvider = ({ children }) => {
 
     saveBoardState,
     restoreBoardState,
+    restoreTemplateState,
 
 
     documentId,
@@ -491,11 +632,10 @@ export const BoardProvider = ({ children }) => {
     setDocumentName,
     documentName,
 
-    deleteBoard
+    deleteBoard,
+    cloneBoardToAccount,
+    createNew
 
-
-
-    // Add more as needed
   };
 
 

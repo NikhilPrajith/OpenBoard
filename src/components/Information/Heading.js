@@ -57,7 +57,7 @@ export default function Heading({open, type}) {
   const {
     isSavedBoard, saveDataToLocalStorageBoard, onSave,
     saveBoardState,
-    restoreBoardState, renameBoard, documentName} = useBoard();
+    restoreBoardState, renameBoard, documentName, cloneBoardToAccount} = useBoard();
   //const {isSavedBoard,saveFlow} = useStore();
 
   const {setIsDocSaved, isDocSaved, saveDocumentData,documentId} = useDocument();
@@ -113,6 +113,16 @@ export default function Heading({open, type}) {
 
   const showTaskSave = [ '/tasks'].includes(pathname);
 
+  const previewingTemplate = ['/templates/canvas'].includes(pathname);
+  const handleLocalClone = async() =>{
+    await onSave();
+    router.push("/")
+    
+  }
+  const handleCloneToAccount =async ()=>{
+    const id = await cloneBoardToAccount();
+    router.push(`/canvas?documentId=${id}`);
+  }
 
   //collaboration:
   return (
@@ -124,6 +134,7 @@ export default function Heading({open, type}) {
 
         <div>
          {shouldShowHeaderName && <DocumentHeaderName></DocumentHeaderName> }
+         {previewingTemplate && <div className={styles.parent}>Previewing: <span style={{color:'color(srgb 0.8975 0.7331 0.9688)'}}>{documentName}</span></div>}
         </div>
         <div className={styles.infoCont}>
 
@@ -167,6 +178,11 @@ export default function Heading({open, type}) {
           {!isDocSaved  && <div className={styles.saveNowButton} onClick={saveDocumentData}>Save Now!</div>}
           <div style={{width:'0.1px', border:'0.1px #eee solid', height:'17px'}}></div>
           </>}
+          {previewingTemplate &&<>
+          <div className={styles.saveNowButton} onClick={handleLocalClone} style={{backgroundColor:'color(srgb 0.8975 0.7331 0.9688)'}}>Clone Locally!</div>
+          {user && <div className={styles.saveNowButton} onClick={handleCloneToAccount} style={{backgroundColor:'color(srgb 0.8975 0.7331 0.9688)'}}>Clone to Account!</div>}
+          </>}
+
           <a target="_blank" rel="noopener noreferrer" className={styles.feedbackButton} href="https://forms.gle/YKWZ8iL1w6fHmp1RA">
             Feedback
           </a>

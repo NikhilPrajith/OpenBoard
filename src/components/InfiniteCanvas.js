@@ -53,7 +53,7 @@ const nodeTypes = {
 
 
 
-export default function InfiniteCanvas({documentID}){
+export default function InfiniteCanvas({documentID, boardType = "Custom"}){
 
   const [bgColor, setBgColor] = useState(initBgColor);
   const [selectedEffect, setSelectedEffect] = useState('')
@@ -80,6 +80,7 @@ export default function InfiniteCanvas({documentID}){
     addNode,
     updateThemeStickers,
     restoreBoardState,
+    restoreTemplateState,
     setDocumentId,
     themes,
     documentName,
@@ -196,9 +197,21 @@ export default function InfiniteCanvas({documentID}){
         setAlignment(themeData);
         changeTheme(themeData, true);
 
+      }else if(documentID && boardType=="Template"){
+
+        const {message, info, theme} = await restoreTemplateState(documentID);
+        if(message != 'Failed'){
+          setShowCanvas(true);
+        }else{
+          setShowCanvas(false);
+          return;
+        }
+
+        changeTheme(theme, true);
+
       }else{
+        console.log("custom owner template")
         setDocumentId(documentID);
-        console.log("getting it");
         if(initialLoading){
           return;
         }

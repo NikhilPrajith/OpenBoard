@@ -27,6 +27,7 @@ import styles from "./Features.module.css"
 
 import { FcCloth } from "react-icons/fc";
 import useAuth from '@/context/Authentication/AuthProvider';
+import { MdDesignServices } from "react-icons/md";
 const drawerWidth = 180;
 
 const openedMixin = (theme) => ({
@@ -100,9 +101,11 @@ export default function Features({setType, setOpenParent}) {
   },[user]);
   const iconSize = 17;
   const pageIcons = {
+
     0:{icon: <FcCloth size={iconSize} />, page: "/"},
-    1:{icon:<FcTodoList size={iconSize}/>, page: "/tasks"},
-    2:{icon:<FaThList size={iconSize}></FaThList>, page: "/board"},
+    1:{icon: <MdDesignServices size={iconSize} />, page: "/templates"},
+    2:{icon:<FcTodoList size={iconSize}/>, page: "/tasks"},
+    3:{icon:<FaThList size={iconSize}></FaThList>, page: "/board"},
 
     4:{icon:<MdSpaceDashboard size={iconSize}/>, page: "/dashboard"},
     //3:{icon:<IoDocumentText size={iconSize}/>, page: "/docs"},
@@ -126,7 +129,7 @@ export default function Features({setType, setOpenParent}) {
         '& .MuiListItemIcon-root': { color: 'black', fontSize: '12px' }, // Adjusted font size for text
         '& .MuiSvgIcon-root': { fontSize: '12px' }, // Adjusted font size for icons
       }}>
-        {['Local Playground', 'Tasker'].map((text, index) => (
+        {['Local Playground', 'Templates','Tasker'].map((text, index) => (
           <ListItem  onClick={() => handleNavigation(pageIcons[index].page)} key={text} disablePadding sx={{ display: 'block' }}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center'}}> {/* Explicitly target icons within ListItemIcon */}

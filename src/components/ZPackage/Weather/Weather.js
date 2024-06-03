@@ -27,28 +27,11 @@ const Weather = ({data}) => {
     fetchWeatherData();
   }, [location, city]);
 
-  useEffect(() => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({ lat: position.coords.latitude, lon: position.coords.longitude });
-        },
-        (error) => {
-          console.error('Error fetching geolocation:', error);
-          // Use default city if geolocation fails
-          setLocation({ lat: null, lon: null });
-          setCity('California');
-        }
-      );
-    } else {
-      // Use default city if geolocation is not available
-      setCity('California');
-    }
-  }, []);
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
       setCity(e.target.value);
+      data.city = e.target.value
       setLocation({ lat: null, lon: null }); // Reset location to use city query
     }
   };
