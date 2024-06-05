@@ -1,11 +1,9 @@
 /*TaskList css*/
 .container {
-    font-family: Inter, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     width: 100%;
     background: #FFFFFF;
     border-radius: 6px;
     font-size: 12px;
-    font-family: 'Arial', sans-serif;
     border:1px solid #eee;
     cursor: default;
     margin:10px;

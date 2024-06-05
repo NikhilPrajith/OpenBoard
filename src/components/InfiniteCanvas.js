@@ -26,6 +26,13 @@ import LinkPreview from './LinkPreview/LinkPreview';
 import Weather from './ZPackage/Weather/Weather';
 import CodeEditor from './ZPackage/CodeEditor/CodeEditor';
 
+import dynamic from 'next/dynamic';
+
+import Drawer from '@mui/material/Drawer';
+import DocumentComp from './DocumentComps/DocumentComp';
+import Mermaid from './ZPackage/Mermaid/Mermaid';
+
+
 
 const snapGrid = [10, 10];
 
@@ -50,6 +57,7 @@ const nodeTypes = {
     linkPreview: LinkPreview,
     weather: Weather,
     codePresentation: CodeEditor,
+    mermaidDiagram: Mermaid
 
   };
 
@@ -285,8 +293,16 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
     [reactFlowInstance],
   );
 
+  const [openDocumentEditor, setOpen] = React.useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   const onAdd = (type) => {
-    console.log("add type", type)
     if(type == 'draw'){
       setShowDraw(!showDraw);
       return;
@@ -299,9 +315,8 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
 
     const newNodeId = getNodeId();
     let data={}
-    if(type=='cardComp'){
-      console.log("cardComp new function",)
-      data={id:newNodeId}
+    if(type=='documentComp'){
+      data={id:newNodeId, open:handleDrawerOpen, close: handleDrawerClose}
     }
     if(type == 'stickyNote'){
       data.color = 'rgb(254, 240, 113)';
@@ -390,13 +405,10 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
   
     updateThemeStickers(themeStickerTemp)
   };
-
-
+  
+  const [showDraw, setShowDraw] = useState(true);
 
   
-  
-  const [showDraw, setShowDraw] = useState(false);
-
 
   return (
     <div style={{ height: '100vh', width:'100%' }}>
@@ -434,7 +446,26 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
         
       
       </ReactFlowProvider> 
+
+
     }
+    <Drawer
+        sx={{
+          width: 600,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: 600,
+            boxSizing: 'border-box'
+          },
+        }}
+        anchor="right"
+        variant="persistent"
+        open={openDocumentEditor}
+      >
+        <DocumentComp close={handleDrawerClose}></DocumentComp>
+
+      </Drawer>
+    
       {showCanvas == false &&
       <div style={{margin:'140px', color:'grey'}}>Failed permissions!</div>}
     </div>

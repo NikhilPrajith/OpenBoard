@@ -6,6 +6,9 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { IoSearch } from "react-icons/io5";
 import { useBoard } from '@/context/BoardContext';
 import useStore from '@/context/BoardContext';
+import {
+  Button,
+} from "@material-tailwind/react";
 
 export default function Themes({ changeTheme, themes }) {
   const [filter, setFilter] = useState('');

@@ -6,13 +6,13 @@ import "./Documents.css";
 import { TwitterPicker } from 'react-color';
 import { useDocument } from '@/context/DocumentContext';
 
-export default function DocumentComp({ documentID }) {
+export default function MainDocument({ documentID }) {
   const {
     title, setTitle, setIsDocSaved, setDocumentData, documentData,
     setTitleChanged, titleChanged, setDocumentId, loading, setLoading,
     restoreDocumentData, initialContent, setInitialContent
   } = useDocument();
-  const [color, setColor] = useState('#F9F9F9');
+  const [color, setColor] = useState('white');
   const [showColorPicker, setShowColorPicker] = useState(false);
 
   const handleTitleChange = (event) => {
@@ -57,7 +57,7 @@ export default function DocumentComp({ documentID }) {
 
   return (
     <div style={{ backgroundColor: `${color}` }} className='documentContainer'>
-      {/* Color Picker */}
+      {/* Color Picker 
       {showColorPicker && (
         <div className="color-picker">
           <TwitterPicker
@@ -67,8 +67,8 @@ export default function DocumentComp({ documentID }) {
             colors={customColors}
             styles={{ default: { input: { display: 'none' }, hash: { display: 'none' } } }}
           />
-        </div>
-      )}
+      </div>
+      )}*/}
 
       {/* BlockNoteView */}
       {editor && (
@@ -81,8 +81,8 @@ export default function DocumentComp({ documentID }) {
             saveToInstance(editor.document);
           }}
         >
-          {/* Circle showing current color */}
-          <div className="color-circle" style={{ backgroundColor: `${color}` }} onClick={handleColorClick}></div>
+          {/* Circle showing current color 
+          <div className="color-circle" style={{ backgroundColor: `${color}` }} onClick={handleColorClick}></div>*/}
           <input
             onChange={handleTitleChange}
             className='heading1'

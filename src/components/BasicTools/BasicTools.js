@@ -12,6 +12,8 @@ import { FaLink, FaClipboardList } from "react-icons/fa";
 import { MdTimer, MdImage, MdDashboardCustomize } from "react-icons/md";
 import { FaNoteSticky, FaLightbulb } from "react-icons/fa6";
 import MoreFeaturesView from '../MoreFeaturesView/MoreFeaturesView';
+import { Button, Typography, Spinner, Input } from '@material-tailwind/react';
+
 
 export default function BasicTools({ addingNode, themes, changeTheme, addImageFunction }) {
   const [popoverContent, setPopoverContent] = useState(null);
@@ -33,7 +35,7 @@ export default function BasicTools({ addingNode, themes, changeTheme, addImageFu
         <button onClick={(event) => onClick(event, 'timer')}><MdTimer /></button>
         <button onClick={(event) => onClick(event, 'video')}><PiVideoFill /></button>
         <button onClick={(event) => onClick(event, 'textElement')}><PiTextTFill /></button>
-        <button onClick={(event) => onClick(event, 'picNote')}><MdImage/></button>
+        
         <button onClick={() => handleClick('stickers')}><RiEmojiStickerFill /></button>
         <button onClick={() => handleClick('componentLibrary')}><MdDashboardCustomize /></button>
         <button onClick={() => handleClick('themes')}><FaLightbulb /></button>
@@ -49,19 +51,19 @@ export default function BasicTools({ addingNode, themes, changeTheme, addImageFu
             <div>
               {popoverContent === 'stickers' && (
                 <div>
-                  <p className={styles.Text} style={{ marginBottom: 10 }}>Stickers</p>
+                  <Typography variant="h6" className={styles.Text} style={{ marginBottom: 10 }}>Stickers</Typography>
                   <Stickers addImageFunction={addImageFunction} />
                 </div>
               )}
               {popoverContent === 'componentLibrary' && (
                 <div>
-                  <p className={styles.Text} style={{ marginBottom: 10 }}>Component Library</p>
+                  <Typography variant="h6" className={styles.Text} style={{ marginBottom: 10 }}>Component Library</Typography>
                   <MoreFeaturesView onClickFunc={(type) => addingNode(type)} addImageFunction={addImageFunction} />
                 </div>
               )}
               {popoverContent === 'themes' && (
                 <div>
-                  <p className={styles.Text} style={{ marginBottom: 10 }}>Themes</p>
+                  <Typography variant="h6" className={styles.Text} style={{ marginBottom: 10 }}>Themes</Typography>
                   <Themes themes={themes} changeTheme={changeTheme} />
                 </div>
               )}
@@ -69,7 +71,6 @@ export default function BasicTools({ addingNode, themes, changeTheme, addImageFu
             <Popover.Close className={styles.PopoverClose} aria-label="Close">
               <IoIosClose />
             </Popover.Close>
-            <Popover.Arrow className="PopoverArrow" />
           </Popover.Content>
         </Popover.Portal>
       </Popover.Root>

@@ -1,11 +1,11 @@
 .documentContainer{
   overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+  height: 100vh;
   position: relative;
-  padding-bottom: 25px;
 }
 
 .heading1{
-  margin-top: 130px;
+  margin-top: 15px;
   margin-left: 56px;
   margin-bottom: 28;
   margin-left: 55px;

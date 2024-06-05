@@ -1,0 +1,19 @@
+.closeButton{
+
+    font-size: 11px;
+    font-weight: 500; 
+    color: black; 
+    background-color: rgb(251, 151, 151);;
+    padding: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    left:0;
+  }
+.closeButton:hover{
+    opacity:0.8;
+    z-index: 10000;
+}

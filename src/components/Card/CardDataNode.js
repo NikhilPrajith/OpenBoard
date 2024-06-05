@@ -7,6 +7,12 @@ import "../Docs/Documents.css"
 import { MdOutlineDragHandle } from "react-icons/md";
 
 import { IoIosClose } from "react-icons/io";
+import {
+  Drawer,
+  Button,
+  Typography,
+  IconButton,
+} from "@material-tailwind/react";
 
 export default function CardDataNode({data, closePopover, isConnectable, saveFunc, editor, handleChangeColor, color, selectableColors}) {
   //const {editor, saveFunc} = data

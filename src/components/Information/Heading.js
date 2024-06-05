@@ -6,7 +6,6 @@ import useStore from '@/context/BoardContext';
 
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 
-import { Upload, Modal, Input, Button, notification, ColorPicker } from 'antd';
 
 import ToggleButton from '@mui/material/ToggleButton';
 import { Avatar } from '@/primitives/Avatar';
@@ -25,6 +24,8 @@ import { usePathname } from 'next/navigation'
 
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { useDocument } from '@/context/DocumentContext';
+
+import {Typography, Spinner } from '@material-tailwind/react';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -128,7 +129,7 @@ export default function Heading({open, type}) {
   return (
     <div className={styles.headingContainer}>
         <div className={styles.titleCont} style={{ marginLeft: open ? '120px' : '0px', transition: 'margin-left 0.1s ease' }}>
-          <div className={styles.title}><a href="/">Vibing</a></div>
+          <Typography variant="h5"><a href="/">Vibing</a></Typography>
           <div className={styles.subtitle}>A fun time project</div>
         </div>
 

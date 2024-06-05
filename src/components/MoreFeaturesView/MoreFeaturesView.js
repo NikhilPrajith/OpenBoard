@@ -14,6 +14,13 @@ import { IoIosClose } from "react-icons/io";
 import { MdEmojiEmotions } from "react-icons/md";
 import EmojiHub from "../ZPackage/EmojiHub/emojiHub";
 import { BsCloudsFill } from "react-icons/bs";
+import { FaFileCode } from "react-icons/fa";
+import { IoMdDocument } from "react-icons/io";
+import { MdTimer, MdImage, MdDashboardCustomize } from "react-icons/md";
+import {
+  Button,
+} from "@material-tailwind/react";
+
 
 export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
   const [filter, setFilter] = useState("");
@@ -37,24 +44,49 @@ export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
       value: "flashCards",
       openWindow: false,
       icon: TbCardsFilled,
+      disabled : false
     },
     {
       label: "EmojiHub",
       value: "emojiHub",
       openWindow: true,
       icon: MdEmojiEmotions,
+      disabled: false
     },
     {
       label: "Weather",
       value: "weather",
       openWindow: false,
       icon: BsCloudsFill,
+      disabled:false
     },
     {
-      label: "Code Snippet",
+      label: "Terminal",
       value: "codePresentation",
       openWindow: false,
-      icon: BsCloudsFill,
+      icon: FaFileCode,
+      disabled:false
+    },
+    {
+      label: "Picture Note",
+      value: "picNote",
+      openWindow: false,
+      icon: MdImage,
+      disabled:false
+    },
+    {
+      label: "Document",
+      value: "documentComp",
+      openWindow: false,
+      icon: IoMdDocument,
+      disabled:true
+    },
+    {
+      label: "Mermaid Diagram",
+      value: "mermaidDiagram",
+      openWindow: false,
+      icon: MdImage,
+      disabled:true
     },
   ];
 
@@ -88,26 +120,32 @@ export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
           className="grid grid-cols-2 gap-4"
         >
           {filteredFeatures.length > 0 ? (
-            filteredFeatures.map(({ label, value, openWindow, icon }) => (
+            filteredFeatures.map(({ label, value, openWindow, icon, disabled }) => (
               <>
                 {openWindow ? (
-                  <div
+                  <Button
                     key={label}
                     className={`flex items-center gap-2 ${styles.buttonObj}`}
                     onClick={() => openWindowFunc(value)}
+                    disabled={disabled}
+                    variant="outlined"
+                    size="sm"
                   >
                     {React.createElement(icon, { className: "w-4 h-4" })}
                     {label}
-                  </div>
+                  </Button>
                 ) : (
-                  <div
+                  <Button
                     key={label}
                     className={`flex items-center gap-2 ${styles.buttonObj}`}
                     onClick={(event) => onClickFunc(value)}
+                    disabled={disabled}
+                    variant="outlined"
+                    size="sm"
                   >
                     {React.createElement(icon, { className: "w-4 h-4" })}
                     {label}
-                  </div>
+                  </Button>
                 )}
               </>
             ))
@@ -141,7 +179,6 @@ export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
             <Popover.Close className={styles.PopoverClose} aria-label="Close">
               <IoIosClose />
             </Popover.Close>
-            <Popover.Arrow className="PopoverArrow" />
           </Popover.Content>
         </Popover.Portal>
       </Popover.Root>
