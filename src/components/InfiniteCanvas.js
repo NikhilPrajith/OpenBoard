@@ -31,6 +31,7 @@ import dynamic from 'next/dynamic';
 import Drawer from '@mui/material/Drawer';
 import DocumentComp from './DocumentComps/DocumentComp';
 import Mermaid from './ZPackage/Mermaid/Mermaid';
+import ImageEmbed from './ImageUpload/ImageEmbed';
 
 
 
@@ -419,7 +420,7 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
         edges={edges}
         nodeTypes={nodeTypes}
 
-      style={{ background: bgColor, 'imageRendering': '-webkit-optimize-contrast' }}
+      style={{ background: bgColor, 'imageRendering': '-webkit-optimize-contrast'}}
 
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}

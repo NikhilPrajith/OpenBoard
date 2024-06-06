@@ -134,6 +134,13 @@ export const BoardProvider = ({ children }) => {
           backgroundColor: 'url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjh1M3d1ZjF3bXM5eWZmMmhycm0zN2dkbW5ud25qNHRvcmk0djVzdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J6UJjUEg1ReqjMIAlQ/giphy.gif)  center / cover no-repeat',
           effect: 'sunny'
         },
+        'Pleasant': {
+          images: ['https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9tMm03em12YzI3b3I0bWgyaWNvNWhqeHNkdDF6NDF4cTY3dmV6ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cOSbH8NoUFt9MXbuie/giphy.gif',
+        ],
+          textColor:'white',
+          backgroundColor: 'url(https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9tMm03em12YzI3b3I0bWgyaWNvNWhqeHNkdDF6NDF4cTY3dmV6ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cOSbH8NoUFt9MXbuie/giphy.gif)  center / cover no-repeat',
+          effect: 'sunny'
+        },
         'Attack On Titan': {
           images: ['https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjRod3ExNGpzM3ViZXZiaDJ2MmY4cjVoOGhkOWFtYTBxNGsxdGNxZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0Iy6cMi1aPIBzP32/200.webp',
             'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDFrZWowZm90a3ZnNzJycTJjczBjY3ZsODkyYnZud3ppYXo3OHc1OCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/oHWnStBAnM1RHlF1CR/giphy.webp',
@@ -170,6 +177,14 @@ export const BoardProvider = ({ children }) => {
           backgroundColor: 'url(https://i.pinimg.com/564x/42/82/a1/4282a1bb7364f273e06b9aa37966538d.jpg) center / cover no-repeat',
           effect: ''
         },
+        'Mt. Fiji Video': {
+          images: ['https://media3.giphy.com/media/Rl0AyVtYvUET0johdu/giphy.webp?cid=790b7611eix52zmvx3jk34lzkasx2l25n94ib1dcz14yy269&ep=v1_gifs_search&rid=giphy.webp&ct=g',
+  
+        ],
+          textColor:'black',
+          backgroundColor: 'url(https://cdn.pixabay.com/video/2024/03/04/202877-919288692_large.mp4) center / cover no-repeat',
+          effect: ''
+        },
         'NewJeans': {
           images: ['https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdreWl0NWl0aHg2MXhwbnZqZmVxc3R3c3drdnRkanNtNzd1b2hqaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b6NgTiPadHTVmDOWnk/giphy.gif',
             'https://media0.giphy.com/media/12uxuixeCP6JBUOP17/giphy.webp?cid=790b7611dc9u1dklcosz4nkhwk8qy4unz0kazqtgbfzpxrs0&ep=v1_gifs_search&rid=giphy.webp&ct=g',
@@ -198,6 +213,7 @@ export const BoardProvider = ({ children }) => {
           backgroundColor: 'rgb(251, 170, 173)',
           effect: 'web'
         }
+
       // Add more themes here as needed
     };
     const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 205, 205)', 'rgb(229, 187, 247)', 'rgb(163, 211, 249)', 'white'];
