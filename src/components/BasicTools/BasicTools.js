@@ -13,6 +13,8 @@ import { MdTimer, MdImage, MdDashboardCustomize } from "react-icons/md";
 import { FaNoteSticky, FaLightbulb } from "react-icons/fa6";
 import MoreFeaturesView from '../MoreFeaturesView/MoreFeaturesView';
 import { Button, Typography, Spinner, Input } from '@material-tailwind/react';
+import { FaImages } from "react-icons/fa6";
+import ImageEmbed from '../ImageUpload/ImageEmbed';
 
 
 export default function BasicTools({ addingNode, themes, changeTheme, addImageFunction }) {
@@ -35,6 +37,7 @@ export default function BasicTools({ addingNode, themes, changeTheme, addImageFu
         <button onClick={(event) => onClick(event, 'timer')}><MdTimer /></button>
         <button onClick={(event) => onClick(event, 'video')}><PiVideoFill /></button>
         <button onClick={(event) => onClick(event, 'textElement')}><PiTextTFill /></button>
+        <button onClick={() => handleClick('embedImages')}><FaImages /></button>
         
         <button onClick={() => handleClick('stickers')}><RiEmojiStickerFill /></button>
         <button onClick={() => handleClick('componentLibrary')}><MdDashboardCustomize /></button>
@@ -53,6 +56,18 @@ export default function BasicTools({ addingNode, themes, changeTheme, addImageFu
                 <div>
                   <Typography variant="h6" className={styles.Text} style={{ marginBottom: 10 }}>Stickers</Typography>
                   <Stickers addImageFunction={addImageFunction} />
+                </div>
+              )}
+              {popoverContent === 'embedImages' && (
+                <div>
+                  <Typography variant="h6" className={styles.Text} style={{ marginBottom: 10 }}>Embed Images</Typography>
+                  <ImageEmbed addImageFunction={addImageFunction}></ImageEmbed>
+
+                  <Typography variant="small" className={styles.Text} style={{ marginBottom: 10 }}>
+                    For uploading images use Picture Note under component Library!
+                  
+                  
+                  </Typography>
                 </div>
               )}
               {popoverContent === 'componentLibrary' && (

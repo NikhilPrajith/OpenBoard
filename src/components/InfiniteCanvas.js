@@ -57,7 +57,7 @@ const nodeTypes = {
     linkPreview: LinkPreview,
     weather: Weather,
     codePresentation: CodeEditor,
-    mermaidDiagram: Mermaid
+    mermaidDiagram: Mermaid,
 
   };
 
@@ -428,6 +428,7 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
         snapGrid={snapGrid}
         defaultViewport={defaultViewport}
         onConnect={onConnect}
+        multiSelectionKeyCode={16}
 
 
         onInit={setRfInstance}

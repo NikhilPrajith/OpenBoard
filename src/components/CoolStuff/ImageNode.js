@@ -14,7 +14,7 @@ export default function ImageNode({ data, isConnectable, selected }) {
 
   return (
     <>
-    {data.type === 'Image' &&
+    {(data.type === 'Image' || data.type === 'ImageEmbed') &&
       <NodeResizer 
         color="#000" 
         isVisible={selected} 
@@ -23,17 +23,17 @@ export default function ImageNode({ data, isConnectable, selected }) {
       />}
       <div 
          style={
-          data.type === 'Image'
+          data.type === 'Image' || data.type ==="ImageEmbed"
             ? {
                 width: `${size.width}`,
                 height: `${size.height}`,
                 position: 'relative',
-                opacity: '0.8',
+                opacity: data.type == "ImageEmbed" ? '1.0': '0.8',
               }
             : {}
         }
       >
-      {data.type == 'Image' ?
+      {data.type === 'Image' || data.type ==="ImageEmbed" ?
         <img 
           src={data.url} 
           style={{ width: '100%', height: '100%' }} 
