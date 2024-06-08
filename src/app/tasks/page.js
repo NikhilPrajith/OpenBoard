@@ -39,7 +39,7 @@ export default function Page() {
 
   return (
     <div className="relative flex w-full" style={{ marginTop: '55px', marginLeft: '65px' }}>
-      <div className="absolute top-0 left-0 p-4 z-10">
+      <div className="absolute top-0 left-0 p-4">
         <Menu>
           <MenuHandler>
             <Button className="bg-black text-white rounded-lg" style={{ borderRadius: '8px' }}>
