@@ -29,7 +29,13 @@ const BoardList = ({}) => {
 
   return (
     <div  className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.header} style={{
+
+          background:'url("https://images.unsplash.com/photo-1585157603875-17aacca6182a?q=80&w=3119&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          }}>
         {/* Header content, e.g., datetime inputs */}
         <div className={styles.taskHeader}>
               Boards 

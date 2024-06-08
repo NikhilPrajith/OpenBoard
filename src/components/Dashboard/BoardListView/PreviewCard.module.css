@@ -1,53 +1,53 @@
 .parent{
     height: 100%;
     padding: 0px;
-    background-color: rgb(195, 198, 249);
-    padding: 10px;
-    border-radius: 6px;
+    background-color: white;
+    padding: 8px;
     width: 100%;
-    border:1px #eee solid;
+    /*border:1px #eee solid;*/
     position: relative; /* Needed for absolute positioning of child */
     cursor: pointer;
-    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.01px #eee solid;
 
 }
 .parent:hover{
     opacity: 0.9;
     cursor: pointer;
+    background-color: rgb(249, 249, 249);
 }
 .cont{
     display: flex;
     align-items: center;
-    font-size: 12px;
 }
 .cont>div:last-child{
-    margin-left: 10px;
+    margin-left:20px;
+    font-weight: 600;
 
 }
 .header{
     font-weight: 500;
 }
 .cont2{
-    border-top:0.2px solid #eee;
-    margin-top: 7px;
-    padding-top: 7px;
 }
 .createdOn{
-    color: grey;
+    color: rgb(85, 84, 84);
     font-size: 10px;
-    font-weight: 300;
+    font-weight: 200;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Delete button styling */
 .delete {
-    position: absolute;
-    top: -10px; /* Adjust as needed */
-    right: -10px; /* Adjust as needed */
-    background-color: rgb(255, 83, 83); /* Example background color */
-    color: white; /* Text color */
-    padding: 10px;
-    font-size: 14px;
+    color: red; /* Text color */
+    font-size: 12px;
     border-radius: 6px;
+    margin-left: 20px;
     display: none; /* Hide by default */
   }
   

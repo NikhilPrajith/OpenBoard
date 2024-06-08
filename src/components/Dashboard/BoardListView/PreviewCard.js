@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useBoard } from '@/context/BoardContext';
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { notification } from 'antd';
+import { FaTrash } from "react-icons/fa6";
 
 export default function PreviewCard({data}) {
 
@@ -67,17 +68,20 @@ export default function PreviewCard({data}) {
   
 
   return (
-    <div className={styles.parent} style={{backgroundColor: data.color}} onClick={()=>edit(data.id, data.name)}>
-      <div className={styles.delete} onClick={(e)=>{handleDelete(e,data.id)}}><MdOutlineDeleteOutline/></div>
+    <div className={styles.parent}  onClick={()=>edit(data.id, data.name)}>
       <div className={styles.cont}>
         <div>
           <MdSpaceDashboard/>
         </div>
+        <div style={{backgroundColor: data.color, width:'5px', height:'10px', border:'0.01px #eee solid'}}></div>
+
         <div className={styles.header}>{data.name}</div>
       </div>
       <div className={styles.cont2}>
         <div className={styles.createdOn}>
-          Created on: {formattedDate}
+          {formattedDate}
+          <div className={styles.delete} onClick={(e)=>{handleDelete(e,data.id)}}><FaTrash/></div>
+
         </div>
       </div>
 

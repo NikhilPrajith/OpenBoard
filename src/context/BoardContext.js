@@ -216,7 +216,7 @@ export const BoardProvider = ({ children }) => {
 
       // Add more themes here as needed
     };
-    const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 205, 205)', 'rgb(229, 187, 247)', 'rgb(163, 211, 249)', 'white'];
+    const selectableColors = ['rgb(254, 240, 113)', 'rgb(92, 241, 192)', 'rgb(255, 205, 205)', 'rgb(229, 187, 247)', 'rgb(163, 211, 249)'];
 
   //React flow context
   const getNodeId = () => `randomnode_${+new Date()}_${+Math.random(100)}}`;

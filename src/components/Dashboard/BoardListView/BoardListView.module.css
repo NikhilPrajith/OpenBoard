@@ -1,0 +1,14 @@
+.menuButtonHandle{
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+
+    border:0.1px #eee solid;
+
+    background-color: rgb(228, 228, 228);
+}
+.menuButtonHandle:hover{
+    border:0.1px #eee solid;
+    opacity: 0.9;
+
+}
