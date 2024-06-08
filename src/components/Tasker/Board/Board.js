@@ -105,7 +105,11 @@ function Board({}) {
 
   return (
       <div className={styles.boardContCont}>
-        <div className={styles.mainheader}>
+        <div className={styles.mainheader} style={{
+            background:'url("https://images.unsplash.com/photo-1579762593131-b8945254345c?q=80&w=3054&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+            backgroundSize:'cover',
+            backgroundPosition:'center',
+            }}>
             {/* Header content, e.g., datetime inputs */}
             <div className={styles.maintaskHeader}>
                   Simplified Lists 

@@ -55,7 +55,13 @@ const TaskList = ({}) => {
     <div  className={styles.container}>
       <canvas ref={confettiRef} className={styles.confettiCanvas} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}></canvas>
 
-      <div className={styles.header}>
+      <div className={styles.header} 
+        style={{
+          background:'url("https://images.unsplash.com/photo-1585157603822-6ea06da9a49a?q=80&w=2792&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+          backgroundSize:'cover',
+          backgroundPosition:'center',
+          }}
+      >
         {/* Header content, e.g., datetime inputs */}
         <div className={styles.taskHeader}>
               Tasks 

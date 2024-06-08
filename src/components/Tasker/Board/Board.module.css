@@ -183,16 +183,23 @@
 }
 
 .mainheader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px;
   border-bottom: 1px solid #eee;
+  min-height: 160px;
+  max-height: 200px;
+}
+.mainheader>div{
+  height: -webkit-fill-available;
 }
 .maintaskHeader{
+  padding: 20px 34px;
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.4); /* Adjust the alpha value (0.5 for example) for transparency */
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
 }
 .maintaskHeader{

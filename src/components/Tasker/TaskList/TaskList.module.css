@@ -14,16 +14,21 @@
 }
 
 .header {
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
   border-bottom: 1px solid #eee;
 }
 .taskHeader{
+  padding: 15px 20px;
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.4); /* Adjust the alpha value (0.5 for example) for transparency */
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: black;
 
 }
 .taskHeader{
@@ -146,8 +151,7 @@
 }
 .numOfTasks{
   font-size: 13px;
-  font-weight: 500;
-  color:grey
+  font-weight: 400;
 }
 .dateCont{
   display: flex;

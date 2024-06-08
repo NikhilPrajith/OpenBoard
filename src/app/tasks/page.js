@@ -1,62 +1,74 @@
-'use client'
-import Tasker from '@/components/Tasker/Tasker'
-import React from 'react'
+'use client';
+
+import Tasker from '@/components/Tasker/Tasker';
+import React, { useState } from 'react';
 import {
   Tabs,
-  TabsHeader,
   TabsBody,
-  Tab,
   TabPanel,
-} from "@material-tailwind/react";
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from '@material-tailwind/react';
 import Board from '@/components/Tasker/Board/Board';
-import { FaListCheck,FaCalendar } from "react-icons/fa6";
-import { BsFillClipboardFill } from "react-icons/bs";
+import { FaListCheck, FaCalendar } from 'react-icons/fa6';
+import { BsFillClipboardFill } from 'react-icons/bs';
 
-export default function page() {
+export default function Page() {
   const data = [
     {
-      label: "List",
-      value: "list",
-      icon: FaListCheck
+      label: 'List',
+      value: 'list',
+      icon: FaListCheck,
     },
     {
-      label: "Board",
-      value: "board",
+      label: 'Board',
+      value: 'board',
       icon: BsFillClipboardFill,
     },
     {
-      label: "Calendar",
-      value: "calendar",
-      icon: FaCalendar
+      label: 'Calendar',
+      value: 'calendar',
+      icon: FaCalendar,
     },
   ];
- 
+
+  const [activeTab, setActiveTab] = useState('list');
+
   return (
-    <div style={{marginTop:'55px', marginLeft:'65px'}}>
-    <Tabs value="list">
-      <TabsHeader className='' style={{fontSize:'12px', marginLeft:'16px', marginRight:'16px', marginTop:'16px', backgroundColor:'color(srgb 0.9764 0.9765 0.9766)'}}>
-        {data.map(({ label, value, icon }) => (
-          <Tab key={value} value={value} styl={{fontSize:'12px !important'}}>
-            <div className='flex items-center gap-2'>
-              {React.createElement(icon, { className: "w-4 h-4" })}
-              {label}
-            </div>
-          </Tab>
-        ))}
-      </TabsHeader>
-      <TabsBody
-        animate={{
-        }}
-        style={{padding:'0px !important'}}
-      >
-        <TabPanel key="list" value="list">
-            <Tasker></Tasker>
-        </TabPanel>
-        <TabPanel key="board" value="board">
-            <Board></Board>
-        </TabPanel>
-      </TabsBody>
-    </Tabs>
+    <div className="relative flex w-full" style={{ marginTop: '55px', marginLeft: '65px' }}>
+      <div className="absolute top-0 left-0 p-4 z-10">
+        <Menu>
+          <MenuHandler>
+            <Button className="bg-black text-white rounded-lg" style={{ borderRadius: '8px' }}>
+              {data.find((tab) => tab.value === activeTab)?.label}
+            </Button>
+          </MenuHandler>
+          <MenuList>
+            {data.map(({ label, value, icon }) => (
+              <MenuItem key={value} onClick={() => setActiveTab(value)}>
+                <div className="flex items-center gap-2">
+                  {React.createElement(icon, { className: 'w-4 h-4' })}
+                  {label}
+                </div>
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu>
+      </div>
+      <Tabs value={activeTab} className="flex-grow">  
+        <TabsBody className="p-0 m-0">
+          {data.map(({ value }) => (
+            <TabPanel key={value} value={value} className="p-0 m-0">
+              {value === 'list' && <Tasker />}
+              {value === 'board' && <Board />}
+              {value === 'calendar' && <div>Calendar View</div>}
+            </TabPanel>
+          ))}
+        </TabsBody>
+      </Tabs>
     </div>
   );
 }
