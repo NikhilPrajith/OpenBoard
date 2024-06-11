@@ -1,6 +1,6 @@
 'use client'
 import React, {useState,useEffect,useCallback} from 'react';
-import { useKeyPress, useKeyDown } from 'react-keyboard-input-hook';
+//import { useKeyPress, useKeyDown } from 'react-keyboard-input-hook';
 
 import ReactFlow, { MiniMap, Controls,Background, useNodesState, useEdgesState, addEdge,ReactFlowProvider } from 'reactflow';
 import styles from "./InfinitaCanvas.module.css"
@@ -324,13 +324,13 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
       }
     }
   }, [nodes, copiedNodes]);*/
-  
+  /*
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleKeyDown]);
+  }, [handleKeyDown]);*/
   
 
   const [openDocumentEditor, setOpen] = React.useState(false);
