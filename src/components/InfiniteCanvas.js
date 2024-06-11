@@ -1,5 +1,7 @@
 'use client'
 import React, {useState,useEffect,useCallback} from 'react';
+import { useKeyPress, useKeyDown } from 'react-keyboard-input-hook';
+
 import ReactFlow, { MiniMap, Controls,Background, useNodesState, useEdgesState, addEdge,ReactFlowProvider } from 'reactflow';
 import styles from "./InfinitaCanvas.module.css"
 import ToDoTaskNode from './ToDoTask/ToDoTaskNode';
@@ -74,6 +76,8 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
   const [selectedEffect, setSelectedEffect] = useState('')
   const [showEffect, setShowEffect] = useState(false);
   const [showSideBar, setShowSidebar] = useState(false);
+  const [copiedNodes, setCopiedNodes] = useState([]);
+
 
   const {user, data, initialLoading} = useAuth();
   const {isSavedBoard,
@@ -297,6 +301,37 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
     },
     [reactFlowInstance],
   );
+  /*
+  //TODO: Copy paste
+  const handleKeyDown = useCallback((event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'c') {
+      const selectedNodes = nodes.filter(node => node.selected);
+      if (selectedNodes.length > 0) {
+        setCopiedNodes(selectedNodes);
+      }
+    } else if ((event.ctrlKey || event.metaKey) && event.key === 'v') {
+      if (copiedNodes.length > 0) {
+        const newNodes = copiedNodes.map(node => ({
+          ...node,
+          id: getNodeId(),
+          position: {
+            x: node.position.x + 20,
+            y: node.position.y + 20
+          }
+        }));
+        
+        addNode(newNodes);
+      }
+    }
+  }, [nodes, copiedNodes]);*/
+  
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
+  
 
   const [openDocumentEditor, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {

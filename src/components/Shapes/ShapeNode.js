@@ -4,12 +4,13 @@ import { NodeResizer } from 'reactflow';
 import { useBoard } from '@/context/BoardContext';
 
 const selectableColors = [
-  "#fef071",
-  "#5cf1c0",
-  "#ffcdcd",
-  "#e5bbf7",
-  "#a3d3f9",
-  "#ffffff",
+  "#FFFAD1",
+  "#CFFFEF",
+  "#FFECEC",
+  "#FEE9FF",
+  "#a3d3f995",
+  "##D8F2FA",
+  "#F4FAFF",
   "#d3d3d3", // Light black
 ];
 
