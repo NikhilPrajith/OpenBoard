@@ -9,7 +9,7 @@ const selectableColors = [
   "#FFECEC",
   "#FEE9FF",
   "#a3d3f995",
-  "##D8F2FA",
+  "#D8F2FA",
   "#F4FAFF",
   "#d3d3d3", // Light black
 ];
