@@ -1,5 +1,4 @@
 .parent{
-    height: 100%;
     padding: 0px;
     background-color: white;
     padding: 8px;
@@ -7,23 +6,31 @@
     /*border:1px #eee solid;*/
     position: relative; /* Needed for absolute positioning of child */
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 0.01px #eee solid;
+    border-top: 0.01px #eee solid;
+    height: 100%;
 
 }
-.parent:hover{
+.mainContainer{
+    width: 100%;
+    height: auto;
+
+    border: 0.01px #eee solid;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+.parent:hover,.mainContainer{
     opacity: 0.9;
     cursor: pointer;
     background-color: rgb(249, 249, 249);
+    border-top: 0.01px #eee solid;
 }
 .cont{
     display: flex;
     align-items: center;
 }
 .cont>div:last-child{
-    margin-left:20px;
+    margin-left:10px;
     font-weight: 600;
 
 }
@@ -36,22 +43,34 @@
     color: rgb(85, 84, 84);
     font-size: 10px;
     font-weight: 200;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Delete button styling */
 .delete {
-    color: red; /* Text color */
-    font-size: 12px;
     border-radius: 6px;
-    margin-left: 20px;
-    display: none; /* Hide by default */
+    width:100%;
   }
   
   /* Show the delete button only when the parent container is hovered */
-  .parent:hover .delete {
+
+  .imageCont{
+    width: 100%;
+    height: 150px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .moreActionButton{
+    padding: 8px;
+    font-size: 20px;
+  }
+  .moreActionButton:hover{
+    opacity: 0.85;
+  }
+  .moreActionContainer{
+    position: absolute;
+    right: 0;
+    top: 0;
     display: block;
+
   }

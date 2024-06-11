@@ -10,11 +10,20 @@ import { useBoard } from '@/context/BoardContext';
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { notification } from 'antd';
 import { FaTrash } from "react-icons/fa6";
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
+import { BsThreeDots } from "react-icons/bs";
 
-export default function PreviewCard({data}) {
+export default function PreviewCard({data, index}) {
 
   const {setNodes, setEdges, setAlignment, documentId, setDocumentName, deleteBoard} = useBoard();
 
+  const [openMenu, setOpenMenu] = React.useState(false);
   const router = useRouter()
   const {user} = useAuth();
   const edit = (id, name) =>{
@@ -37,6 +46,11 @@ export default function PreviewCard({data}) {
     month: 'long',
     day: 'numeric'
   });
+
+  const imageList =["https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGphcGFuZXNlJTIwYXJ0fGVufDB8fDB8fHww",
+    "https://images.unsplash.com/photo-1578926314433-e2789279f4aa?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8amFwYW5lc2UlMjBwYWludGluZ3xlbnwwfHwwfHx8MA%3D%3D",
+    "https://images.unsplash.com/photo-1580196969807-cc6de06c05be?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGphcGFuZXNlJTIwcGFpbnRpbmd8ZW58MHx8MHx8fDA%3D"
+  ]
 
   const handleDelete = async (e, id) => {
     e.stopPropagation(); // This stops the click event from propagating to parent elements
@@ -68,23 +82,43 @@ export default function PreviewCard({data}) {
   
 
   return (
-    <div className={styles.parent}  onClick={()=>edit(data.id, data.name)}>
-      <div className={styles.cont}>
-        <div>
-          <MdSpaceDashboard/>
-        </div>
-        <div style={{backgroundColor: data.color, width:'5px', height:'10px', border:'0.01px #eee solid'}}></div>
+    <div className={styles.mainContainer} onClick={()=>edit(data.id, data.name)}>
+      <div className={styles.moreActionContainer}>
+          <Menu placement="right-start">
+          <MenuHandler>
+            <div className={styles.moreActionButton}> <BsThreeDots/></div>
+          </MenuHandler>
+          <MenuList>
+            
+            <MenuItem onClick={()=>edit(data.id, data.name)}>Open</MenuItem>
+            <MenuItem>
+              <div className={styles.delete} onClick={(e)=>{handleDelete(e,data.id)}}>Delete</div></MenuItem>
+          </MenuList>
+        </Menu>
 
-        <div className={styles.header}>{data.name}</div>
       </div>
-      <div className={styles.cont2}>
-        <div className={styles.createdOn}>
-          {formattedDate}
-          <div className={styles.delete} onClick={(e)=>{handleDelete(e,data.id)}}><FaTrash/></div>
+      <div className={styles.imageCont} style={{
+        backgroundImage:`url(${imageList[index % imageList.length]})`
+      }}></div>
+      <div className={styles.parent}>
+        <div className={styles.cont}>
+          <div>
+            <MdSpaceDashboard/>
+          </div>
+          <div style={{backgroundColor: data.color, width:'5px', height:'10px', border:'0.01px #eee solid'}}></div>
 
+          <div className={styles.header}>{data.name}</div>
+        </div>
+        <div className={styles.cont2}>
+          <div className={styles.createdOn}>
+            Created {formattedDate}
+            
+          </div>
         </div>
       </div>
 
     </div>
   )
 }
+//<div className={styles.delete} onClick={(e)=>{handleDelete(e,data.id)}}><FaTrash/></div>
+

@@ -175,23 +175,19 @@ const { user, data, initialLoading } = useAuth();
 
   const [initialDataFromDbLoaded, setInitialDataFromDbLoaded] = useState(false);
   useEffect(() => {
-    console.log()
     if(initialLoading || initialDataFromDbLoaded){
       return
     }
     if(!user || !data.name){
       return
     }
-    console.log("data", data)
     if(data['tasksObj']){
-      console.log("Data exists in db")
       setTasks(data['tasksObj']['tasks']);
       setListCategories(data['tasksObj']['categories'])
       setTaskCategories(data['tasksObj']['taskCategoriesState'])
       setInitialDataFromDbLoaded(true);
       setIsSaved(true);
     }else{
-      console.log("no data exists in db")
       setIsSaved(false);
       setInitialDataFromDbLoaded(true);
     }

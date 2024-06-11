@@ -92,9 +92,9 @@ export default function BoardListView() {
           </Menu>
         </div>
       </div>
-      <div className="table-auto border-collapse">
+      <div className="grid grid-cols-4 gap-4">
         {filteredBoards && filteredBoards.map((board, index) => (
-          <PreviewCard key={index} data={board} />
+          <PreviewCard key={index} data={board} index={index}/>
         ))}
       </div>
     </div>
