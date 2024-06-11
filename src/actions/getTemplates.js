@@ -9,9 +9,9 @@ export async function getTemplates(lastVisible = null) {
   let q;
 
   if (lastVisible) {
-    q = query(templatesCollection, orderBy("title"), startAfter(lastVisible), limit(10));
+    q = query(templatesCollection, orderBy("title"), startAfter(lastVisible), limit(20));
   } else {
-    q = query(templatesCollection, orderBy("title"), limit(10));
+    q = query(templatesCollection, orderBy("title"), limit(20));
   }
 
   try {

@@ -363,6 +363,65 @@ export const BoardProvider = ({ children }) => {
     
   };
 
+  const pubishAsTemplate = async (id, title) =>{
+    if (!user || !data.admin ) {
+      console.log("failed")
+      return {message:'Failed', info:null, theme:null}; // Ensure user is logged in before fetching data
+    }
+    try {
+      // Reference to the specific board document
+      const boardDocRef = doc(db, 'users', user.uid, 'boards', id);
+      const docSnap = await getDoc(boardDocRef);
+      
+
+      if (docSnap.exists()) {
+        const dataForBoard = docSnap.data();
+        console.log("Data exists for template", dataForBoard);
+        const boardState = {
+          flow:dataForBoard.flow,
+          updatedAt:dataForBoard.updatedAt,
+          theme: dataForBoard.theme,
+        };
+
+        //test save
+        console.log("Create Board", boardState);
+        const boardsCollection = collection(db, "boards");
+        const docRef = await addDoc(boardsCollection, boardState);
+
+        //TODO: get an image of the flow, using a blob
+
+        const templateData ={
+          author:{name: data.name, img:'https://liveblocks.io/avatars/avatar-2.png'},
+          tag: "Random",
+          img: 'https://images.pexels.com/photos/301703/pexels-photo-301703.jpeg?auto=compress&cs=tinysrgb&w=1200',
+          title: title,
+          id: docRef.id
+        }
+        console.log("templateData", templateData);
+        const templatesCollections = collection(db, "Templates");
+        const newTemplateRef = await addDoc(templatesCollections, templateData);
+
+
+        notification.success({
+          message: 'Published!',
+          description: `Board added to public templates`,
+        });
+      }
+    } catch (error) {
+      console.log("error",error);
+      notification.error({
+        message: 'Failed to publish!',
+        description: `Please try again.`,
+        icon: <AiOutlineExclamationCircle style={{ color: '#ff4d4f' }} />,
+      });
+      return {message:'Failed', info: error, theme:null};
+    }
+  }
+
+  const copyFlowElementsForComponents = async (id, title)=>{
+
+  }
+
   //Restore
   const onRestore = useCallback(() => {    
     const restoreFlow = async () => {
@@ -650,7 +709,10 @@ export const BoardProvider = ({ children }) => {
 
     deleteBoard,
     cloneBoardToAccount,
-    createNew
+    createNew,
+
+    pubishAsTemplate,
+    copyFlowElementsForComponents
 
   };
 
