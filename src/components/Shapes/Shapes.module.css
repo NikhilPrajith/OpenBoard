@@ -1,0 +1,144 @@
+.shapesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.shape {
+  width: 23px;
+  height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(204, 204, 204, 0.3);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+}
+
+.shape:hover {
+  background-color: rgba(204, 204, 204, 0.3);
+}
+
+.rectangle {
+  background-color: #f8d7da;
+}
+
+.circle {
+  border-radius: 50%;
+  background-color: #d1ecf1;
+}
+
+.diamond {
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-bottom: 50px solid #d4edda;
+  position: relative;
+  top: -50px;
+}
+
+.diamond::after {
+  content: '';
+  position: absolute;
+  left: -50px;
+  top: 50px;
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-top: 50px solid #d4edda;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid #cce5ff;
+}
+
+.cross {
+  position: relative;
+  background-color: transparent;
+}
+
+.cross::before,
+.cross::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 20px;
+  background-color: #f8d7da;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cross::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.trapezoid {
+  border-bottom: 100px solid #fff3cd;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  height: 0;
+  width: 100px;
+}
+
+
+.searchContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius:6px;
+  border:1px solid #eee;
+  overflow: hidden;
+  margin: 16px;
+  margin-bottom: 0px;
+
+
+}
+.searchBar{
+  border: none;
+
+  padding: 5px;
+  font-size: 12px;
+  width: 100%;
+
+
+}
+.searchBar:focus{
+  outline: none;
+  border: none;
+  
+}
+.searchBarButton{
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+  height: 100%;
+  padding: 7px;
+  font-size: 12px;
+
+
+}
+
+.noResult{
+  color: grey;
+font-size: 11px;
+text-align: center;
+
+grid-column: 1 / -1;
+}
+.container{
+  
+  font-family: Arial, sans-serif !important;
+}

@@ -15,9 +15,11 @@ import MoreFeaturesView from '../MoreFeaturesView/MoreFeaturesView';
 import { Button, Typography, Spinner, Input } from '@material-tailwind/react';
 import { FaImages } from "react-icons/fa6";
 import ImageEmbed from '../ImageUpload/ImageEmbed';
+import Shapes from '../Shapes/Shapes';
+import { FaShapes } from "react-icons/fa6";
 
 
-export default function BasicTools({ addingNode, themes, changeTheme, addImageFunction }) {
+export default function BasicTools({ addShapeToFlow, addingNode, themes, changeTheme, addImageFunction }) {
   const [popoverContent, setPopoverContent] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -40,6 +42,7 @@ export default function BasicTools({ addingNode, themes, changeTheme, addImageFu
         <button onClick={() => handleClick('embedImages')}><FaImages /></button>
         
         <button onClick={() => handleClick('stickers')}><RiEmojiStickerFill /></button>
+        <button onClick={() => handleClick('shapes')}><FaShapes/></button>
         <button onClick={() => handleClick('componentLibrary')}><MdDashboardCustomize /></button>
         <button onClick={() => handleClick('themes')}><FaLightbulb /></button>
       </div>
@@ -80,6 +83,12 @@ export default function BasicTools({ addingNode, themes, changeTheme, addImageFu
                 <div>
                   <Typography variant="h6" className={styles.Text} style={{ marginBottom: 10 }}>Themes</Typography>
                   <Themes themes={themes} changeTheme={changeTheme} />
+                </div>
+              )}
+              {popoverContent === 'shapes' && (
+                <div>
+                  <Typography variant="h6" className={styles.Text} style={{ marginBottom: 10 }}>Shapes</Typography>
+                  <Shapes addShapeToFlow={addShapeToFlow} ></Shapes>
                 </div>
               )}
             </div>

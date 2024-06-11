@@ -17,6 +17,7 @@ import { BsCloudsFill } from "react-icons/bs";
 import { FaFileCode } from "react-icons/fa";
 import { IoMdDocument } from "react-icons/io";
 import { MdTimer, MdImage, MdDashboardCustomize } from "react-icons/md";
+import { PiSlideshowFill } from "react-icons/pi";
 import {
   Button,
 } from "@material-tailwind/react";
@@ -58,6 +59,13 @@ export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
       value: "weather",
       openWindow: false,
       icon: BsCloudsFill,
+      disabled:false
+    },
+    {
+      label: "Callout",
+      value: "callout",
+      openWindow: false,
+      icon: PiSlideshowFill,
       disabled:false
     },
     {

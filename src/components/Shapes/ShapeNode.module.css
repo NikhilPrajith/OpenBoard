@@ -1,0 +1,61 @@
+.shape {
+    position: relative;
+  }
+  
+  .rectangle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .circle {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .diamond {
+    transform: rotate(45deg);
+    background-color: #d4edda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .diamond .label {
+    transform: rotate(-45deg); /* Counter-rotate text */
+  }
+  
+  .triangle {
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid #cce5ff;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .trapezoid {
+    border-bottom: 50px solid #fff3cd;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cross {
+    position: relative;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .label {
+    text-align: center;
+  }
+  

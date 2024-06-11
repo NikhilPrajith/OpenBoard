@@ -32,6 +32,8 @@ import Drawer from '@mui/material/Drawer';
 import DocumentComp from './DocumentComps/DocumentComp';
 import Mermaid from './ZPackage/Mermaid/Mermaid';
 import ImageEmbed from './ImageUpload/ImageEmbed';
+import Callout from './ZPackage/Callout/Callout';
+import ShapeNode from './Shapes/ShapeNode';
 
 
 
@@ -59,6 +61,8 @@ const nodeTypes = {
     weather: Weather,
     codePresentation: CodeEditor,
     mermaidDiagram: Mermaid,
+    callout: Callout,
+    shapeNode: ShapeNode,
 
   };
 
@@ -336,6 +340,64 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
     addNode(newNode);
   };
 
+  const addShapeToFlow = (shape) => {
+    console.log("Trying to add shape:", shape);
+    const newNode = {
+      id: getNodeId(),
+      type: 'shapeNode',
+      position: {
+        x: Math.random() * window.innerWidth + 100,
+        y: Math.random() * window.innerHeight,
+      },
+      selected:true,
+      data: {
+        label: `${shape} node`,
+        shape: shape,
+        style: {}
+      },
+    };
+    addNode(newNode);
+  };
+  
+  const getNodeStyle = (shape) => {
+    switch (shape) {
+      case 'rectangle':
+        return {};
+      case 'circle':
+        return { borderRadius: '50%' };
+      case 'diamond':
+        return {
+          transform: 'rotate(45deg)',
+          backgroundColor: '#d4edda',
+        };
+      case 'triangle':
+        return {
+          borderLeft: '50px solid transparent',
+          borderRight: '50px solid transparent',
+          borderBottom: '100px solid #cce5ff',
+          backgroundColor: 'transparent',
+        };
+      case 'cross':
+        return {
+          position: 'relative',
+          backgroundColor: 'transparent',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        };
+      case 'trapezoid':
+        return {
+          borderBottom: '50px solid #fff3cd',
+          borderLeft: '25px solid transparent',
+          borderRight: '25px solid transparent',
+          backgroundColor: 'transparent',
+        };
+      default:
+        return {};
+    }
+  };
+  
+
   const onAddStcikers = (url, srcType='Image') => {
     console.log("srcType", srcType, url);
     const newNode = {
@@ -441,7 +503,7 @@ export default function InfiniteCanvas({documentID, boardType = "Custom"}){
         {showEffect && <ParticleEffect selectedEffect={selectedEffect}></ParticleEffect> }
       <Background size={1.4} variant="dots"></Background>
       </ReactFlow>
-        <BasicTools themes={themes} changeTheme={changeTheme} setShowSidebar={setShowSidebar} showSideBar={showSideBar} addingNode={onAdd} addImageFunction={onAddStcikers}></BasicTools>
+        <BasicTools addShapeToFlow={addShapeToFlow} themes={themes} changeTheme={changeTheme} setShowSidebar={setShowSidebar} showSideBar={showSideBar} addingNode={onAdd} addImageFunction={onAddStcikers}></BasicTools>
         <VideoSearch setShowSidebar={setShowSidebar} onAddVideoFunction={onAddVideoFunction}></VideoSearch>
 
         {/*<SideBar themes={themes} isVisible={true} setShowSidebar={setShowSidebar} showSideBar={showSideBar} changeTheme={changeTheme} addImageFunction={onAddStcikers}></SideBar>*/}

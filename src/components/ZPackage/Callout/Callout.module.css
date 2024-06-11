@@ -1,0 +1,85 @@
+.calloutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  width: 320px;
+  height: 180px;
+  border-radius: 6px;
+  background-color: white;
+  border-left: 10px solid;
+  position: relative;
+}
+
+.inputField {
+  margin-bottom: 8px;
+  padding: 8px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.descriptionField {
+  margin-bottom: 8px;
+  padding: 8px;
+  width: 100%;
+  height: 68px;
+  min-height: 68px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+  font-size: 14px;
+}
+
+.emojiButton {
+  padding: 4px 12px;
+  margin: 4px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.emojiButtonIcon {
+  margin-right: 4px;
+}
+
+.emojiChips {
+  display: flex;
+  gap: 4px;
+}
+
+.emojiChip {
+  padding: 4px 8px;
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.emojiChip.liked {
+  border: 2px solid color(srgb 0.6399 0.8277 0.9764);
+}
+
+.colorPickerButton {
+  position: absolute;
+  top: 50%;
+  left: -60px;
+  transform: translateY(-50%);
+  padding: 4px 12px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.popoverContent {
+  z-index: 10;
+}
