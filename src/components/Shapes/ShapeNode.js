@@ -39,7 +39,7 @@ const ShapeNode = ({ id, data, selected }) => {
   };
 
   const getShape = () => {
-    const commonProps = { fill: color, stroke:'#000', strokeWidth:1 };
+    const commonProps = { fill: color, stroke:'#000', strokeWidth:2 };
     const { width, height } = size;
     switch (data.shape) {
       case 'rectangle':
@@ -129,7 +129,8 @@ const ShapeNode = ({ id, data, selected }) => {
               color={color}
               onChange={handleColorChange}
               colors={selectableColors}
-              styles={{ default: { input: { display: 'none' }, hash: { display: 'none' } } }}
+              style={{width:'100% !important'}}
+              styles={{ default: { input: { display: 'none' }, hash: { display: 'none' } }, width:'100%' }}
             />
           </div>
         )}
