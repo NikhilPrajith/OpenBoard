@@ -128,7 +128,7 @@ export default function Heading({open, type}) {
   //collaboration:
   return (
     <div className={styles.headingContainer}>
-        <div className={styles.titleCont} style={{ marginLeft: open ? '120px' : '0px', transition: 'margin-left 0.1s ease' }}>
+        <div className={styles.titleCont} style={{ marginLeft: open ? '150px' : '0px', transition: 'margin-left 0.07s ease' }}>
           <Typography variant="h5"><a href="/">Vibing</a></Typography>
           <div className={styles.subtitle}>A fun time project</div>
         </div>
@@ -184,10 +184,6 @@ export default function Heading({open, type}) {
           {user && <div className={styles.saveNowButton} onClick={handleCloneToAccount} style={{backgroundColor:'color(srgb 0.8975 0.7331 0.9688)'}}>Clone to Account!</div>}
           </>}
 
-          <a target="_blank" rel="noopener noreferrer" className={styles.feedbackButton} href="https://forms.gle/YKWZ8iL1w6fHmp1RA">
-            Feedback
-          </a>
-
           {!user && handleClose && <button onClick={handleOpen} className={styles.feedbackButton}>
                     Login
             </button>}
@@ -199,7 +195,7 @@ export default function Heading({open, type}) {
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black">
                   <Avatar
                 className={styles.profileAvatar}
-                name={user.displayName}
+                name={user.displayName || ""}
                 size={29}
                 src={`https://liveblocks.io/avatars/avatar-2.png`}
               />
