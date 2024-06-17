@@ -22,6 +22,7 @@ const BoardList = ({}) => {
   const {user,data,logout} = useAuth();
 
   const createNewHandle = async () =>{
+    console.log("Create new clicked")
     const id = await createNew();
     router.push(`/canvas?documentId=${id}`);
   };
@@ -42,11 +43,8 @@ const BoardList = ({}) => {
               <div className={styles.numOfTasks}>{data?.boards?.length || 0} boards</div>
               </div>
       </div>
-      <button onClick={createNewHandle} className={styles.addButton}>
-        <FaPlus /> <span>Add New Board</span>
-      </button>
       <div className={styles.taskContainer} >
-          <BoardListView></BoardListView>
+          <BoardListView createNewHandleFunc={createNewHandle}></BoardListView>
       
       </div>
       
