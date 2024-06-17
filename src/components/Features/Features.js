@@ -284,6 +284,7 @@ export default function Features({ setType, setOpenParent }) {
                   <List component="div" disablePadding>
                     {data?.boards.map((board) => (
                       <ListItemButton
+                        key={board.name}
                         onClick={() => {
                           edit(board.id, board.name);
                         }}
