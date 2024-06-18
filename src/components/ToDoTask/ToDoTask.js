@@ -9,6 +9,7 @@ import { RiDraggable } from "react-icons/ri";
 import confetti from 'canvas-confetti';
 
 import { useSpring, animated } from 'react-spring';
+import { useTasks } from '@/context/TaskContext';
 
 const taskCategories = {
   '😴': 'rgb(195, 198, 249)',
@@ -20,15 +21,15 @@ const taskCategories = {
   '🤕': 'rgb(207, 249, 199)',
 };
 const ToDoTask = ({blank, data}) => {
+  const {addTask_TaskNode,updateCategory_TaskNode,toggleCompletion} = useTasks();
   const [tasks, setTasks] = useState( data.tasks || [
-    { id: 1, title: '', category: '😍', bgColor: taskCategories['😍'] , completed: false },
   ]);
   
 
   const [deadline, setDeadline] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [title, setTitle] = useState(data.title || 'My Tasks');
+  const [title, setTitle] = useState(data.title || "");
 
   const taskListRef = useRef(null);
   const confettiRef = useRef(null);
@@ -119,12 +120,12 @@ const ToDoTask = ({blank, data}) => {
   }, [tasks]); // Re-run when tasks change
 
   const addTask = () => {
-    const newId = Math.floor(Math.random() *10000) +  Math.floor(Math.random() *3490);
-
-    const randomIndex = Math.floor(Math.random() * Object.keys(taskCategories).length);
-    setTasks([...tasks, { id: newId, title: '',category: Object.keys(taskCategories)[randomIndex], bgColor: taskCategories[Object.keys(taskCategories)[randomIndex]], completed: false }]);
+    const {newId, category} = addTask_TaskNode();
+    setTasks([...tasks, { id: newId, title: '',category: category, bgColor: taskCategories[category], completed: false }]);
   };
+
   const updateCategory = (id, newCategory) => {
+    updateCategory_TaskNode(id, newCategory)
     setTasks(tasks.map((task) => {
       if (task.id === id) {
         return { ...task, category: newCategory, bgColor: taskCategories[newCategory] };
@@ -133,7 +134,8 @@ const ToDoTask = ({blank, data}) => {
     }));
   };
 
-  const toggleCompletion = (taskId) => {
+  const toggleCompletionFunc = (taskId) => {
+    toggleCompletion(taskId)
     setTasks(tasks.map((task) => task.id === taskId ? { ...task, completed: !task.completed } : task));
   };
   const strikeThroughAnimation = useSpring({
@@ -178,7 +180,7 @@ const ToDoTask = ({blank, data}) => {
               type="checkbox"
               id={`checkbox-${task.id}`}
               checked={task.completed}
-              onChange={() => toggleCompletion(task.id)}
+              onChange={() => toggleCompletionFunc(task.id)}
             />
               <input onChange={(event) =>{onValueChangeTitle(index,event)}} value={task.title} htmlFor={`checkbox-${task.id}`} className={styles.taskLabel} placeholder='Task Title...'>
               

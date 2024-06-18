@@ -18,6 +18,7 @@ import { FaFileCode } from "react-icons/fa";
 import { IoMdDocument } from "react-icons/io";
 import { MdTimer, MdImage, MdDashboardCustomize } from "react-icons/md";
 import { PiSlideshowFill } from "react-icons/pi";
+import { AiFillSound } from "react-icons/ai";
 import {
   Button,
 } from "@material-tailwind/react";
@@ -60,6 +61,14 @@ export default function MoreFeaturesView({ onClickFunc, addImageFunction }) {
       openWindow: false,
       icon: BsCloudsFill,
       disabled:false
+    },
+    {
+
+      label: "SoundBar",
+      value: "soundBar",
+      openWindow: false,
+      icon: AiFillSound,
+      disabled:true
     },
     {
       label: "Callout",

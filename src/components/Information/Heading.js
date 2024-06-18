@@ -96,10 +96,12 @@ export default function Heading({open, type}) {
   const saveFunction =()=>{
     if(user){
       console.log("db save")
-      saveBoardState()
+      saveBoardState();
+      saveTasksToDb();
     }else{
       console.log("local save")
       onSave();
+      saveDataToLocalStorageTasks();
     }
   }
 

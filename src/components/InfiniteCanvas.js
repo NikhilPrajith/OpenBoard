@@ -46,6 +46,7 @@ import ImageEmbed from "./ImageUpload/ImageEmbed";
 import Callout from "./ZPackage/Callout/Callout";
 import ShapeNode from "./Shapes/ShapeNode";
 import BoardInformationPanel from "./Information/BoardInformationPanel";
+import SoundBar from "./ZPackage/SoundBar/SoundBar";
 
 const snapGrid = [10, 10];
 
@@ -70,6 +71,7 @@ const nodeTypes = {
   mermaidDiagram: Mermaid,
   callout: Callout,
   shapeNode: ShapeNode,
+  soundBar: SoundBar,
 };
 
 export default function InfiniteCanvas({ documentID, boardType = "Custom" }) {

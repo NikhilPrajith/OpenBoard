@@ -29,7 +29,7 @@ export default function BoardInformationPanel() {
         placement="top-start"
         className="bg-white text-gray-600"
       >
-        <button className="text-gray-700">
+        <button className="text-black">
           <FaInfoCircle size={15} />
         </button>
       </Tooltip>

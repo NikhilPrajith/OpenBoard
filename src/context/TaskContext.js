@@ -249,6 +249,45 @@ const { user, data, initialLoading } = useAuth();
     }
   }
 
+  //Task node adding
+  const addTask_TaskNode = (list) => {
+    console.log("calling global add task node")
+    const newId = `randomtask_${+new Date()}_${+Math.random(4000)}}`;
+
+    const randomIndex = Math.floor(
+      Math.random() * Object.keys(taskCategories).length
+    );
+    const newTask = {
+      id: newId,
+      list: list,
+      title: "",
+      category: Object.keys(taskCategories)[randomIndex],
+      bgColor: taskCategories[Object.keys(taskCategories)[randomIndex]],
+      completed: false,
+    };
+    setTasks([...tasks, newTask]);
+    console.log("new category", Object.keys(taskCategories)[randomIndex]);
+    return (newId, Object.keys(taskCategories)[randomIndex])
+  };
+
+  const updateCategory_TaskNode = (id, newCategory) => {
+    console.log("calling global update category");
+    let updatedTask = {};
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          updatedTask = {
+            ...task,
+            category: newCategory,
+            bgColor: taskCategories[newCategory],
+          };
+          return updatedTask;
+        }
+        return task;
+      })
+    );
+  };
+
   // Add other states and functions you want to make globally available
   const value = {
     tasks,
@@ -275,6 +314,10 @@ const { user, data, initialLoading } = useAuth();
 
     saveTasksToDb,
     // Add more as needed
+
+    //Task Node functions
+    addTask_TaskNode,
+    updateCategory_TaskNode
   };
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };
