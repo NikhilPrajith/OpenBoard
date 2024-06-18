@@ -38,7 +38,7 @@ export default function Page() {
   const [activeTab, setActiveTab] = useState('list');
 
   return (
-    <div className="relative flex w-full" style={{ marginTop: '55px', marginLeft: '65px' }}>
+    <div className="relative flex" style={{ marginTop: '55px', marginLeft: '65px' }}>
       <div className="absolute top-0 left-0 p-4">
         <Menu>
           <MenuHandler>
