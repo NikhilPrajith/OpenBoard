@@ -214,7 +214,12 @@ export default function Features({ setType, setOpenParent }) {
               {["Local Playground", "Templates", "Tasker"].map(
                 (text, index) => (
                   <ListItem
-                    onClick={() => handleNavigation(pageIcons[index].page)}
+                    onClick={() => {
+                      if (!showDashboard && text === "Tasker") {
+                        return; // Exit early if disabled
+                      }
+                      handleNavigation(pageIcons[index].page);
+                    }}
                     key={text}
                     disablePadding
                     sx={{ display: "block" }}
@@ -249,7 +254,12 @@ export default function Features({ setType, setOpenParent }) {
               )}
               <Divider></Divider>
                 <ListItem
-                  onClick={() => handleNavigation(pageIcons[4].page)}
+                  onClick={() => {
+                    if (!showDashboard) {
+                      return; // Exit early if disabled
+                    }
+                    handleNavigation(pageIcons[4].page);
+                  }}
                   key={"Dashboard"}
                   disablePadding
                   sx={{ display: "block" }}
