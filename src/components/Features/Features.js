@@ -98,7 +98,7 @@ export default function Features({ setType, setOpenParent }) {
     setOpenParent(!open);
   };
   const { user, data } = useAuth();
-  const [showDasboard, setShowDashboard] = React.useState(false);
+  const [showDashboard, setShowDashboard] = React.useState(false);
 
   React.useEffect(() => {
     if (user) {
@@ -218,6 +218,8 @@ export default function Features({ setType, setOpenParent }) {
                     key={text}
                     disablePadding
                     sx={{ display: "block" }}
+
+                  disabled={!showDashboard && text === "Tasker"}
                   >
                     <ListItemButton
                       sx={{
@@ -246,12 +248,12 @@ export default function Features({ setType, setOpenParent }) {
                 )
               )}
               <Divider></Divider>
-              {showDasboard && (
                 <ListItem
                   onClick={() => handleNavigation(pageIcons[4].page)}
                   key={"Dashboard"}
                   disablePadding
                   sx={{ display: "block" }}
+                  disabled={!showDashboard}
                 >
                   <ListItemButton
                     sx={{
@@ -278,9 +280,8 @@ export default function Features({ setType, setOpenParent }) {
                     {/*{open && <ExpandLess />}*/}
                   </ListItemButton>
                 </ListItem>
-              )}
               <Collapse in={open} timeout="auto" unmountOnExit>
-                {data.boards && (
+                {user && data.boards && (
                   <List component="div" disablePadding>
                     {data?.boards.map((board) => (
                       <ListItemButton
