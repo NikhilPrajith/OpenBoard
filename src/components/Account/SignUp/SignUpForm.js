@@ -37,7 +37,6 @@ const SignUpForm = ({onSwitch,closeDialog}) => {
                     email: userData.user.email,
                     userId: userData.user.uid,
                     name: userData.user.displayName,
-                    comics:[]
                 };
                 console.log(db);
                 const adding = await setDoc(doc(db, "users", userData.user.uid), 

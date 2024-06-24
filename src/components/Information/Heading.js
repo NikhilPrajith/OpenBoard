@@ -106,7 +106,6 @@ export default function Heading({open, type}) {
   }
 
 
-  const shouldShowHeaderName = [ '/canvas'].includes(pathname);
 
   const showSave = [ '/canvas'].includes(pathname);
 
@@ -136,7 +135,6 @@ export default function Heading({open, type}) {
         </div>
 
         <div>
-         {shouldShowHeaderName && <DocumentHeaderName></DocumentHeaderName> }
          {previewingTemplate && <div className={styles.parent}>Previewing: <span style={{color:'color(srgb 0.8975 0.7331 0.9688)'}}>{documentName}</span></div>}
         </div>
         <div className={styles.infoCont}>

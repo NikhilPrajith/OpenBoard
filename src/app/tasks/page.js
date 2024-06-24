@@ -16,7 +16,7 @@ import Board from '@/components/Tasker/Board/Board';
 import { FaListCheck, FaCalendar } from 'react-icons/fa6';
 import { BsFillClipboardFill } from 'react-icons/bs';
 
-export default function Page() {
+export default function TasksPage() {
   const data = [
     {
       label: 'List',

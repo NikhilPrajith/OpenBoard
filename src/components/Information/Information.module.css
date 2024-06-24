@@ -99,27 +99,27 @@
   }
 
   .parent{
-    font-size: 12.5px;
-    font-weight: 500;
+    background-color: transparent;
   }
   .headerCont{
     display: flex;
-    justify-content: center;
     align-items: center;
   }
   .headerEditButton{
-    color: grey;
-    margin-left: 5px;
+    color: rgb(61, 61, 61);
+    margin-left: 15px;
+    font-size: 14px;
   }
 
   .headerInput{
     outline: none;
     border: none;
-    text-align: center;
+    text-align: left;
+    background-color: transparent;
   }
   .headerInput:focus{
     outline: none;
     border: none;
 
-    text-align: center;
+    text-align: left;
   }

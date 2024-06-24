@@ -287,6 +287,7 @@ const { user, data, initialLoading } = useAuth();
       })
     );
   };
+  
 
   // Add other states and functions you want to make globally available
   const value = {

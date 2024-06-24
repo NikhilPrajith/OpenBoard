@@ -1,7 +1,7 @@
 
 .container {
     width: 100%;
-    background: rgb(249, 249, 249);
+    background: color(srgb 0.9931 0.975 1);
     font-size: 12px;
     margin: auto;
     border:1px solid #eee;

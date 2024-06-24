@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     top: 0;
     width: min-content;

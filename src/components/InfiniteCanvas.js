@@ -74,7 +74,7 @@ const nodeTypes = {
   soundBar: SoundBar,
 };
 
-export default function InfiniteCanvas({ documentID, boardType = "Custom" }) {
+export default function InfiniteCanvas({ documentID, boardType = "Custom",showBanner=false }) {
   const [bgColor, setBgColor] = useState(initBgColor);
   const [selectedEffect, setSelectedEffect] = useState("");
   const [showEffect, setShowEffect] = useState(false);
@@ -488,7 +488,7 @@ export default function InfiniteCanvas({ documentID, boardType = "Custom" }) {
   const [showDraw, setShowDraw] = useState(true);
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "100vh", width: "100%", position:'relative' }}>
       {showCanvas && (
         <ReactFlowProvider>
           <ReactFlow
@@ -497,7 +497,7 @@ export default function InfiniteCanvas({ documentID, boardType = "Custom" }) {
             nodeTypes={nodeTypes}
             style={{
               background: bgColor,
-              imageRendering: "-webkit-optimize-contrast",
+              imageRendering: "auto",
             }}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
@@ -521,6 +521,7 @@ export default function InfiniteCanvas({ documentID, boardType = "Custom" }) {
               <BoardInformationPanel />
             </Panel>
           </ReactFlow>
+          {!showBanner &&
           <BasicTools
             addShapeToFlow={addShapeToFlow}
             themes={themes}
@@ -529,7 +530,7 @@ export default function InfiniteCanvas({ documentID, boardType = "Custom" }) {
             showSideBar={showSideBar}
             addingNode={onAdd}
             addImageFunction={onAddStcikers}
-          ></BasicTools>
+          ></BasicTools>}
           <VideoSearch
             setShowSidebar={setShowSidebar}
             onAddVideoFunction={onAddVideoFunction}

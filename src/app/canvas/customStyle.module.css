@@ -1,0 +1,89 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .relative {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .toggleButton {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f7f7f5ff;
+    padding: 1px;
+    color: black;
+    transition: background-color 0.3s;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:0.1px rgb(212, 210, 210) solid;
+  }
+  .toggleButton:hover{
+    opacity: 0.85;
+  }
+  
+  .banner {
+    width: 100%;
+    height: 250px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .canvasContainer {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .shrink {
+    width: 68%;
+    height: 400px;
+    border-radius: 6px;
+    border: 0.1px #808080 solid;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 30px;
+
+  }
+  
+
+  .taskHeader{
+    padding: 20px 34px;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.4); /* Adjust the alpha value (0.5 for example) for transparency */
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 105px;
+    height: 300px;
+    padding-top: 50px;
+  
+  }
+  .taskHeader{
+    width: 100%;
+  }
+
+  .numOfTasks{
+    font-size: 13px;
+    font-weight: 400;
+  }
