@@ -130,7 +130,7 @@ function Content() {
                   onClick={()=>{handleTabChange("calendar")}}
                   className={activeTab === 'tasks' ? "text-gray-900" : ""}
                 >
-                  Tasks
+                  Calendar
                 </Tab>
                 <Tab
                   value="documents"
