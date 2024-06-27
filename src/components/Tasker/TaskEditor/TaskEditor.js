@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import styles from "./TaskEditor.module.css";
 import { useTasks } from '@/context/TaskContext';
 
-export default function TaskEditor({}) {
+export default function TaskEditor({id}) {
     // Local state to manage the edited fields, initializing with selectedTask values or defaults
     const [editedTitle, setEditedTitle] = useState('');
     const [editedDueDate, setEditedDueDate] = useState('');
     const [description, setDesc] = useState('');
     const [category, setTaskCategory] = useState('');
     const [categoryColor, setTaskCategoryColor] = useState('');
-    const [listVal, setListCategory] = useState('');
+    const [listVal, setListCategory] = useState(id || '');
     
     //Context
     const {updateTask, categories,taskCategoriesState, selectedTask} = useTasks()
@@ -37,7 +37,8 @@ export default function TaskEditor({}) {
             bgColor: categoryColor,
             category: category,
             list: listVal,
-            description: description, // YYYY-MM-DD string format is compatible with most backend date handling
+            description: description,
+            updated: true, 
         };
 
         updateTask(updatedTask);
@@ -93,23 +94,29 @@ export default function TaskEditor({}) {
                             onChange={(e) => updateCategory(e.target.value)}
                             className={styles.categorySelect}
                             >
+                             {taskCategoriesState && <>   
                             {Object.entries(taskCategoriesState).map(([emoji, color]) => (
                                 <option key={emoji} value={emoji}>{emoji}</option>
                             ))}
+                            </>}
                         </select>
                     </div>
                     <div>
 
-                        <div className={styles.label}>List</div>
+                        <div className={styles.label}>Canvas</div>
                         <select
                             value={listVal}
                             style={{}}
+                            disabled={id != "all"}
                             onChange={(e) => updateList(e.target.value)}
                             className={styles.categorySelect}
                             >
-                            {Object.entries(categories).map(([name, val]) => (
-                                <option key={name} value={name}>{name}</option>
-                            ))}
+                            {categories && <>
+                                {categories.map((category, index) => (
+                                    <option key={index} value={category.id}>{category.name}</option>
+                                ))}
+                            </>
+                            }
                         </select>
                     </div>
                 </div>

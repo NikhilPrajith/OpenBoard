@@ -140,11 +140,11 @@ export default function Heading({open, type}) {
         <div className={styles.infoCont}>
 
         {user && showSave && <>
-          <div className={styles.isSavedText}>{isSavedBoard ? <span className={styles.saved}>Data Persisted</span> : 
+          <div className={styles.isSavedText}>{isSavedBoard && isSavedTasks ? <span className={styles.saved}>Data Persisted</span> : 
                 <span className={styles.unsaved}>Unsaved changes!</span>}
               <div className={styles.autoSave}>Auto save unavailable</div>
           </div>
-          {!isSavedBoard  && <div className={styles.saveNowButton} onClick={saveFunction}>Save Now</div>}
+          {!isSavedBoard || !isSavedTasks  && <div className={styles.saveNowButton} onClick={saveFunction}>Save Now</div>}
           <div style={{width:'0.1px', border:'0.1px #eee solid', height:'17px'}}></div>
           </>}
         

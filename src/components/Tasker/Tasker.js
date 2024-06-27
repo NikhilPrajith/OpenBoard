@@ -13,15 +13,26 @@ import { useTasks } from '@/context/TaskContext';
 
 
 
-export default function Tasker({}) {
+export default function Tasker({id}) {
+
+
+  const {lastId, allTasks,filterTasksById,taskCategoriesState} = useTasks();
+  useEffect(() => {
+    if(id && id != lastId){
+      //For now use filtering
+      filterTasksById(id);
+      
+    }
+  }, [id, allTasks])
+  
 
   return (
     <div className={styles.container}>
       <div>
-        <TaskList></TaskList>
+        <TaskList id={id}></TaskList>
       </div>
       <div>
-        <TaskEditor></TaskEditor>
+        <TaskEditor id={id}></TaskEditor>
       </div>
     </div>
   );

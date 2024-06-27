@@ -9,41 +9,31 @@ import {
 
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 
-import { collection,addDoc,setDoc,doc, userDocRef, arrayUnion,updateDoc, getDoc,deleteDoc } from "@firebase/firestore";
+import { collection,addDoc,setDoc,doc, userDocRef, arrayUnion,updateDoc, getDoc,getDocs,deleteDoc, writeBatch,query, limit,where } from "@firebase/firestore";
 
 const TaskContext = createContext();
 
 export const useTasks = () => useContext(TaskContext);
 
 export const TaskProvider = ({ children }) => {
-  const taskCategories = {
-    "😴": "rgb(195, 198, 249)",
-    "😍": "rgb(199, 242, 249)",
-    "🥸": "rgb(238, 199, 249)",
-    "😭": "rgb(249, 211, 199)",
-    "🤫": "rgb(249, 238, 199)",
-    "😵‍💫": "rgb(249, 199, 242)",
-    "🤕": "rgb(207, 249, 199)",
-  };
-  const listCategories = {
-    Personal: "rgb(195, 198, 249)",
-    Work: "rgb(199, 242, 249)",
-    Fun: "rgb(238, 199, 249)",
-    School: "rgb(249, 211, 199)",
-    IDK: "rgb(249, 238, 199)",
-  };
-  const defaultTasks = [
-  ];
-  const [categories, setListCategories] = useState(listCategories);
-  const [taskCategoriesState, setTaskCategories] = useState(taskCategories);
-  const [tasks, setTasks] = useState(defaultTasks);
+
+  const [categories, setListCategories] = useState(null);
+  const [taskCategoriesState, setTaskCategories] = useState(null);
+  const [tasks, setTasks] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(tasks ? tasks[0] : null);
-const { user, data, initialLoading } = useAuth();
+  const { user, data, initialLoading } = useAuth();
+  const [lastId, setLastRetrievedId] = useState("all");
+  const [toDelete, setToDelete] = useState([]);
 
   const deleteTask = (taskId, index) => {
+    console.log("In delete")
     if (!index) {
       index = tasks.findIndex((task) => task.id === taskId);
     }
+    const deletingTask = tasks[index];
+    console.log("todelete", deletingTask);
+    setToDelete([...toDelete, deletingTask]);
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
 
     setTasks(updatedTasks);
@@ -65,19 +55,24 @@ const { user, data, initialLoading } = useAuth();
       setSelectedTask(nextSelectedTask);
     }
   };
-  const addTask = () => {
+  const addTask = (idForCanvas) => {
     const newId = `randomtask_${+new Date()}_${+Math.random(4000)}}`;
 
+
+    console.log(taskCategoriesState, "state of categories");
     const randomIndex = Math.floor(
-      Math.random() * Object.keys(taskCategories).length
+      Math.random() * Object.keys(taskCategoriesState).length
     );
+    
     const newTask = {
       id: newId,
-      list: "Personal",
+      list: idForCanvas,
       title: "",
-      category: Object.keys(taskCategories)[randomIndex],
-      bgColor: taskCategories[Object.keys(taskCategories)[randomIndex]],
+      category: Object.keys(taskCategoriesState)[randomIndex],
+      bgColor: taskCategoriesState[Object.keys(taskCategoriesState)[randomIndex]],
       completed: false,
+      id :  null,
+      updated: true,
     };
     setTasks([...tasks, newTask]);
     setSelectedTask(newTask);
@@ -91,6 +86,7 @@ const { user, data, initialLoading } = useAuth();
             ...task,
             category: newCategory,
             bgColor: taskCategories[newCategory],
+            updated: true,
           };
           return updatedTask;
         }
@@ -110,7 +106,7 @@ const { user, data, initialLoading } = useAuth();
   const toggleCompletion = (taskId) => {
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task
+        task.id === taskId ? { ...task, completed: !task.completed, updated:true } : task
       )
     );
   };
@@ -120,7 +116,7 @@ const { user, data, initialLoading } = useAuth();
 
     const updatedTasks = tasks.map((task) => {
       if (task.id === id) {
-        updatedTask = { ...task, title: event.target.value };
+        updatedTask = { ...task, title: event.target.value, updated: true };
         return updatedTask;
       }
       return task;
@@ -136,7 +132,7 @@ const { user, data, initialLoading } = useAuth();
     setTasks(
       tasks.map((task) => {
         if (task.id === id) {
-          updatedTask = { ...task, list: newCategory };
+          updatedTask = { ...task, list: newCategory, updated: true };
           return updatedTask;
         }
         return task;
@@ -147,31 +143,7 @@ const { user, data, initialLoading } = useAuth();
     }
   };
 
-  //Iffy approach to get data from localstorage
-  //Multiple renders take place and remmeber this is Server side
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const localTasks = localStorage.getItem("tasks");
-      const tasksData = localTasks ? JSON.parse(localTasks) : defaultTasks;
-      const localSelectedTask = tasksData.length > 0 ? tasksData[0] : null;
-      setTasks(tasksData);
-      setSelectedTask(localSelectedTask);
-
-      const localCategories = localStorage.getItem("categories");
-      const localCatgeoriesData = localCategories
-        ? JSON.parse(localCategories)
-        : listCategories;
-      setListCategories(localCatgeoriesData);
-
-      const localTaskCategories = localStorage.getItem("taskCategoriesState");
-      const localTaskCategoriesData = localTaskCategories
-        ? JSON.parse(localTaskCategories)
-        : taskCategories;
-      setTaskCategories(localTaskCategoriesData);
-      // Repeat for any other pieces of state you wish to initialize from localStorage
-      setIsSaved(true);
-    }
-  }, []);
+  //No more local storage for tasks
 
   const [initialDataFromDbLoaded, setInitialDataFromDbLoaded] = useState(false);
   useEffect(() => {
@@ -182,30 +154,81 @@ const { user, data, initialLoading } = useAuth();
       return
     }
     if(data['tasksObj']){
-      setTasks(data['tasksObj']['tasks']);
-      setListCategories(data['tasksObj']['categories'])
-      setTaskCategories(data['tasksObj']['taskCategoriesState'])
-      setInitialDataFromDbLoaded(true);
-      setIsSaved(true);
+      const getData = async ()=>{
+        console.log("taskObj exists",data['tasksObj'] )
+        setTaskCategories(data['tasksObj']['taskCategoriesState'])
+        setListCategories(data['boards'])
+        setIsSaved(true);
+        await getAllTaskDocuments();
+        setInitialDataFromDbLoaded(true);
+      }
+      getData();
     }else{
-      setIsSaved(false);
       setInitialDataFromDbLoaded(true);
     }
   }, [user, initialLoading, data]);
 
   const [isSavedTasks, setIsSaved] = useState(false);
 
-  const saveDataToLocalStorageTasks = () => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-      localStorage.setItem("categories", JSON.stringify(categories));
-      localStorage.setItem(
-        "taskCategoriesState",
-        JSON.stringify(taskCategoriesState)
-      );
-      setIsSaved(true); // Indicate that data has been saved
+  const getAllTaskDocuments = async () =>{
+    console.log("egtting all documents")
+    if(!user){
+      console.log("no user in getting documents")
+      return;
+    }
+    try {
+      console.log("trying to get all documents")
+      const tasksCollection = collection(db, 'users', user.uid, 'tasks');
+      const tasksQuery = query(tasksCollection, limit(500));
+      const querySnapshot = await getDocs(tasksQuery);
+      const tasksTemp = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      console.log("retrieved tasks", tasksTemp);
+      setTasks(tasksTemp)
+      setAllTasks(tasksTemp)
+    } catch (error) {
+      console.error('Error getting all task documents:', error);
+      setTasks([])
+      return [];
+    }
+
+  }
+  const getTaskDocumentById = async (listId) => {
+    if(!user){
+      return;
+    }
+    try {
+      const tasksCollection = collection(db, 'users', user.uid, 'tasks');
+      const tasksQuery = query(tasksCollection, where('list', '==', listId));
+      const querySnapshot = await getDocs(tasksQuery);
+      const tasks = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setTasks(tasks)
+    } catch (error) {
+      console.error('Error getting tasks by list ID:', error);
+      setTasks([])
     }
   };
+  const filterTasksById = (listId) => {
+    
+    console.log("filtering", lastId, tasks);
+    if(!user){
+      return;
+    }
+    if(listId == 'all'){
+      console.log("the id is all", listId)
+      //its possible that the values in it changed so we have to call it again
+      getAllTaskDocuments();
+      setToDelete([])
+
+      setIsSaved(true);
+      return;
+    }
+    setLastRetrievedId(listId);
+    const temp=  allTasks.filter(task => task.list === listId);
+    setTasks(temp);
+    setIsSaved(true);
+    setToDelete([])
+  };
+
   // Function to update local storage periodically or on specific actions
   /*
   useEffect(() => {
@@ -224,9 +247,11 @@ const { user, data, initialLoading } = useAuth();
   }, [tasks, categories, taskCategoriesState]);
 
   const saveTasksToDb = async () => {
+    console.log("save to db called")
     if (!user) {
       return; // Ensure user is logged in before trying to save data
     }
+    
     try {
       const userData = data;
       const tasksObjToSave = {
@@ -234,60 +259,98 @@ const { user, data, initialLoading } = useAuth();
         categories: categories,
         taskCategoriesState: taskCategoriesState,
       };
+  
+      const batch = writeBatch(db);
+
+      for (const item of toDelete) {
+        const taskDocRef = doc(db, `users/${user.uid}/tasks`, item.id);
+        batch.delete(taskDocRef); // Add deletion to the batch
+      }
+  
+      // Clear the toDelete array after deletion
+      setToDelete([]);
+
+
+      console.log("tasks", tasks, "----")
+      // Iterate over each task
+      for (const task of tasks) {
+        console.log("going through tasks")
+        if (task.id === null) {
+          console.log("no task id present")
+          // Create a new document under users/user.uid/tasks
+          const newDocRef = doc(collection(db, `users/${user.uid}/tasks`)); // Get a new document reference
+          task.id = newDocRef.id; // Assign the generated id to the task
+          task.updated = false; // Set updated to false
+          batch.set(newDocRef, task); // Add the task to the batch
+        } else if (task.updated) {
+          console.log("task updated")
+          // Update the existing document
+          const taskDocRef = doc(db, `users/${user.uid}/tasks`, task.id); // Reference to the existing document
+          task.updated = false; // Set updated to false
+          batch.set(taskDocRef, task, { merge: true }); // Add the task update to the batch
+        }
+      }
+  
+      // Commit the batch
+      await batch.commit();
+  
+      // Save the tasksObj to the user's document
       await setDoc(
         doc(db, "users", user.uid),
         { tasksObj: tasksObjToSave },
         { merge: true }
       );
+  
       setIsSaved(true);
+      if(lastId == 'all'){
+        setAllTasks(tasks);
+      }
     } catch (error) {
+      console.log("error", error)
       notification.error({
         message: "Failed to save tasks!",
         description: "Please try again.",
         icon: <AiOutlineExclamationCircle style={{ color: "#ff4d4f" }} />,
       });
     }
-  }
-
-  //Task node adding
-  const addTask_TaskNode = (list) => {
-    console.log("calling global add task node")
-    const newId = `randomtask_${+new Date()}_${+Math.random(4000)}}`;
-
-    const randomIndex = Math.floor(
-      Math.random() * Object.keys(taskCategories).length
-    );
-    const newTask = {
-      id: newId,
-      list: list,
-      title: "",
-      category: Object.keys(taskCategories)[randomIndex],
-      bgColor: taskCategories[Object.keys(taskCategories)[randomIndex]],
-      completed: false,
-    };
-    setTasks([...tasks, newTask]);
-    console.log("new category", Object.keys(taskCategories)[randomIndex]);
-    return (newId, Object.keys(taskCategories)[randomIndex])
   };
 
-  const updateCategory_TaskNode = (id, newCategory) => {
-    console.log("calling global update category");
-    let updatedTask = {};
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          updatedTask = {
-            ...task,
-            category: newCategory,
-            bgColor: taskCategories[newCategory],
-          };
-          return updatedTask;
-        }
-        return task;
-      })
-    );
-  };
+  const deleteTasksByListId = async (listId) => {
+    console.log("delete by listId called with", listId);
+    if (!user) {
+      return; // Ensure user is logged in before trying to delete data
+    }
   
+    try {
+      // Reference to the user's tasks collection
+      const tasksRef = collection(db, `users/${user.uid}/tasks`);
+      
+      // Query to find tasks with the given listId
+      const q = query(tasksRef, where("list", "==", listId));
+      
+      // Execute the query and get the documents
+      const querySnapshot = await getDocs(q);
+      
+      // Initialize a batch
+      const batch = writeBatch(db);
+      
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref); // Add each document deletion to the batch
+      });
+      
+      // Commit the batch
+      await batch.commit();
+      
+      console.log("Tasks with listId", listId, "have been deleted.");
+    } catch (error) {
+      console.log("error", error);
+      notification.error({
+        message: "Failed to delete tasks!",
+        description: "Please try again.",
+        icon: <AiOutlineExclamationCircle style={{ color: "#ff4d4f" }} />,
+      });
+    }
+  };
 
   // Add other states and functions you want to make globally available
   const value = {
@@ -310,15 +373,22 @@ const { user, data, initialLoading } = useAuth();
     onValueChangeTitle,
     updateListCategory,
 
+    getTaskDocumentById,
+
     isSavedTasks,
-    saveDataToLocalStorageTasks,
 
     saveTasksToDb,
+    allTasks,
+    lastId,
+    filterTasksById,
+    getAllTaskDocuments,
+
+    initialDataFromDbLoaded,
+    deleteTasksByListId
+    
     // Add more as needed
 
     //Task Node functions
-    addTask_TaskNode,
-    updateCategory_TaskNode
   };
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };

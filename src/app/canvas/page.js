@@ -18,6 +18,7 @@ import {
   TabPanel,
 } from "@material-tailwind/react";
 import Tasker from '@/components/Tasker/Tasker';
+import { useTasks } from '@/context/TaskContext';
 
 import { DocumentHeaderName } from '@/components/Information/DocumentHeaderName';
 
@@ -49,6 +50,7 @@ function Content() {
   const [canvasShrink, setCanvasShrink] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [activeTab, setActiveTab] = React.useState("canvas");
+  const {lastId, allTasks,filterTasksById} = useTasks();
 
   useEffect(() => {
     if (initialLoading) {
@@ -57,12 +59,12 @@ function Content() {
     if (!user) {
       router.push('/');
     }
+    
   }, [user, initialLoading, documentID]);
 
 
 
   const handleTabChange = (value) => {
-    console.log("handle change", value)
     setActiveTab(value);
     // Update URL hash based on tab clicked
     window.location.hash = `#${value}`;
@@ -77,10 +79,10 @@ function Content() {
     switch (activeTab) {
       case 'canvas':
         return <div className={`${styles.canvasContainer} ${canvasShrink ? styles.shrink : ''}`}>
-          <InfiniteCanvasNoSSR documentID={documentID} showBanner={showBanner} />;
+          <InfiniteCanvasNoSSR documentID={documentID} showBanner={showBanner} />
         </div>
       case 'tasks':
-        return <div style={{marginLeft:'64px', marginTop:!showBanner ? "75px" :'0px' }}><Tasker /></div>;
+        return documentID ? <div style={{marginLeft:'64px', marginTop:!showBanner ? "75px" :'0px', overflowY:'scroll' }}><Tasker id={documentID} /></div> : <div>Loading...</div> ;
       case 'documents':
         return <div>Documents</div>;
       default:
@@ -88,7 +90,7 @@ function Content() {
     }
   };
 
-  const image = "https://images.pexels.com/photos/247929/pexels-photo-247929.jpeg?auto=compress&cs=tinysrgb&w=800";
+  const image = "https://images.unsplash.com/photo-1583324746266-6ad2266a2d89?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE2fHx8ZW58MHx8fHx8";
 
   return (
     <div className={styles.container}>
@@ -118,7 +120,6 @@ function Content() {
                 </Tab>
                 <Tab
                   value="tasks"
-                  disabled
                   onClick={()=>{handleTabChange("tasks")}}
                   className={activeTab === 'tasks' ? "text-gray-900" : ""}
                 >

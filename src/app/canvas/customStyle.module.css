@@ -3,6 +3,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: color(srgb 0.9931 0.975 1);
+
   }
   
   .relative {
@@ -15,7 +17,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #f7f7f5ff;
+    background-color: color(srgb 0.9931 0.975 1);
     padding: 1px;
     color: black;
     transition: background-color 0.3s;

@@ -9,11 +9,12 @@ import { RiDraggable } from "react-icons/ri";
 import confetti from 'canvas-confetti';
 
 import { useSpring, animated } from 'react-spring';
-import { MdDateRange } from "react-icons/md";
+import { MdDateRange, MdSpaceDashboard} from "react-icons/md";
 import { useTasks } from '@/context/TaskContext';
+import useAuth from '@/context/Authentication/AuthProvider';
 
 
-const TaskList = ({}) => {
+const TaskList = ({id}) => {
   
   const {tasks, 
         deleteTask, 
@@ -26,6 +27,7 @@ const TaskList = ({}) => {
 
   const taskListRef = useRef(null);
   const confettiRef = useRef(null);
+  const {data,initialLoading} = useAuth();
 
   const launchConfetti = () => {
     if (confettiRef.current) {
@@ -42,6 +44,26 @@ const TaskList = ({}) => {
       });
     }
   };
+
+  const [idToNameMap, setIdToNameMap]= useState(null)
+
+  useEffect(() => {
+    if(initialLoading){
+      return
+    }
+    console.log("testing")
+    if(data && data.boards){
+      console.log("ok test", data)
+      const idToNameMapTemp = data.boards.reduce((acc, obj) => {
+        acc[obj.id] = obj.name;
+        return acc;
+      }, {});
+      setIdToNameMap(idToNameMapTemp)
+      console.log("here did the id to map", idToNameMapTemp)
+    }
+    
+  }, [data, initialLoading])
+  
 
 
   const strikeThroughAnimation = useSpring({
@@ -68,7 +90,7 @@ const TaskList = ({}) => {
               <div className={styles.numOfTasks}>{tasks?.length || 0} tasks</div>
               </div>
       </div>
-      <button onClick={addTask} className={styles.addButton}>
+      <button onClick={()=>{addTask(id)}} className={styles.addButton}>
         <FaPlus /> <span>Add New Task</span>
       </button>
       
@@ -108,7 +130,7 @@ const TaskList = ({}) => {
             <div className={styles.lineTwo}>
               {task.dueDate && <div className={styles.dateCont}><MdDateRange color='grey'/><span>{task.dueDate}</span></div>}
 
-              {task.list && <div className={styles.dateCont}><span>{task.list}</span></div>}
+              {task.list && data && idToNameMap && <div className={styles.dateCont}><MdSpaceDashboard color="grey"/><span>{idToNameMap[task.list]} ({task.list.substring(0, 2)}...)</span></div>}
             </div>
           </div>
         ))}

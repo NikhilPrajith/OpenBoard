@@ -33,10 +33,22 @@ const SignUpForm = ({onSwitch,closeDialog}) => {
             try{
                 const userData = await createUserWithEmailAndPassword(auth, email,password);
                 await updateProfile(auth.currentUser,{displayName:`${userName}`});
+                const tasksObj = {
+                    taskCategoriesState :{
+                        "😴": "rgb(195, 198, 249)",
+                        "😍": "rgb(199, 242, 249)",
+                        "🥸": "rgb(238, 199, 249)",
+                        "😭": "rgb(249, 211, 199)",
+                        "🤫": "rgb(249, 238, 199)",
+                        "😵‍💫": "rgb(249, 199, 242)",
+                        "🤕": "rgb(207, 249, 199)",
+                      },
+                }
                 const userDetails = {
                     email: userData.user.email,
                     userId: userData.user.uid,
                     name: userData.user.displayName,
+                    tasksObj:tasksObj
                 };
                 console.log(db);
                 const adding = await setDoc(doc(db, "users", userData.user.uid), 

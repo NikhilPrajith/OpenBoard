@@ -213,7 +213,6 @@ export default function InfiniteCanvas({ documentID, boardType = "Custom",showBa
 
         changeTheme(theme, true);
       } else {
-        console.log("custom owner template");
         setDocumentId(documentID);
         if (initialLoading) {
           return;

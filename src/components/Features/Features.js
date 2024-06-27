@@ -325,7 +325,7 @@ export default function Features({ setType, setOpenParent }) {
             <Divider />
           </div>
           <div>
-            <div className={styles.versionText}>Version 0.5</div>
+            <div className={styles.versionText}>Version 0.9</div>
             <div>
               <List
                 sx={{

@@ -23,6 +23,7 @@ import { collection,addDoc,setDoc,doc, userDocRef, arrayUnion,updateDoc, getDoc,
 
 
 import { Upload, Modal, Input, Button, notification, ColorPicker, message } from 'antd';
+import { useTasks } from './TaskContext';
 
 //Old Approach with context
 
@@ -313,6 +314,7 @@ export const BoardProvider = ({ children }) => {
     }
   }, [rfInstance, alignment]);
 
+  const {saveTasksToDb,deleteTasksByListId} = useTasks();
   const saveBoardState = async () => {
     if (!user) {
       console.log("No user logged in.");
@@ -348,6 +350,9 @@ export const BoardProvider = ({ children }) => {
 
 
       setIsSavedBoard(true); // Update state to indicate the board is saved
+      //save tasks
+      await saveTasksToDb();
+
   
     } catch (error) {
       console.error("Error saving board state to Firestore: ", error);
@@ -558,6 +563,7 @@ export const BoardProvider = ({ children }) => {
       // Update the document with the new boards array
       await setDoc(doc(db, 'users', user.uid), { boards: newBoards }, { merge: true });
       await deleteDoc(boardDocRef);
+      await deleteTasksByListId(id)
       return "Success"; // Return success if the document update was successful
     } catch (error) {
       console.error("Error deleting the board:", error);
